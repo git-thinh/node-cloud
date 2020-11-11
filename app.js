@@ -55,14 +55,15 @@ app.get("/*", (req, res) => {
             break;
         default:
             ref = req.headers.referer;
-            if (ref && ref.length > 0 && URL_STORE_DIR.hasOwnProperty(ref))
-                pathFile = './' + URL_STORE_DIR[ref] + file;
+            const dir = URL_STORE_DIR[ref];
+            if (file.indexOf('/' + dir) == -1 &&  ref && ref.length > 0 && URL_STORE_DIR.hasOwnProperty(ref))
+                pathFile = './' + dir + file;
             else pathFile = '.' + file;
             break;
     }
 
     if (pathFile.indexOf('?')) pathFile = pathFile.split('?')[0];
-    //console.log('[3] ', domain, req.url, pathFile);
+    console.log('[3] ', domain, req.url, pathFile);
 
     const mimeType = mime.lookup(pathFile);
     if (mimeType != false) res.setHeader('content-type', mimeType);

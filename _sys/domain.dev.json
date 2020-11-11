@@ -25,6 +25,10 @@
     "dir": "task",
     "login": true
   },
+  "theme.lo": {
+    "dir": "theme",
+    "login": false
+  },
   "site-1.lo": {
     "dir": "site-1",
     "login": false

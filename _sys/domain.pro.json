@@ -25,6 +25,10 @@
     "dir": "task",
     "login": true
   },
+  "theme.iot.vn": {
+    "dir": "theme",
+    "login": false
+  },
   "test.iot.vn": {
     "dir": "site-1",
     "login": false
