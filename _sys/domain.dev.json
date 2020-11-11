@@ -1,8 +1,13 @@
 {
+  "port":  1233,
   "url": {
     "login": "http://login.lo:1233",
     "api": "http://localhost:1233",
     "notify_socket": "ws://localhost:1233"
+  },
+  "404": {
+    "dir": "404",
+    "login": false
   },
   "login": {
     "dir": "login",
@@ -15,5 +20,13 @@
   "cloud.lo": {
     "dir": "cloud",
     "login": true
+  },
+  "task.lo": {
+    "dir": "task",
+    "login": true
+  },
+  "site-1.lo": {
+    "dir": "site-1",
+    "login": false
   }
 }

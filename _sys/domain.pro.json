@@ -1,14 +1,32 @@
 {
+  "port": 80,
+  "url": {
+    "login": "http://login.iot.vn",
+    "api": "http://api.iot.vn",
+    "notify_socket": "ws://api.iot.vn"
+  },
+  "404": {
+    "dir": "404",
+    "login": false
+  },
   "login": {
     "dir": "login",
-    "host_name": "login.lo:1233"
+    "login": false
   },
   "localhost": {
     "dir": "coming-soon",
     "login": false
   },
-  "cloud.lo": {
+  "cloud.iot.vn": {
     "dir": "cloud",
     "login": true
+  },
+  "task.iot.vn": {
+    "dir": "task",
+    "login": true
+  },
+  "test.iot.vn": {
+    "dir": "site-1",
+    "login": false
   }
 }
