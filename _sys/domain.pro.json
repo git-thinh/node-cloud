@@ -1,0 +1,14 @@
+{
+  "login": {
+    "dir": "login",
+    "host_name": "login.lo:1233"
+  },
+  "localhost": {
+    "dir": "coming-soon",
+    "login": false
+  },
+  "cloud.lo": {
+    "dir": "cloud",
+    "login": true
+  }
+}

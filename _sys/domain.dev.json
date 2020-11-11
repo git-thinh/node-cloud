@@ -1,0 +1,19 @@
+{
+  "url": {
+    "login": "http://login.lo:1233",
+    "api": "http://localhost:1233",
+    "notify_socket": "ws://localhost:1233"
+  },
+  "login": {
+    "dir": "login",
+    "login": false
+  },
+  "localhost": {
+    "dir": "coming-soon",
+    "login": false
+  },
+  "cloud.lo": {
+    "dir": "cloud",
+    "login": true
+  }
+}
