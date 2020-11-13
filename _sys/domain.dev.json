@@ -1,13 +1,15 @@
 {
-  "port":  1233,
+  "port": 1233,
   "url": {
     "login": "http://login.lo:1233",
-    "api": "http://localhost:1233",
+    "api": "http://api.lo:1233",
     "notify_socket": "ws://localhost:1233"
   },
   "404": {
     "dir": "404",
-    "login": false
+    "login": false,
+    "browser": "./404/000.html",
+    "index": "./404/001.html"
   },
   "login": {
     "dir": "login",
@@ -21,13 +23,18 @@
     "dir": "cloud",
     "login": true
   },
+  "english.lo": {
+    "dir": "english",
+    "login": true
+  },
   "task.lo": {
     "dir": "task",
     "login": true
   },
   "theme.lo": {
     "dir": "theme",
-    "login": false
+    "login": false,
+    "browser": true
   },
   "site-1.lo": {
     "dir": "site-1",
