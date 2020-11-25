@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
@@ -9083,8 +9083,8 @@ label[class*='col'] {
 .sidebar-floating {
   position: fixed;
   right: 1.5rem;
-  bottom: 6rem;
-  height: calc(100vh - 8rem) !important;
+  bottom: 5rem;
+  height: calc(100vh - 9rem) !important;
   border-radius: 0.5rem;
   box-shadow: 0 0.1875rem 0.375rem rgba(33, 37, 41, 0.1);
   border: 1px solid #dee2e6;

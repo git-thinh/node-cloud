@@ -32,5 +32,13 @@
   "test.iot.vn": {
     "dir": "site-1",
     "login": false
+  },
+  "baovethienphong.com": {
+    "dir": "baovethienphong.com",
+    "login": false
+  },
+  "www.baovethienphong.com": {
+    "dir": "baovethienphong.com",
+    "login": false
   }
 }
