@@ -450,7 +450,7 @@
 
       _proto.bindInputEvents = function bindInputEvents() {
         var filterInput = this.element.querySelector("." + Selector.FILTER_INPUT); // Store reference to data-filter-list element on the input itself
-
+        if (filterInput == null) return;
         $(filterInput).data(DATA_KEY, this);
         filterInput.addEventListener('keyup', this.searchLists, false);
         filterInput.addEventListener('paste', this.searchLists, false); // Handle submit to disable page reload

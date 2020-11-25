@@ -79,22 +79,22 @@ app.get("/*", (req, res) => {
             if (extension == '.html' || extension == '.js' || extension == '.css') {
                 let s = fs.readFileSync(pathFile);
                 if (extension == '.html') {
-                    if (s.indexOf('[_') > 0) {
+                    if (s.indexOf('<_') > 0) {
                         let text = s.toString('utf8');
-                        let a = text.split('[_');
-                        a = _.filter(a, function (o) { return o.indexOf('_]') > 0 });
-                        a = _.map(a, function (o) { return o.split('_]')[0]; });
+                        let a = text.split('<_');
+                        a = _.filter(a, function (o) { return o.indexOf('/>') > 0 });
+                        a = _.map(a, function (o) { return o.split('/>')[0]; });
                         //console.log(a);
                         if (a.length > 0) {
                             for (let i = 0; i < a.length; i++) {
                                 let url_ = './' + site.dir + '/_' + a[i] + '.html';
                                 if (ENV == 'pro' && URL_CACHE_TEXT.hasOwnProperty(a[i])) {
-                                    text = text.replace('[_' + a[i] + '_]', URL_CACHE_TEXT[a[i]].toString('utf8'));
+                                    text = text.replace('<_' + a[i] + '/>', URL_CACHE_TEXT[a[i]].toString('utf8').trim());
                                 } else {
                                     if (fs.existsSync(url_)) {
                                         const bt = fs.readFileSync(url_);
                                         URL_CACHE_TEXT[a[i]] = bt;
-                                        text = text.replace('[_' + a[i] + '_]', bt.toString('utf8'));
+                                        text = text.replace('<_' + a[i] + '/>', bt.toString('utf8').trim());
                                     }
                                 }
                             }

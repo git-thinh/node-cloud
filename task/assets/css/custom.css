@@ -1,0 +1,11 @@
+﻿.chat-module .chat-module-body {
+    top: 0;
+    height: 100%;
+    padding-right: 1.5rem;
+}
+
+@media (min-width: 992px) {
+    .layout-sidebar .main-container {
+        height: 100vh;
+    }
+}
