@@ -1,13 +1,9 @@
 ﻿{
     methods: {
         getItem: function() {
-            return [
-                { class: '', type: 'image', src: 'images/avatar2.png' },
-                { class: '', type: 'image', src: 'images/avatar2.png' },
-                { class: '', type: 'image', src: 'images/avatar2.png' },
-                { class: '', type: 'image', src: 'images/avatar2.png' },
-                { class: '', type: 'image', src: 'images/avatar2.png' }
-            ];
+            var url = this._localPathDir + 'demo.json';
+            var arr = this._getJsonUrl(url);
+            return arr[0].items;
         }
     }
 }

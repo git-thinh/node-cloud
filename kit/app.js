@@ -50,7 +50,7 @@ function _init() {
                     _DATA_DEMO[vpr] = it;
                     if (Array.isArray(it))
                         s += '<main class="ui-sandbox-kit ' + kit + '"><h3>' + kit + '[' + i_ + ']</h3><' + kit + ' v-set-items="_DATA_DEMO[\'' + vpr + '\']"></' + kit + '></main>';
-                    else 
+                    else
                         s += '<main class="ui-sandbox-kit ' + kit + '"><h3>' + kit + '[' + i_ + ']</h3><' + kit + ' v-set-item="_DATA_DEMO[\'' + vpr + '\']"></' + kit + '></main>';
                 });
             });
@@ -135,6 +135,13 @@ Vue.directive('set-items', {
 });
 
 var V_MIXIN = {
+    computed: {
+        _localPathDir: function () {
+            var _self = this,
+                name = _self.kit_name;
+            return '/ui/' + name.split('_').join('/') + '/';
+        }
+    },
     created: function () {
         var _self = this,
             kit = _self.$vnode.tag;
@@ -154,7 +161,13 @@ var V_MIXIN = {
         }
     },
     methods: {
-        hello: function () {
+        _getJsonUrl: function (url) {
+            var s = null;
+            var request = new XMLHttpRequest();
+            request.open('GET', url, false);
+            request.send(null);
+            if (request.status === 200) s = JSON.parse(request.responseText);
+            return s;
         }
     }
 };

@@ -1,0 +1,32 @@
+[
+  {
+    "bg_class": "bg-second",
+    "value_min": 0,
+    "value_max": 100,
+    "value_now": 30
+  },
+  {
+    "bg_class": "bg-success",
+    "value_min": 0,
+    "value_max": 100,
+    "value_now": 40
+  },
+  {
+    "bg_class": "bg-warning",
+    "value_min": 0,
+    "value_max": 100,
+    "value_now": 50
+  },
+  {
+    "bg_class": "bg-danger",
+    "value_min": 0,
+    "value_max": 100,
+    "value_now": 70
+  },
+  {
+    "bg_class": "bg-primary",
+    "value_min": 0,
+    "value_max": 100,
+    "value_now": 90
+  }
+]

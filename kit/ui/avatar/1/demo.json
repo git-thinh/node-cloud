@@ -4,15 +4,15 @@
     "size": "" 
   },
   {
-    "src": "images/avatar2.png",
+    "src": "demo/avatar/1.jpg",
     "size": ""
   },
   {
-    "src": "images/avatar2.png",
+    "src": "demo/avatar/2.jpg",
     "size": "sm"
   },
   {
-    "src": "images/avatar2.png",
+    "src": "demo/avatar/1.jpg",
     "size": "lg"
   }
 ]
