@@ -27,15 +27,28 @@ app.get("/*", (req, res) => {
         extension = path.extname(file),
         fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 
-    if (file == '/clear-cache') {
-        URL_CACHE_TEXT = Object.create({});
+    switch (file) {
+        case '/clear-cache':
+            URL_CACHE_TEXT = Object.create({});
 
-        const pathSite = './_sys/domain.' + ENV + '.json';
-        delete require.cache[require.resolve(pathSite)];
-        SITE = require(pathSite);
+            const pathSite = './_sys/domain.' + ENV + '.json';
+            delete require.cache[require.resolve(pathSite)];
+            SITE = require(pathSite);
 
-        res.end('CLEAR ALL CACHE ...');
-        return;
+            res.end('CLEAR ALL CACHE ...');
+            return;
+        case '/ui-kit.json':
+            const coms = [];
+            const groups = fs.readdirSync('./kit/ui');
+            groups.forEach(function (group) {
+                const kits = fs.readdirSync('./kit/ui/' + group);
+                kits.forEach(function (kit) {
+                    const files = fs.readdirSync('./kit/ui/' + group + '/' + kit);
+                    coms.push({ group: group, name: kit, files: files });
+                });
+            });
+            res.json({ ok: true, data: coms });
+            return;
     }
 
     if (extension.length == 0) {

@@ -1,0 +1,35 @@
+﻿.ui-sandbox-kit.sidebar_1 {
+    max-width:300px;
+}
+
+.sidebar_1 {
+}
+
+    .sidebar_1.ui-mode-kit {
+        background-color: #F8F9FA;
+        max-width: 250px;
+    }
+
+    .sidebar_1 svg.feather {
+        width: 16px;
+        height: 16px;
+    }
+
+    .sidebar_1 .nav-link {
+        font-weight: 500;
+        color: #333;
+    }
+
+        .sidebar_1 .nav-link .feather {
+            margin-right: 4px;
+            color: #727272;
+        }
+
+        .sidebar_1 .nav-link.active {
+            color: #007bff;
+        }
+
+            .sidebar_1 .nav-link:hover .feather,
+            .sidebar_1 .nav-link.active .feather {
+                color: inherit;
+            }

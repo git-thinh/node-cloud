@@ -1,0 +1,65 @@
+﻿.ui-sandbox-kit.avatar_2 {
+    width: auto;
+    background-color: #fff;
+}
+
+.avatar_2 .avatar {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    border: 2px solid #f8f9fa;
+    background: #f8f9fa;
+}
+
+    .avatar_2 .avatar.none {
+        padding: 0.2rem;
+        color: #ccc;
+        border-color: #ccc !important;
+    }
+
+    .avatar_2 .avatar.bg-primary {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .avatar_2 .avatar.bg-primary i {
+            font-size: 1rem;
+        }
+
+    .avatar_2 .avatar.avatar-lg {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .avatar_2 .avatar.avatar-sm {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+@media (min-width: 992px) {
+    .avatar_2 .avatar.avatar-lg {
+        width: 4.5rem;
+        height: 4.5rem;
+    }
+}
+
+
+.card .avatar_2 {
+    border-color: #fff;
+    background: #fff;
+}
+
+.avatar_2 {
+    padding-left: 0;
+    list-style: none;
+    margin: 0;
+}
+
+    .avatar_2 > li {
+        display: inline-block;
+    }
+
+        .avatar_2 > li + li {
+            margin-left: -0.75rem;
+        }

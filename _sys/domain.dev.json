@@ -19,6 +19,10 @@
     "dir": "coming-soon",
     "login": false
   },
+  "kit.lo": {
+    "dir": "kit",
+    "login": false
+  },
   "cloud.lo": {
     "dir": "cloud",
     "login": true
@@ -29,6 +33,10 @@
   },
   "192.168.1.12": {
     "dir": "task",
+    "login": true
+  },
+  "10.103.1.222": {
+    "dir": "kit",
     "login": true
   },
   "task.lo": {

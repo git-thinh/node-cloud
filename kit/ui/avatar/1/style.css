@@ -1,0 +1,51 @@
+﻿.ui-sandbox-kit.avatar_1 {
+    width: 10rem;
+    background-color: #fff;
+    height: 10rem;
+    border-radius: 0;
+    margin: 0 10px;
+}
+
+.avatar_1 {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    border: 2px solid #f8f9fa;
+    background: #f8f9fa;
+}
+
+    .avatar_1.none {
+        padding: 0.2rem;
+        color: #ccc;
+        border-color: #ccc !important;
+    }
+
+        .avatar_1.none path {
+        }
+
+    .avatar_1.bg-primary {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .avatar_1.bg-primary i {
+            font-size: 1rem;
+        }
+
+    .avatar_1.avatar-lg {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .avatar_1.avatar-sm {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+@media (min-width: 992px) {
+    .avatar_1.avatar-lg {
+        width: 4.5rem;
+        height: 4.5rem;
+    }
+}

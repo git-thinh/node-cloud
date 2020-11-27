@@ -1,0 +1,16 @@
+﻿.ui-sandbox-kit.progress_1 {
+    width: auto;
+}
+
+.progress_1 .progress {
+    display: flex;
+    height: 0.375rem;
+    overflow: hidden;
+    font-size: 0.75rem;
+    background-color: #dee2e6;
+    border-radius: 20rem;
+}
+
+.progress_1 .progress-bar {
+    border-radius: 20rem;
+}

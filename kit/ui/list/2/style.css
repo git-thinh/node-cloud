@@ -1,0 +1,47 @@
+﻿.ui-sandbox-kit.list_2 {
+    background-color: transparent;
+    width: 300px;
+}
+
+.list_2.ui-mode-kit {
+    max-width: 350px;
+}
+
+.list_2 {
+    width: auto;
+    display: inline-block;
+    background-color: #E9ECEF;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0;
+}
+
+    .list_2 .nav {
+        display: flex;
+        flex-wrap: wrap;
+        padding-left: 0px;
+        margin-bottom: 0px;
+        list-style: none;
+    }
+
+    .list_2 .nav-tabs .nav-item {
+        margin: 0 0.5rem;
+    }
+
+        .list_2 .nav-tabs .nav-link.active,
+        .list_2 .nav-tabs .nav-item.show .nav-link {
+            color: rgb(0, 123, 255);
+            background-color: rgb(255, 255, 255);
+            border-color: transparent;
+        }
+
+    .list_2 .nav-tabs .nav-link {
+        font-size: 0.875rem;
+        font-weight: 500;
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+        transition: color 0.35s ease-out 0s;
+    }
+
+        .list_2 .nav-tabs .nav-link:not(.active) {
+            color: rgba(33, 37, 41, 0.5);
+        }
