@@ -31,33 +31,47 @@ function _getUrl(url) {
 
 var _HTML = {};
 function _init() {
+    var GROUP_BASE = ['avatar', 'progress'];
     fetch('/ui-kit.json').then(r => r.json()).then(function (r) {
-        console.log(r);
+        //console.log(r);
         if (r.ok && r.data) {
             var kit = '';
+            var arrAll = _.filter(r.data, function (x) {
+                return GROUP_BASE.findIndex(function (x1) { return x1 == x.group; }) != -1;
+            });
+            var arr2 = _.filter(r.data, function (x) {
+                return GROUP_BASE.findIndex(function (x1) { return x1 == x.group; }) == -1;
+            });
+            //console.log(arrAll);
+            //console.log(arr2);
+            arr2.forEach(function (x) { arrAll.push(x); });
+            //console.log(arrAll);
 
             var s = '', arrDemo = [];
-            r.data.forEach(function (c) {
+            arrAll.forEach(function (c) {
                 arrDemo = [];
                 kit = c.group + '_' + c.name;
                 if (_.findIndex(c.files, function (x) { return x == 'demo.json'; }) != -1) {
                     var json = _getUrl('/ui/' + c.group + '/' + c.name + '/demo.json');
                     if (json.length > 0) arrDemo = JSON.parse(json);
                 }
-                s += '<main class="ui-sandbox-kit ' + kit + '"><h3>' + kit + '</h3><' + kit + '></' + kit + '></main>';
-                arrDemo.forEach(function (it, i_) {
-                    var vpr = kit + '.' + i_;
-                    _DATA_DEMO[vpr] = it;
-                    if (Array.isArray(it))
-                        s += '<main class="ui-sandbox-kit ' + kit + '"><h3>' + kit + '[' + i_ + ']</h3><' + kit + ' v-set-items="_DATA_DEMO[\'' + vpr + '\']"></' + kit + '></main>';
-                    else
-                        s += '<main class="ui-sandbox-kit ' + kit + '"><h3>' + kit + '[' + i_ + ']</h3><' + kit + ' v-set-item="_DATA_DEMO[\'' + vpr + '\']"></' + kit + '></main>';
-                });
+                if (arrDemo.length == 0)
+                    s += '<main class="ui-sandbox-kit ' + kit + '"><h3>' + kit + '</h3><' + kit + '></' + kit + '></main>';
+                else {
+                    arrDemo.forEach(function (it, i_) {
+                        var vpr = kit + '.' + i_;
+                        _DATA_DEMO[vpr] = it;
+                        if (Array.isArray(it))
+                            s += '<main class="ui-sandbox-kit ' + kit + '"><h3>' + kit + '[' + i_ + ']</h3><' + kit + ' v-set-items="_DATA_DEMO[\'' + vpr + '\']"></' + kit + '></main>';
+                        else
+                            s += '<main class="ui-sandbox-kit ' + kit + '"><h3>' + kit + '[' + i_ + ']</h3><' + kit + ' v-set-item="_DATA_DEMO[\'' + vpr + '\']"></' + kit + '></main>';
+                    });
+                }
             });
             document.getElementById('app').innerHTML = s;
 
             var js = '', v = '', css = '';
-            r.data.forEach(function (c) {
+            arrAll.forEach(function (c) {
                 v = '';
                 kit = c.group + '_' + c.name;
                 if (c.files && c.files.length > 0) {

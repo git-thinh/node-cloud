@@ -1,6 +1,12 @@
 [
   {
-    "items": [
+    "progress": {
+      "bg_class": "bg-danger",
+      "value_min": 0,
+      "value_max": 100,
+      "value_now": 70
+    },
+    "users": [
       {
         "src": "",
         "size": ""
@@ -11,11 +17,7 @@
       },
       {
         "src": "demo/avatar/2.jpg",
-        "size": "sm"
-      },
-      {
-        "src": "demo/avatar/1.jpg",
-        "size": "lg"
+        "size": ""
       }
     ]
   }

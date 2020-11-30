@@ -1,4 +1,10 @@
 ﻿{
+    data: function() {
+        return {
+            progress: {},
+            users: []
+        };
+    },
     methods: {
         getItem: function() {
             var url = this._localPathDir + 'demo.json';

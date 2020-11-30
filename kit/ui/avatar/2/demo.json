@@ -1,0 +1,50 @@
+[
+  {
+    "items": [
+      {
+        "src": "",
+        "size": "sm"
+      },
+      {
+        "src": "demo/avatar/1.jpg",
+        "size": "sm"
+      },
+      {
+        "src": "demo/avatar/2.jpg",
+        "size": "sm"
+      }
+    ]
+  },
+  {
+    "items": [
+      {
+        "src": "",
+        "size": ""
+      },
+      {
+        "src": "demo/avatar/1.jpg",
+        "size": ""
+      },
+      {
+        "src": "demo/avatar/2.jpg",
+        "size": ""
+      }
+    ]
+  },
+  {
+    "items": [
+      {
+        "src": "",
+        "size": "lg"
+      },
+      {
+        "src": "demo/avatar/1.jpg",
+        "size": "lg"
+      },
+      {
+        "src": "demo/avatar/2.jpg",
+        "size": "lg"
+      }
+    ]
+  }
+]
