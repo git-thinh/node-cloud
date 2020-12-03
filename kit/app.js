@@ -31,7 +31,7 @@ function _getUrl(url) {
 
 var _HTML = {};
 function _init() {
-    var GROUP_BASE = ['avatar', 'progress', 'tab', 'dropdown'];
+    var GROUP_BASE = ['color', 'avatar', 'progress', 'tab', 'dropdown'];
     fetch('/ui-kit.json').then(r => r.json()).then(function (r) {
         //console.log(r);
         if (r.ok && r.data) {

@@ -33,6 +33,14 @@
     "dir": "site-1",
     "login": false
   },
+  "kit.iot.vn": {
+    "dir": "kit",
+    "login": false
+  },
+  "cuong-dola.iot.vn": {
+    "dir": "cuong",
+    "login": false
+  },
   "baovethienphong.com": {
     "dir": "baovethienphong.com",
     "login": false

@@ -1,0 +1,19 @@
+﻿.ui-sandbox-kit.color_1 {
+    width: 100%;
+}
+
+.color_1 {
+}
+
+    .color_1 .box {
+        width: 180px;
+        float: left;
+    }
+
+    .color_1 ul {
+    }
+
+    .color_1 li {
+        list-style: none;
+        margin-bottom: 3px;
+    }

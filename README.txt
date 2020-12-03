@@ -13,3 +13,25 @@
 
 npm i lodash mime-types express 
 
+lsb_release -d
+sudo lsof -i -P -n | grep LISTEN
+netstat -tanp
+
+lsof -i | grep ftp
+killall -i redis-ser
+kill PID
+
+systemctl restart pdf.service
+systemctl status pdf.service
+
+systemctl status finfo.service
+systemctl restart finfo.service
+
+systemctl daemon-reload
+sudo lsof -i -P -n | grep LISTEN
+
+ls -dils ./*
+
+ls -dils ./1000*
+
+systemctl status redis-1000.service

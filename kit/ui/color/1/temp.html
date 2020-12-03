@@ -1,0 +1,50 @@
+﻿<div>
+    <div class="box">
+        <ul>
+            <li class="text-primary">.text-primary</li>
+            <li class="text-secondary">.text-secondary</li>
+            <li class="text-success">.text-success</li>
+            <li class="text-danger">.text-danger</li>
+            <li class="text-warning bg-dark">.text-warning</li>
+            <li class="text-info bg-dark">.text-info</li>
+            <li class="text-light bg-dark">.text-light</li>
+            <li class="text-dark">.text-dark</li>
+            <li class="text-body">.text-body</li>
+            <li class="text-muted">.text-muted</li>
+            <li class="text-white bg-dark">.text-white</li>
+            <li class="text-black-50">.text-black-50</li>
+            <li class="text-white-50 bg-dark">.text-white-50</li>
+        </ul>
+    </div>
+    <div class="box">
+        <ul>
+            <li class="bg-primary text-white">.bg-primary</li>
+            <li class="bg-secondary text-white">.bg-secondary</li>
+            <li class="bg-success text-white">.bg-success</li>
+            <li class="bg-danger text-white">.bg-danger</li>
+            <li class="bg-warning text-dark">.bg-warning</li>
+            <li class="bg-info text-dark">.bg-info</li>
+            <li class="bg-light text-dark">.bg-light</li>
+            <li class="bg-dark text-white">.bg-dark</li>
+            <li class="bg-white text-dark">.bg-white</li>
+            <li class="bg-transparent text-dark">.bg-transparent</li>
+        </ul>
+    </div>
+    <div class="box" style="width:270px">
+        <ul>
+            <li class="bg-primary bg-gradient text-white">.bg-primary.bg-gradient</li>
+            <li class="bg-secondary bg-gradient text-white">.bg-secondary.bg-gradient</li>
+            <li class="bg-success bg-gradient text-white">.bg-success.bg-gradient</li>
+            <li class="bg-danger bg-gradient text-white">.bg-danger.bg-gradient</li>
+            <li class="bg-warning bg-gradient text-dark">.bg-warning.bg-gradient</li>
+            <li class="bg-info bg-gradient text-dark">.bg-info.bg-gradient</li>
+            <li class="bg-light bg-gradient text-dark">.bg-light.bg-gradient</li>
+            <li class="bg-dark bg-gradient text-white">.bg-dark.bg-gradient</li>
+        </ul>
+    </div>
+    <div v-for="name in names" class="box">
+        <ul>
+            <li v-for="val in values" :class="'bd-' + name + '-' + val">{{'bd-' + name + '-' + val}}</li>
+        </ul>
+    </div>
+</div>
