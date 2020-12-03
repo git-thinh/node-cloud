@@ -1,0 +1,28 @@
+﻿
+.ui-sandbox-kit.border_1 {
+    background-color: #fff;
+}
+
+.border_1 {
+}
+
+    .border_1 main {
+    }
+
+        .border_1 main span {
+            text-align: center;
+            width: 135px !important;
+            padding-top: 24px;
+        }
+
+        .border_1 main svg rect {
+            background-color: #f4f4f4;
+        }
+
+        .border_1 main ul {
+        }
+
+            .border_1 main ul li {
+                list-style: none;
+                margin-top: 10px;
+            }
