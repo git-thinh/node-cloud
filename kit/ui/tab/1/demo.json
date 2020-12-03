@@ -1,0 +1,67 @@
+[
+  {
+    "class": "nav nav-tabs",
+    "items": [
+      {
+        "title": "Active",
+        "class_tab": "nav-item",
+        "class_link": "nav-link active"
+      },
+      {
+        "title": "Link",
+        "class_tab": "nav-item",
+        "class_link": "nav-link"
+      },
+      {
+        "title": "Link",
+        "class_tab": "nav-item",
+        "class_link": "nav-link"
+      },
+      {
+        "title": "Disabled",
+        "class_tab": "nav-item",
+        "class_link": "nav-link disabled"
+      }
+    ]
+  },
+  {
+    "class": "tab_button nav nav-tabs bg-primary",
+    "items": [
+      {
+        "title": "Active",
+        "class_tab": "nav-item",
+        "class_link": "nav-link active bg-white"
+      },
+      {
+        "title": "Link",
+        "class_tab": "nav-item",
+        "class_link": "nav-link text-white"
+      },
+      {
+        "title": "Disabled",
+        "class_tab": "nav-item",
+        "class_link": "nav-link disabled text-dark"
+      }
+    ]
+  },
+  {
+    "class": "tab_button nav nav-tabs bg-dark",
+    "items": [
+      {
+        "title": "Active",
+        "class_tab": "nav-item",
+        "class_link": "nav-link active bg-white"
+      },
+      {
+        "title": "Link",
+        "class_tab": "nav-item",
+        "class_link": "nav-link text-white"
+      },
+      {
+        "title": "Disabled",
+        "class_tab": "nav-item",
+        "class_link": "nav-link disabled text-black-10"
+      }
+    ]
+  }
+]

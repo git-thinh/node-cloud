@@ -1,0 +1,77 @@
+[
+  {
+    "class": "dropdown",
+    "class_popup": "dropdown-menu dropdown-menu-lg-right",
+    "button": {
+      "content": "dropdown 1",
+      "attrs": {
+        "class": "btn dropdown-toggle btn-secondary",
+        "data-toggle": "dropdown",
+        "aria-haspopup": "true",
+        "aria-expanded": "false"
+      }
+    },
+    "items": [
+      {
+        "title": "Menu 1",
+        "class": "dropdown-item"
+      },
+      {},
+      {
+        "title": "Active",
+        "class": "dropdown-item active"
+      },
+      {
+        "title": "Link",
+        "class": "dropdown-item"
+      },
+      {
+        "title": "Link",
+        "class": "dropdown-item"
+      },
+      {
+        "title": "Disabled",
+        "class": "dropdown-item disabled"
+      }
+    ]
+  },
+  {
+    "class": "dropdown btn-group dropright",
+    "class_popup": "dropdown-menu dropdown-menu-lg-right",
+    "button": {
+      "content": "dropdown split",
+      "attrs": {
+        "class": "btn btn-primary"
+      }
+    },
+    "button_split": {
+      "class": "btn btn-danger dropdown-toggle dropdown-toggle-split",
+      "data-toggle": "dropdown",
+      "aria-haspopup": "true",
+      "aria-expanded": "false"
+    },
+    "items": [
+      {
+        "title": "Menu 1",
+        "class": "dropdown-item"
+      },
+      {},
+      {
+        "title": "Active",
+        "class": "dropdown-item active"
+      },
+      {
+        "title": "Link",
+        "class": "dropdown-item"
+      },
+      {
+        "title": "Link",
+        "class": "dropdown-item"
+      },
+      {
+        "title": "Disabled",
+        "class": "dropdown-item disabled"
+      }
+    ]
+  }
+]

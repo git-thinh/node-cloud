@@ -9,6 +9,9 @@
         var _self = this, el,
             src = _self.src,
             clas = _self._getClass();
+
+        //console.log('COM.render = ', _self.kit_name);
+
         if (src.length == 0) {
             var el_path = createElement('path', {
                 attrs: {
@@ -45,15 +48,8 @@
             console.log('AVATAR_1 = ', item);
         },
         _getClass: function() {
-            var _self = this,
-                kit = _self.$vnode.tag;
-            if (kit && kit.length > 14) {
-                kit = kit.substr(14);
-                var pos = kit.split('-')[0].length + 1;
-                kit = kit.substr(pos);
-            }
-
-            var s = kit + ' avatar';
+            var _self = this;
+            var s = _self.kit_name + ' avatar';
             switch (this.size) {
                 case 'sm':
                     s += ' avatar-sm';

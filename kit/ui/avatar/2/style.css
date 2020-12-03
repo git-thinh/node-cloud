@@ -1,6 +1,8 @@
 ﻿.ui-sandbox-kit.avatar_2 {
     width: auto;
     background-color: #f4f4f4;
+    margin-right: 5px;
+    margin-bottom: 5px;
 }
 
 .avatar_2 .avatar {

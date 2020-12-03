@@ -4,7 +4,7 @@
             bg_class: 'bg-primary',
             value_min: 0,
             value_max: 100,
-            value_now: 50
+            value_now: 0
         }
     },
     render: function (createElement) {

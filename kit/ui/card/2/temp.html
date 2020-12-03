@@ -1,0 +1,35 @@
+﻿<div class="card card-kanban" style="max-width:20rem;">
+    <progress_1 ref="vc_progress"></progress_1>
+    <div class="card-body">
+        <div class="dropdown card-options">
+            <button class="btn-options" type="button" id="kanban-dropdown-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 16 16" class="bi bi-three-dots-vertical" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                </svg>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="#">Edit</a>
+                <a class="dropdown-item text-danger" href="#">Archive Card</a>
+            </div>
+        </div>
+        <div class="card-title">
+            <a href="#" data-toggle="modal" data-target="#task-modal">
+                <h6>Task Title</h6>
+            </a>
+        </div>
+        <avatar_2 ref="vc_avatars"></avatar_2>
+        <!--<avatar_2 v-set-data:items="users"></avatar_2>-->
+        <!--<ul class="avatar_2 avatars">
+        <li v-for="it in users">
+            <avatar_1 v-set-data="it"></avatar_1>
+        </li>
+    </ul>-->
+        <div class="card-meta d-flex justify-content-between">
+            <div class="d-flex align-items-center">
+                <i class="material-icons">playlist_add_check</i>
+                <span>2/10</span>
+            </div>
+            <span class="text-small">Due 2 days</span>
+        </div>
+    </div>
+</div>

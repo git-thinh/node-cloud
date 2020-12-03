@@ -31,7 +31,7 @@ function _getUrl(url) {
 
 var _HTML = {};
 function _init() {
-    var GROUP_BASE = ['avatar', 'progress'];
+    var GROUP_BASE = ['avatar', 'progress', 'tab', 'dropdown'];
     fetch('/ui-kit.json').then(r => r.json()).then(function (r) {
         //console.log(r);
         if (r.ok && r.data) {
@@ -61,11 +61,9 @@ function _init() {
                     arrDemo.forEach(function (it, i_) {
                         var vpr = kit + '.' + i_;
                         _DATA_DEMO[vpr] = it;
-                        if (Array.isArray(it))
-                            s += '<main class="ui-sandbox-kit ' + kit + '"><h3>' + kit + '[' + i_ + ']</h3><' + kit + ' v-set-items="_DATA_DEMO[\'' + vpr + '\']"></' + kit + '></main>';
-                        else
-                            s += '<main class="ui-sandbox-kit ' + kit + '"><h3>' + kit + '[' + i_ + ']</h3><' + kit + ' v-set-item="_DATA_DEMO[\'' + vpr + '\']"></' + kit + '></main>';
+                        s += '<main class="ui-sandbox-kit ' + kit + '"><h3>' + kit + '[' + i_ + ']</h3><' + kit + ' v-set-data="_DATA_DEMO[\'' + vpr + '\']"></' + kit + '></main>';
                     });
+                    s += '<div class=clearfix></div>';
                 }
             });
             document.getElementById('app').innerHTML = s;
@@ -123,7 +121,7 @@ function _init() {
     });
 }
 
-Vue.directive('set-item', {
+Vue.directive('set-data', {
     bind: function (el, binding, vnode) {
         var vueParent = vnode.context,
             vueSelf = el.__vue__,
@@ -131,40 +129,31 @@ Vue.directive('set-item', {
         if (typeof binding.value == 'function') data = binding.value();
         //console.log(data);
         if (vueSelf) {
-            var keys = Object.keys(data);
-            keys.forEach(function (ky) {
-                vueSelf.$data[ky] = data[ky];
-            });
+            if (binding.arg) {
+                //console.log(binding.arg, data);
+                vueSelf.$data[binding.arg] = data;
+            } else {
+                var keys = Object.keys(data);
+                //console.log(vueSelf.kit_name, keys);
+                keys.forEach(function (ky) {
+                    vueSelf.$data[ky] = data[ky];
+                });
+            }
         }
-    }
-});
-
-Vue.directive('set-items', {
-    bind: function (el, binding, vnode) {
-        var vueSelf = el.__vue__,
-            data = binding.value;
-        if (typeof binding.value == 'function') data = binding.value();
-        if (vueSelf) vueSelf.$data.items = data;
     }
 });
 
 var V_MIXIN = {
     computed: {
         _localPathDir: function () {
-            var _self = this,
-                name = _self.kit_name;
+            var _self = this, name = _self.kit_name;
             return '/ui/' + name.split('_').join('/') + '/';
         }
     },
     created: function () {
-        var _self = this,
-            kit = _self.$vnode.tag;
-        if (kit && kit.length > 14) {
-            kit = kit.substr(14);
-            var pos = kit.split('-')[0].length + 1;
-            kit = kit.substr(pos);
-        }
-        _self.kit_name = kit;
+        var _self = this;
+        _self._setKitName();
+        //console.log('MIXIN.created = ', this.kit_name);
     },
     mounted: function () {
         var _self = this;
@@ -175,6 +164,19 @@ var V_MIXIN = {
         }
     },
     methods: {
+        _setKitName: function () {
+            var _self = this;
+            var kit_name = _self.$vnode.tag;
+            if (kit_name && kit_name.length > 14) {
+                kit_name = kit_name.substr(14);
+                var pos = kit_name.split('-')[0].length + 1;
+                kit_name = kit_name.substr(pos);
+            } else kit_name = '';
+
+            _self.kit_name = kit_name;
+
+            return kit_name;
+        },
         _getJsonUrl: function (url) {
             var s = null;
             var request = new XMLHttpRequest();
@@ -182,6 +184,13 @@ var V_MIXIN = {
             request.send(null);
             if (request.status === 200) s = JSON.parse(request.responseText);
             return s;
+        },
+        _setData: function (data) {
+            var _self = this;
+            var keys = Object.keys(data);
+            keys.forEach(function (ky) {
+                _self.$data[ky] = data[ky];
+            });
         }
     }
 };

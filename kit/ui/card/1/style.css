@@ -1,0 +1,42 @@
+﻿
+.card_1.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+}
+
+.card_1.card-kanban {
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    outline: none !important;
+    cursor: -webkit-grab;
+    cursor: grab;
+}
+
+.card_1.card > .progress {
+    height: 0.1875rem;
+    background: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.card_1 .card-options {
+}
+.card_1 .card-title {
+}
+
+    .card_1 .card-title a {
+        text-decoration: none;
+    }
