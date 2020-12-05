@@ -1,0 +1,40 @@
+[
+  {
+    "class_root": "navbar navbar-expand-lg fixed-top navbar-dark bg-dark",
+    "class_box": "d-flex justify-content-between bd-highlight",
+    "logo": {
+      "url": "/",
+      "src": "demo/logo/kt.png"
+    },
+    "menu": {
+      "class_menu": "nav nav-tabs",
+      "class_menu_box": "nav nav-tabs",
+      "items": [
+        {
+          "title": "Active",
+          "class_tab": "nav-item",
+          "class_link": "nav-link active"
+        },
+        {
+          "title": "Link",
+          "class_tab": "nav-item",
+          "class_link": "nav-link"
+        },
+        {
+          "title": "Link",
+          "class_tab": "nav-item",
+          "class_link": "nav-link"
+        },
+        {
+          "title": "Disabled",
+          "class_tab": "nav-item",
+          "class_link": "nav-link disabled"
+        }
+      ]
+    },
+    "right": {
+      "class": "",
+      "kit_name": ""
+    }
+  }
+]

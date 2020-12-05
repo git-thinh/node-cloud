@@ -30,8 +30,8 @@ function _getUrl(url) {
 }
 
 var _HTML = {};
+var GROUP_BASE = ['search', 'hide', 'text', 'color', 'avatar', 'progress', 'tab', 'dropdown'];
 function _init() {
-    var GROUP_BASE = ['hide', 'text', 'color', 'avatar', 'progress', 'tab', 'dropdown'];
     fetch('/ui-kit.json').then(r => r.json()).then(function (r) {
         //console.log(r);
         if (r.ok && r.data) {

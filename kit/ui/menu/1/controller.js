@@ -1,0 +1,47 @@
+﻿{
+    data: function() {
+        return {
+            class_root: '',
+            class_box: '',
+            logo: {},
+            menu: {},
+            right: {},
+        }
+    },
+    render: function (createElement) {
+        var _self = this,
+            _data = _self.$data,
+            _items = _self.items,
+            _arrEls = [];
+
+        //for (var i = 0; i < _items.length; i++) {
+        //    var it = _items[i];
+        //    var el = createElement('a', {
+        //        attrs: {
+        //            class: it.class_link
+        //        }
+        //    }, [it.title]);
+
+        //    var li = createElement('li', {
+        //        attrs: { class: it.class_tab }
+        //    }, [el]);
+        //    _arrEls.push(li);
+        //}
+
+        var left, center, right;
+        if (Object.keys(_data.logo).length == 0)
+            left = createElement('div', { attrs: { class: '' } }, []);
+        else {
+            var img = createElement('img', { attrs: { src: _data.logo.src } });
+            var logo = createElement('a', { attrs: { class: '--logo' } }, [img]);
+            left = createElement('div', { attrs: { class: '--left' } }, [logo]);
+        }
+
+        center = createElement('div', { attrs: { class: '' } }, []);
+        right = createElement('div', { attrs: { class: '' } }, []);
+
+        var box = createElement('div', { attrs: { class: _self.class_box + ' --main' } }, [left, center, right]);
+        var nav = createElement('nav', { attrs: { class: _self.kit_name + ' ' + _self.class_root } }, [box]);
+        return nav;
+    }
+}
