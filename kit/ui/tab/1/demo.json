@@ -1,6 +1,6 @@
 [
   {
-    "class": "nav nav-tabs",
+    "class": "nav",
     "items": [
       {
         "title": "Active",
@@ -21,6 +21,263 @@
         "title": "Disabled",
         "class_tab": "nav-item",
         "class_link": "nav-link disabled"
+      }
+    ]
+  },
+  {
+    "class": "nav",
+    "items": [
+      {
+        "title": "Active",
+        "class_tab": "nav-item",
+        "class_link": "nav-link active"
+      },
+      {
+        "title": "Link",
+        "class_tab": "nav-item",
+        "class_link": "nav-link"
+      },
+      {
+        "title": "Dropdown Menu",
+        "class_tab": "nav-item dropdown",
+        "class_link": "btn btn-secondary dropdown-toggle",
+        "menu_sub": {
+          "class": "dropdown-menu",
+          "items": [
+            {
+              "title": "Menu 1",
+              "class": "dropdown-item"
+            },
+            {},
+            {
+              "title": "Active",
+              "class": "dropdown-item active"
+            },
+            {
+              "title": "Link",
+              "class": "dropdown-item"
+            },
+            {
+              "title": "Link",
+              "class": "dropdown-item"
+            },
+            {
+              "title": "Disabled",
+              "class": "dropdown-item disabled"
+            }
+          ]
+        }
+      },
+      {
+        "title": "Disabled",
+        "class_tab": "nav-item",
+        "class_link": "nav-link disabled"
+      }
+    ]
+  },
+
+  {
+    "class": "nav",
+    "items": [
+      {
+        "title": "Active",
+        "class_tab": "nav-item",
+        "class_link": "nav-link active"
+      },
+      {
+        "title": "Link",
+        "class_tab": "nav-item",
+        "class_link": "nav-link"
+      },
+      {
+        "title": "Dropdown Menu",
+        "class_tab": "nav-item dropdown",
+        "class_link": "btn text-primary nav-link dropdown-toggle",
+        "menu_sub": {
+          "class": "dropdown-menu",
+          "items": [
+            {
+              "title": "Menu 1",
+              "class": "dropdown-item"
+            },
+            {},
+            {
+              "title": "Active",
+              "class": "dropdown-item active"
+            },
+            {
+              "title": "Link",
+              "class": "dropdown-item"
+            },
+            {
+              "title": "Link",
+              "class": "dropdown-item"
+            },
+            {
+              "title": "Disabled",
+              "class": "dropdown-item disabled"
+            }
+          ]
+        }
+      },
+      {
+        "title": "Disabled",
+        "class_tab": "nav-item",
+        "class_link": "nav-link disabled"
+      }
+    ]
+  },
+  {
+    "class": "nav justify-content-center",
+    "items": [
+      {
+        "title": "Active",
+        "class_tab": "nav-item",
+        "class_link": "nav-link active"
+      },
+      {
+        "title": "Link",
+        "class_tab": "nav-item",
+        "class_link": "nav-link"
+      },
+      {
+        "title": "Disabled",
+        "class_tab": "nav-item",
+        "class_link": "nav-link disabled"
+      }
+    ]
+  },
+  {
+    "class": "nav justify-content-end",
+    "items": [
+      {
+        "title": "Active",
+        "class_tab": "nav-item",
+        "class_link": "nav-link active"
+      },
+      {
+        "title": "Link",
+        "class_tab": "nav-item",
+        "class_link": "nav-link"
+      },
+      {
+        "title": "Disabled",
+        "class_tab": "nav-item",
+        "class_link": "nav-link disabled"
+      }
+    ]
+  },
+  {
+    "class": "nav flex-column",
+    "items": [
+      {
+        "title": "Active",
+        "class_tab": "nav-item",
+        "class_link": "nav-link active"
+      },
+      {
+        "title": "Link",
+        "class_tab": "nav-item",
+        "class_link": "nav-link"
+      },
+      {
+        "title": "Disabled",
+        "class_tab": "nav-item",
+        "class_link": "nav-link disabled"
+      }
+    ]
+  },
+  {
+    "class": "nav nav-tabs",
+    "items": [
+      {
+        "title": "Active",
+        "class_tab": "nav-item",
+        "class_link": "nav-link active"
+      },
+      {
+        "title": "Link",
+        "class_tab": "nav-item",
+        "class_link": "nav-link"
+      },
+      {
+        "title": "Disabled",
+        "class_tab": "nav-item",
+        "class_link": "nav-link disabled"
+      }
+    ]
+  },
+  {
+    "class": "nav nav-pills",
+    "items": [
+      {
+        "title": "Active",
+        "class_tab": "nav-item",
+        "class_link": "nav-link active"
+      },
+      {
+        "title": "Link",
+        "class_tab": "nav-item",
+        "class_link": "nav-link"
+      },
+      {
+        "title": "Disabled",
+        "class_tab": "nav-item",
+        "class_link": "nav-link disabled"
+      }
+    ]
+  },
+  {
+    "class": "nav nav-pills nav-fill",
+    "items": [
+      {
+        "title": "Active",
+        "class_tab": "nav-item",
+        "class_link": "nav-link active"
+      },
+      {
+        "title": "Link",
+        "class_tab": "nav-item",
+        "class_link": "nav-link"
+      },
+      {
+        "title": "Disabled",
+        "class_tab": "nav-item",
+        "class_link": "nav-link disabled"
+      }
+    ]
+  },
+  {
+    "class": "nav nav-pills nav-justified",
+    "items": [
+      {
+        "title": "Active",
+        "class_link": "nav-link active"
+      },
+      {
+        "title": "Link",
+        "class_link": "nav-link"
+      },
+      {
+        "title": "Disabled",
+        "class_link": "nav-link disabled"
+      }
+    ]
+  },
+  {
+    "class": "nav nav-pills flex-column flex-sm-row",
+    "items": [
+      {
+        "title": "Active",
+        "class_link": "flex-sm-fill text-sm-center nav-link active"
+      },
+      {
+        "title": "Link",
+        "class_link": "flex-sm-fill text-sm-center nav-link"
+      },
+      {
+        "title": "Disabled",
+        "class_link": "flex-sm-fill text-sm-center nav-link disabled"
       }
     ]
   },

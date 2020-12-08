@@ -34,10 +34,22 @@
         else {
             var img = createElement('img', { attrs: { src: _data.logo.src } });
             var logo = createElement('a', { attrs: { class: '--logo' } }, [img]);
-            left = createElement('div', { attrs: { class: '--left' } }, [logo]);
+
+            var left_css = '--left';
+            if (_data.logo.class_box && _data.logo.class_box.length > 0) left_css += ' ' + _data.logo.class_box;
+            left = createElement('div', { attrs: { class: left_css } }, [logo]);
         }
 
-        center = createElement('div', { attrs: { class: '' } }, []);
+        if (Object.keys(_data.menu).length == 0)
+            center = createElement('div', { attrs: { class: '' } }, []);
+        else {
+            var menu = createElement('tab_1', {
+                directives: [{ name: 'set-data', value: _data.menu }],
+            });
+            center = createElement('div', { attrs: { class: _data.menu.class_box + ' --center' } }, [menu]);
+        }
+
+
         right = createElement('div', { attrs: { class: '' } }, []);
 
         var box = createElement('div', { attrs: { class: _self.class_box + ' --main' } }, [left, center, right]);

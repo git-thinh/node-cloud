@@ -3,12 +3,13 @@
     "class_root": "navbar navbar-expand-lg fixed-top navbar-dark bg-dark",
     "class_box": "d-flex justify-content-between bd-highlight",
     "logo": {
+      "class_box": "bg-dark",
       "url": "/",
-      "src": "demo/logo/kt.png"
+      "src": "demo/logo/bs.png"
     },
     "menu": {
-      "class_menu": "nav nav-tabs",
-      "class_menu_box": "nav nav-tabs",
+      "class_box": "bg-info",
+      "class": "nav",
       "items": [
         {
           "title": "Active",
@@ -21,9 +22,35 @@
           "class_link": "nav-link"
         },
         {
-          "title": "Link",
-          "class_tab": "nav-item",
-          "class_link": "nav-link"
+          "title": "Dropdown Menu",
+          "class_tab": "nav-item dropdown",
+          "class_link": "btn btn-secondary dropdown-toggle",
+          "menu_sub": {
+            "class": "dropdown-menu",
+            "items": [
+              {
+                "title": "Menu 1",
+                "class": "dropdown-item"
+              },
+              {},
+              {
+                "title": "Active",
+                "class": "dropdown-item active"
+              },
+              {
+                "title": "Link",
+                "class": "dropdown-item"
+              },
+              {
+                "title": "Link",
+                "class": "dropdown-item"
+              },
+              {
+                "title": "Disabled",
+                "class": "dropdown-item disabled"
+              }
+            ]
+          }
         },
         {
           "title": "Disabled",
@@ -33,7 +60,7 @@
       ]
     },
     "right": {
-      "class": "",
+      "class_box": "bg-primary",
       "kit_name": ""
     }
   }

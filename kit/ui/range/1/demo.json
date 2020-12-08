@@ -1,0 +1,24 @@
+[
+  {
+    "id": "",
+    "class_box": "",
+    "class_range": "form-range",
+    "class_title": "form-label",
+    "title": "",
+    "value": 70,
+    "min": 0,
+    "max": 100,
+    "disable": false
+  },
+  {
+    "id": "",
+    "class_box": "",
+    "class_range": "form-range",
+    "class_title": "form-label",
+    "title": "This is caption",
+    "value": 36,
+    "min": 0,
+    "max": 100,
+    "disable": false
+  }
+]

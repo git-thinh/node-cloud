@@ -1,0 +1,42 @@
+[
+  {
+    "id": "",
+    "indeterminate": false,
+    "class_box": "form-check",
+    "class_check": "form-check-input",
+    "class_title": "form-check-label",
+    "title": "this is check 1",
+    "value": 0,
+    "disable": false
+  },
+  {
+    "id": "",
+    "indeterminate": false,
+    "class_box": "form-check",
+    "class_check": "form-check-input",
+    "class_title": "form-check-label",
+    "title": "this is check 1",
+    "value": 1,
+    "disable": true
+  },
+  {
+    "id": "",
+    "indeterminate": false,
+    "class_box": "form-check",
+    "class_check": "form-check-input",
+    "class_title": "form-check-label",
+    "title": "this is check 2",
+    "value": 1,
+    "disable": false
+  },
+  {
+    "id": "",
+    "indeterminate": true,
+    "class_box": "form-check",
+    "class_check": "form-check-input",
+    "class_title": "form-check-label",
+    "title": "this is check 3",
+    "value": 0,
+    "disable": false
+  }
+]
