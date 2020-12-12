@@ -3,12 +3,17 @@ Object.prototype._clone = function () { var v = {}, o = this; Object.keys(o).for
 
 window.addEventListener('DOMContentLoaded', _init);
 window.addEventListener('click', function (event) {
-    var el = event.target, id = el.id, class_ = el.getAttribute('class');
-    if (class_ && class_.indexOf(__V_DO_ACTION) != -1) return;
+    var el = event.target, id = el.id, vid = '', class_ = el.getAttribute('class');
+    if (class_ && class_.indexOf(__V_DO_ACTION) != -1) {
+        var v = el.closest('.v-com');
+        if (v) vid = v.id;
+        else return;
+    }
+
     var ls = this.document.querySelectorAll('.v-com');
     ls.forEach(function (x) {
         if (x.__vue__ && x.__vue__._dom_click)
-            setTimeout(function () { x.__vue__._dom_click(id); }, 0);
+            setTimeout(function () { x.__vue__._dom_click(id, vid); }, 0);
     });
 });
 
@@ -218,8 +223,13 @@ var V_MIXIN = {
                 var pos = kit_name.split('-')[0].length + 1;
                 kit_name = kit_name.substr(pos);
             } else kit_name = '';
-
             _self.kit_name = kit_name;
+
+            var kit_id = kit_name + '--' + _self._uid;
+            _self.kit_id = kit_id;
+            Vue.nextTick(function () {
+                _self.$el.id = kit_id;
+            })
 
             return kit_name;
         },

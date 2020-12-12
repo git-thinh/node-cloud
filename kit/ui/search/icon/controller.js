@@ -77,8 +77,9 @@
         //});
     },
     methods: {
-        _dom_click: function(id) {
-            this._hidePopup();
+        _dom_click: function(elemId, comId) {
+            if (comId != this.kit_id)
+                this._hidePopup();
         },
         _hidePopup: function() {
             var _self = this;

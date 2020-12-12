@@ -87,10 +87,10 @@
         return root;
     },
     methods: {
-        _dom_click: function(id) {
+        _dom_click: function(elemId, comId) {
             var _self = this,
                 pop = this.$el.querySelector('.v-ui-popup.show');
-            if (pop) _self._classToggle(pop, 'show');
+            if (pop && comId != _self.kit_id) _self._classToggle(pop, 'show');
         },
         _toggleDropdown: function() {
             var _self = this,
