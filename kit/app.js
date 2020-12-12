@@ -3,20 +3,12 @@ Object.prototype._clone = function () { var v = {}, o = this; Object.keys(o).for
 
 window.addEventListener('DOMContentLoaded', _init);
 window.addEventListener('click', function (event) {
-    var el = event.target,
-        id = el.id,
-        class_ = el.getAttribute('class');
-    //console.log('window_click: ', el.nodeName);
-
+    var el = event.target, id = el.id, class_ = el.getAttribute('class');
     if (class_ && class_.indexOf(__V_DO_ACTION) != -1) return;
-
-
     var ls = this.document.querySelectorAll('.v-com');
     ls.forEach(function (x) {
-        if (x.__vue__ && x.__vue__._dom_click) {
-            console.log(x.__vue__.kit_name);
+        if (x.__vue__ && x.__vue__._dom_click)
             setTimeout(function () { x.__vue__._dom_click(id); }, 0);
-        }
     });
 });
 

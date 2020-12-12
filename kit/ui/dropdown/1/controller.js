@@ -29,11 +29,18 @@
 
         if (has_btn_split) {
             _btn.attrs.type = 'button';
-            btn = createElement('button', { attrs: _btn.attrs }, [btnContent]);
+            var class_text = __V_DO_ACTION + ' ' + (_btn.attrs.class || '');
 
             _btn_split_attrs.id = _ID;
             _btn_split_attrs.type = 'button';
             var class_ = __V_DO_ACTION + ' ' + (_btn_split_attrs.class || '');
+            if (_self.class && _self.class.indexOf('dropstart') != -1) {
+                class_ += ' rounded-start';
+                class_text += ' rounded-end';
+            }
+
+            btn = createElement('button', { attrs: _btn.attrs, class: class_text }, [btnContent]);
+
             btn_split = createElement('button', {
                 on: { click: function () { _self._toggleDropdown(_ID); } },
                 attrs: _btn_split_attrs,
@@ -69,9 +76,12 @@
         if (_data.active) popup_class += ' show';
         var popup = createElement('div', { attrs: { class: popup_class } }, _arrEls);
 
-        if (has_btn_split)
-            root = createElement('div', { attrs: { class: _self.kit_name + ' ' + _self.class } }, [btn, btn_split, popup]);
-        else
+        if (has_btn_split) {
+            if (_self.class && _self.class.indexOf('dropstart') != -1)
+                root = createElement('div', { attrs: { class: _self.kit_name + ' ' + _self.class } }, [btn_split, btn, popup]);
+            else
+                root = createElement('div', { attrs: { class: _self.kit_name + ' ' + _self.class } }, [btn, btn_split, popup]);
+        } else
             root = createElement('div', { attrs: { class: _self.kit_name + ' ' + _self.class } }, [btn, popup]);
 
         return root;
