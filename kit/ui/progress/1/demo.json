@@ -1,6 +1,12 @@
 [
   {
-    "bg_class": "bg-second",
+    "bg_class": "bg-primary",
+    "value_min": 0,
+    "value_max": 100,
+    "value_now": 90
+  },
+  {
+    "bg_class": "bg-secondary",
     "value_min": 0,
     "value_max": 100,
     "value_now": 30
@@ -24,9 +30,15 @@
     "value_now": 70
   },
   {
-    "bg_class": "bg-primary",
+    "bg_class": "bg-info",
     "value_min": 0,
     "value_max": 100,
-    "value_now": 90
+    "value_now": 30
+  },
+  {
+    "bg_class": "bg-dark",
+    "value_min": 0,
+    "value_max": 100,
+    "value_now": 30
   }
 ]

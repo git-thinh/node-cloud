@@ -45,6 +45,10 @@
     "dir": "baovethienphong.com",
     "login": false
   },
+  "long.iot.vn": {
+    "dir": "long",
+    "login": false
+  },
   "www.baovethienphong.com": {
     "dir": "baovethienphong.com",
     "login": false

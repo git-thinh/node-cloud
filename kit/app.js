@@ -1,6 +1,24 @@
-﻿var _DATA_DEMO = {};
+﻿var __APP, _DATA_DEMO = {}, __V_DO_ACTION = 'v-do-action';
+Object.prototype._clone = function () { var v = {}, o = this; Object.keys(o).forEach(function (key) { v[key] = o[key]; }); return v; };
 
 window.addEventListener('DOMContentLoaded', _init);
+window.addEventListener('click', function (event) {
+    var el = event.target,
+        id = el.id,
+        class_ = el.getAttribute('class');
+    //console.log('window_click: ', el.nodeName);
+
+    if (class_ && class_.indexOf(__V_DO_ACTION) != -1) return;
+
+
+    var ls = this.document.querySelectorAll('.v-com');
+    ls.forEach(function (x) {
+        if (x.__vue__ && x.__vue__._dom_click) {
+            console.log(x.__vue__.kit_name);
+            setTimeout(function () { x.__vue__._dom_click(id); }, 0);
+        }
+    });
+});
 
 function _scriptInsertHeader(url, callback) {
     if (url && url.length > 0) {
@@ -30,7 +48,8 @@ function _getUrl(url) {
 }
 
 var _HTML = {};
-var GROUP_BASE = ['dropdown'];//, 'avatar'
+var GROUP_BASE = ['search', 'check', 'radio', 'range', 'progress', 'dropdown'];
+//var GROUP_BASE = ['input', 'hide', 'color', 'text', 'tab'];//, 'avatar'
 //var GROUP_BASE = ['dropdown', 'input', 'check', 'radio', 'range', 'hide', 'color', 'progress', 'text', 'tab', 'search'];//, 'avatar'
 function _init() {
     fetch('/ui-kit.json').then(r => r.json()).then(function (r) {
@@ -42,7 +61,7 @@ function _init() {
                 if (it) arrAll.push(it);
                 else console.log('ERROR_NOT_FIND_KIT_BASE: ', x);
             });
-          
+
             var arr2 = _.filter(r.data, function (x) {
                 return GROUP_BASE.findIndex(function (x1) { return x1 == x.group; }) == -1;
             });
@@ -109,7 +128,7 @@ function _init() {
 
             _linkCssInsertHeader(urlCss);
             _scriptInsertHeader(urlJs, function () {
-                var app = new Vue({
+                __APP = new Vue({
                     el: '#app',
                     data: {
                         message: 'Hello Vue.js!'
@@ -161,13 +180,44 @@ var V_MIXIN = {
     },
     mounted: function () {
         var _self = this;
-        $(_self.$el).addClass(_self.kit_name);
+        Vue.nextTick(function () {
+            _self._classAdd(_self.$el, _self.kit_name);
+            _self._classAdd(_self.$el, 'v-com');
 
-        if (location.hostname == 'kit.lo' || location.hostname == 'kit.iot.vn') {
-            $(_self.$el).addClass('ui-mode-kit');
-        }
+            if (location.hostname == 'kit.lo' || location.hostname == 'kit.iot.vn')
+                _self._classToggle(_self.$el, 'ui-mode-kit');
+        });
     },
     methods: {
+        _classToggle: function (elem, c) {
+            var _self = this;
+            var fn = _self._classHas(elem, c) ? _self._classRemove : _self._classAdd;
+            fn(elem, c);
+        },
+        _classReg: function (className) {
+            return new RegExp("(^|\\s+)" + className + "(\\s+|$)");
+        },
+        _classHas: function (elem, c) {
+            var _self = this;
+            if ('classList' in document.documentElement)
+                return elem.classList.contains(c);
+            else
+                return _self._classReg(c).test(elem.className);
+        },
+        _classAdd: function (elem, c) {
+            var _self = this;
+            if ('classList' in document.documentElement)
+                elem.classList.add(c);
+            else if (!_self._classHas(elem, c))
+                elem.className = elem.className + ' ' + c;
+        },
+        _classRemove: function (elem, c) {
+            var _self = this;
+            if ('classList' in document.documentElement)
+                elem.classList.remove(c);
+            else
+                elem.className = elem.className.replace(_self._classReg(c), ' ');
+        },
         _setKitName: function () {
             var _self = this;
             var kit_name = _self.$vnode.tag;
@@ -202,7 +252,7 @@ var V_MIXIN = {
                 var el = createElement('path', { attrs: { 'fill-rule': 'evenodd', 'd': path_ } });
                 paths.push(el);
             });
-                        
+
             config = config || {};
             if (config.attrs == null) config.attrs = {};
             config.attrs.viewBox = '0 0 16 16';

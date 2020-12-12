@@ -1,5 +1,6 @@
 [
   {
+    "active": true,
     "class": "dropdown",
     "class_popup": "dropdown-menu dropdown-menu-lg-right",
     "button": {
@@ -36,6 +37,7 @@
     ]
   },
   {
+    "active": false,
     "class": "dropdown btn-group dropright",
     "class_popup": "dropdown-menu dropdown-menu-lg-right",
     "button": {

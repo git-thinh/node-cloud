@@ -1,6 +1,7 @@
 ﻿{
     data: function() {
         return {
+            active: false,
             class: '',
             class_popup: '',
             button: {
@@ -32,11 +33,21 @@
 
             _btn_split_attrs.id = _ID;
             _btn_split_attrs.type = 'button';
-            btn_split = createElement('button', { attrs: _btn_split_attrs });
+            var class_ = __V_DO_ACTION + ' ' + (_btn_split_attrs.class || '');
+            btn_split = createElement('button', {
+                on: { click: function () { _self._toggleDropdown(_ID); } },
+                attrs: _btn_split_attrs,
+                class: class_
+            });
         } else {
             _btn.attrs.id = _ID;
             _btn.attrs.type = 'button';
-            btn = createElement('button', { attrs: _btn.attrs }, [btnContent]);
+            var class_ = __V_DO_ACTION + ' ' + (_btn.attrs.class || '');
+            btn = createElement('button', {
+                on: { click: function () { _self._toggleDropdown(_ID); } },
+                attrs: _btn.attrs,
+                class: class_
+            }, [btnContent]);
         }
 
         for (var i = 0; i < _items.length; i++) {
@@ -54,12 +65,9 @@
             _arrEls.push(el);
         }
 
-        var popup = createElement('div', {
-            attrs: {
-                class: 'dropdown-menu',
-                'aria-labelledby': _ID,
-            }
-        }, _arrEls);
+        var popup_class = (_data.class_popup || '') + ' v-ui-popup ' + _ID;
+        if (_data.active) popup_class += ' show';
+        var popup = createElement('div', { attrs: { class: popup_class } }, _arrEls);
 
         if (has_btn_split)
             root = createElement('div', { attrs: { class: _self.kit_name + ' ' + _self.class } }, [btn, btn_split, popup]);
@@ -67,5 +75,17 @@
             root = createElement('div', { attrs: { class: _self.kit_name + ' ' + _self.class } }, [btn, popup]);
 
         return root;
+    },
+    methods: {
+        _dom_click: function(id) {
+            var _self = this,
+                pop = this.$el.querySelector('.v-ui-popup.show');
+            if (pop) _self._classToggle(pop, 'show');
+        },
+        _toggleDropdown: function() {
+            var _self = this,
+                pop = this.$el.querySelector('.v-ui-popup');
+            if (pop) _self._classToggle(pop, 'show');
+        }
     }
 }

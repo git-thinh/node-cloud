@@ -1,0 +1,42 @@
+[
+  {
+    "icon_id": "",
+    "popup_id": "",
+    "input_id": "",
+    "class": "btn-group dropup",
+    "class_popup": "dropdown-menu m-0 p-0",
+    "input_config": {
+      "style": {},
+      "attrs": {
+        "placeholder": "search"
+      }
+    },
+    "style_icon": {
+      "color": "#000",
+      "width": "18px",
+      "cursor": "pointer",
+      "opacity": "0.2"
+    },
+    "active": false
+  },
+  {
+    "icon_id": "",
+    "popup_id": "",
+    "input_id": "",
+    "class": "btn-group dropup",
+    "class_popup": "dropdown-menu m-0 p-0",
+    "input_config": {
+      "style": {},
+      "attrs": {
+        "placeholder": "search"
+      }
+    },
+    "style_icon": {
+      "color": "orangered",
+      "width": "18px",
+      "cursor": "pointer",
+      "opacity": "0.2"
+    },
+    "active": true
+  }
+]
