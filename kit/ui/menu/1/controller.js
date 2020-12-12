@@ -46,7 +46,7 @@
             var menu = createElement('tab_1', {
                 directives: [{ name: 'set-data', value: _data.menu }],
             });
-            center = createElement('div', { attrs: { class: _data.menu.class_box + ' --center' } }, [menu]);
+            center = createElement('div', { attrs: { class: '--center ' + _data.menu.class_box } }, [menu]);
         }
 
 

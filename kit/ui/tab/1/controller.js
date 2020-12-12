@@ -10,8 +10,11 @@
         }
     },
     render: function (createElement) {
-        var _self = this;
-        var _items = _self.items, _arrEls = [], tagName = 'ul';
+        var _self = this,
+            _items = _self.items,
+            _arrEls = [],
+            tagName = 'ul',
+            cf_tab;
 
         for (var i = 0; i < _items.length; i++) {
             var it = _items[i], el, li;
@@ -36,9 +39,9 @@
                         directives: [{ name: 'set-data', value: it.menu_sub }],
                     });
 
-                    li = createElement('li', {
-                        attrs: { class: it.class_tab }
-                    }, [el, sub]);
+                    cf_tab = { attrs: { class: it.class_tab } };
+                    if (it.style) cf_tab.style = it.style;
+                    li = createElement('li', cf_tab, [el, sub]);
 
                 } else {
                     el = createElement('a', {
@@ -47,9 +50,9 @@
                         }
                     }, [it.title]);
 
-                    li = createElement('li', {
-                        attrs: { class: it.class_tab }
-                    }, [el]);
+                    cf_tab = { attrs: { class: it.class_tab } };
+                    if (it.style) cf_tab.style = it.style;
+                    li = createElement('li', cf_tab, [el]);
                 }
                 _arrEls.push(li);
             } else {
@@ -83,7 +86,7 @@
                 _self.menu.timer = setTimeout(function () {
                     $('.' + id).removeClass('show');
                     _self.menu.visable = false;
-                }, 2000);
+                }, 3000);
             }
             $('.' + id).toggleClass('show');
         }

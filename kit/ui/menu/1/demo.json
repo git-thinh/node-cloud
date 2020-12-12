@@ -3,13 +3,13 @@
     "class_root": "navbar navbar-expand-lg fixed-top navbar-dark bg-dark",
     "class_box": "d-flex justify-content-between bd-highlight",
     "logo": {
-      "class_box": "bg-dark",
+      "class_box": "col-1 bg-dark",
       "url": "/",
       "src": "demo/logo/bs.png"
     },
     "menu": {
-      "class_box": "bg-info",
-      "class": "nav",
+      "class_box": "col-10 bg-info",
+      "class": "nav nav-pills nav-fill",
       "items": [
         {
           "title": "Active",
@@ -23,8 +23,11 @@
         },
         {
           "title": "Dropdown Menu",
+          "style": {
+            "max-width": "100px"
+          },
           "class_tab": "nav-item dropdown",
-          "class_link": "btn btn-secondary dropdown-toggle",
+          "class_link": "btn text-primary nav-link dropdown-toggle",
           "menu_sub": {
             "class": "dropdown-menu",
             "items": [
@@ -60,7 +63,7 @@
       ]
     },
     "right": {
-      "class_box": "bg-primary",
+      "class_box": "col-1 bg-primary",
       "kit_name": ""
     }
   }

@@ -30,21 +30,25 @@ function _getUrl(url) {
 }
 
 var _HTML = {};
-var GROUP_BASE = ['check', 'radio', 'range', 'search', 'hide', 'text', 'color', 'avatar', 'progress', 'dropdown', 'tab'];
+var GROUP_BASE = ['dropdown'];//, 'avatar'
+//var GROUP_BASE = ['dropdown', 'input', 'check', 'radio', 'range', 'hide', 'color', 'progress', 'text', 'tab', 'search'];//, 'avatar'
 function _init() {
     fetch('/ui-kit.json').then(r => r.json()).then(function (r) {
         //console.log(r);
         if (r.ok && r.data) {
-            var kit = '';
-            var arrAll = _.filter(r.data, function (x) {
-                return GROUP_BASE.findIndex(function (x1) { return x1 == x.group; }) != -1;
+            var kit = '', arrAll = [];
+            GROUP_BASE.forEach(function (x) {
+                var it = _.find(r.data, function (o) { return o.group == x; });
+                if (it) arrAll.push(it);
+                else console.log('ERROR_NOT_FIND_KIT_BASE: ', x);
             });
+          
             var arr2 = _.filter(r.data, function (x) {
                 return GROUP_BASE.findIndex(function (x1) { return x1 == x.group; }) == -1;
             });
             //console.log(arrAll);
             //console.log(arr2);
-            arr2.forEach(function (x) { arrAll.push(x); });
+            //arr2.forEach(function (x) { arrAll.push(x); });
             //console.log(arrAll);
 
             var s = '', arrDemo = [];
@@ -191,6 +195,22 @@ var V_MIXIN = {
             keys.forEach(function (ky) {
                 _self.$data[ky] = data[ky];
             });
+        },
+        _createElementSvg: function (createElement, config, arrPath) {
+            var paths = [];
+            arrPath.forEach(function (path_) {
+                var el = createElement('path', { attrs: { 'fill-rule': 'evenodd', 'd': path_ } });
+                paths.push(el);
+            });
+                        
+            config = config || {};
+            if (config.attrs == null) config.attrs = {};
+            config.attrs.viewBox = '0 0 16 16';
+            config.attrs.fill = 'currentColor';
+            config.attrs.xmlns = 'http://www.w3.org/2000/svg';
+
+            var root = createElement('svg', config, paths);
+            return root;
         }
     }
 };

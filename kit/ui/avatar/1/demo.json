@@ -1,15 +1,19 @@
 [
   {
     "src": "",
-    "size": "" 
-  },
-  {
-    "src": "demo/avatar/1.jpg",
-    "size": ""
+    "size": "sm"
   },
   {
     "src": "demo/avatar/2.jpg",
     "size": "sm"
+  },
+  {
+    "src": "",
+    "size": ""
+  },
+  {
+    "src": "demo/avatar/1.jpg",
+    "size": ""
   },
   {
     "src": "demo/avatar/1.jpg",

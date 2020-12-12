@@ -81,7 +81,7 @@ app.get("/*", (req, res) => {
     }
 
     if (pathFile.indexOf('?')) pathFile = pathFile.split('?')[0];
-    console.log('[3] ', domain, req.url, pathFile);
+    //console.log('[3] ', domain, req.url, pathFile);
 
     const mimeType = mime.lookup(pathFile);
     if (mimeType != false) res.setHeader('content-type', mimeType);
