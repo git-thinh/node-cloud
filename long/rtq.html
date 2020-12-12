@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>RTQ</title>
+    <script src="libs/jquery.min.js"></script>
+    
+    <link href="semantic-ui/semantic.min.2.7.8.css" rel="stylesheet" />
+    <script src="semantic-ui/semantic.min.2.7.8.js"></script>
+
+    <link href="w2ui/w2ui.min.css?_is_admin=true" rel="stylesheet" />
+    <script src="w2ui/w2ui.min.js?_is_admin=true"></script>
+
+    <script src="vue/vue.min.js"></script>
+    <script src="vue/vue-router.min.js"></script>
+
+    <link href="rtq.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+
+</head>
+
+<body>
+    <!-- sidebar -->
+       <div class="ui sidebar inverted vertical menu sidebar-menu" id="sidebar">
+        <div class="item">
+            <div class="header"> Báo cáo</div>
+            <div class="menu">
+                <a href="home.html" class="item">
+                    <div>
+                        <i class="icon tachometer alternate"></i>
+                        Thông tin sản xuất
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="item">
+            <div class="header">
+                Quản trị hệ thống
+            </div>
+            <div class="menu">
+                <a class="item">
+                    <div><i class="cogs icon"></i>Cài đặt</div>
+                </a>
+                <a href="users.html" class="item">
+                    <div><i class="users icon"></i>Danh sách người dùng</div>
+                </a>
+            </div>
+        </div>
+        <div class="item">
+            <div class="header">Chức năng chính</div>
+            <div class="menu">
+                <a href="rtd.html" class="item ">
+                    <div>
+                        <i class="address card icon"></i>
+                        Thông tin sản xuất (RTD)
+                    </div>
+                </a>
+
+                <a href="rth.html" class="item">
+                    <div>
+                        <i class="calendar outline icon"></i>
+                        Sản xuất theo giờ(RTH)
+                    </div>
+                </a>
+
+                <a href="rtq.html" class="item active">
+                    <div>
+                        <i class="calendar outline icon"></i>
+                        Số lượng sản phẩm(RTQ)
+                    </div>
+                </a>
+            </div>
+        </div>
+
+
+    </div>
+    <nav class="ui top fixed inverted menu">
+        <div class="left menu">
+            <a href="#" class="sidebar-menu-toggler item" data-target="#sidebar">
+                <i class="sidebar icon"></i>
+            </a>
+            <a href="#" class="header item">
+                IOT SYSTEM
+            </a>
+        </div>
+
+        <div class="right menu">
+            <a href="#" class="item">
+                <i class="bell icon"></i>
+            </a>
+            <div class="ui dropdown item">
+                <i class="user cirlce icon"></i>
+                <div class="menu">
+                    <a href="#" class="item">
+                        <i class="info circle icon"></i> Thông tin người dùng
+                    </a>
+                    <a href="#" class="item">
+                        <i class="wrench icon"></i>
+                        Cài đặt
+                    </a>
+                    <a href="login.html" class="item">
+                        <i class="sign-out icon"></i>
+                        Đăng xuất
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- top nav -->
+
+    <nav class="ui top fixed inverted menu">
+        <div class="left menu">
+            <a href="#" class="sidebar-menu-toggler item" data-target="#sidebar">
+                <i class="sidebar icon"></i>
+            </a>
+            <a href="#" class="header item">
+                IOT SYSTEM
+            </a>
+        </div>
+
+        <div class="right menu">
+            <a href="#" class="item">
+                <i class="bell icon"></i>
+            </a>
+            <div class="ui dropdown item">
+                <i class="user cirlce icon"></i>
+                <div class="menu">
+                    <a href="#" class="item">
+                        <i class="info circle icon"></i> Thông tin người dùng
+                    </a>
+                    <a href="#" class="item">
+                        <i class="wrench icon"></i>
+                        Cài đặt
+                    </a>
+                    <a href="login.html" class="item">
+                        <i class="sign out alternate icon"></i>
+                        Đăng xuất
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- top nav -->
+
+
+    <div class="pusher" id="data_rtq">
+        <div class="main-content">
+            <!--<h2 class="ui dividing header">Content<a class="anchor" id="content"></a></h2>-->
+            <div class="ui grid stackable padded">
+                <div class="six wide computer eight wide tablet sixteen wide mobile column">
+                    <div class="ui fluid card">
+                        <div class="content">
+                            <div class="header"  >Filter Option</div>
+                        </div>
+                        <div class="content">
+                            <form class="ui form">
+                                <div class="field">
+                                    <div class="ui wide field">
+                                        <div class="ui checkbox">
+                                            <input type="checkbox" name="gift" tabindex="0">
+                                            <label>Show station with quantity greater than </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="wide field">
+                                        <div class="ui checkbox">
+                                            <input type="checkbox" name="gift" tabindex="0">
+                                            <label>show station with quantity less than</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="ten wide computer eight wide tablet sixteen wide mobile column">
+                    <div class="ui fluid card">
+                        
+                        <div class="content">
+                            <div class="header">Format Options</div>
+                        </div>
+                        <div class="content">
+                            <form class="ui form">
+                                <div class="field">
+                                    <div class="fields">
+                                        <div class="thirteen wide field">
+                                            <div class="inline fields"><a class="ui green label"></a><span>Show in green all stations less than or equal</span></div>
+                                        </div>
+                                        <div class="three wide field ui input focus">
+                                            <input type="text" @change="fn_change_color_show()" v-model="min_val" name="min_val" @keypress="isNumber($event)">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="fields">
+                                        <div class="thirteen wide field">
+                                            <div class="inline fields"><a class="ui yellow label"></a><span>Show in yellow all stations between </span></div>
+                                        </div>
+                                        <div class="ui disabled three wide field input focus"> <input  type="text"  v-model="between_val"></div>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="fields">
+                                        <div class="thirteen wide field">
+                                            <div class="inline fields"><a class="ui red label"></a><span>Show in red all stations greater than or equal</span></div>
+                                        </div>
+                                        <div class="three wide field ui input focus">
+                                            <input type="text" @change="fn_change_color_show()" v-model="max_val" name="max-val"  @keypress="isNumber($event)">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="ui grid stackable padded">
+                <div class="column">
+                    <table class="ui celled striped table selectable">
+                        <thead>
+                            <tr>
+                                <th colspan="13">
+                                    RTQ
+                                </th>
+                            </tr>
+                            <tr>
+                                <th style="width:30px;">STT</th>
+                                <th style="width:120px;">STATION</th>
+                                <th style="width:90px;">QTY</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(row, rindex) in ResultItems" @click="fn_rowItemClick($event, row, rindex)">
+                                <td>{{rindex + 1}}</td>
+                                <td>{{row.place_code }}</td>
+                                <td class="row-quantity">{{row.qty}}</td>
+                                <td>
+                                    <div class="ui" style="width: 100%;">
+                                        <div class="ui progress row-percent-value"
+                                            v-bind:style="{background: row.color, width: row.percent + '%' }">
+                                            <div class="bar"></div>
+
+                                        </div>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="/js/script.js"></script>
+    <script src="/rtq.js"></script>
+    
+</body>
+
+</html>

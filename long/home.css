@@ -1,0 +1,92 @@
+.text-center{
+    text-align: center !important;
+   
+}
+.red {
+    background-color: red !important;
+    color: white !important;
+}
+.blue {
+    background-color: blue !important;
+    color: white !important;
+}
+.green {
+    background-color: forestgreen !important;
+    color: black !important;
+}
+.background-black {
+    padding: 5px;
+    padding-top: 20px;
+    background-color: dimgray !important;
+}
+.color-white{
+    color: #FFFFFF;
+}
+.color-red{
+    color: red;
+}
+.color-yellow{
+    color: yellow;
+}
+.color-blue{
+    color: blue;
+}
+.color-green{
+    color: green;
+}
+.color-orange{
+    color: orange;
+}
+i.simpleicon.icon {
+    line-height: 1.3;
+    font-size: 4em;
+    color: yellow !important;
+}
+
+.number-size{
+    font-size: 2.5em;
+    font-weight: 700;
+}
+.time-size{
+    font-size: 2.5em;
+    font-weight: 700;
+}
+.line-name{
+    font-size: 4em;
+    line-height: 1.3;
+    font-weight: 700;
+}
+.customer-name{
+    font-size: 1.5em;
+    font-weight: 700;
+}
+.label-name{
+    font-size: 1.2em;
+    font-weight: 700;
+}
+.content-detail{
+    border-radius: 5px;
+    background-color:black;
+    /* padding-left: 10px !important;
+    padding-right: 10px !important; */
+    margin: 0px;
+}
+.ui.grid>.column:not(.row) {
+    
+    padding-left: 2px;
+    padding-right: 2px;
+    
+}
+.grid-content{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+.column{
+    margin-top: 2px !important;
+}
+/* i.simpleicon.simpleicon.simpleicon.icon, i.simpleicon.simpleicon.simpleicon.icons {
+    line-height: 1.6;
+    font-size: 3em;
+    width: 100%;
+    height: 100%; } */
+  

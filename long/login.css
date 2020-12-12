@@ -1,0 +1,13 @@
+body {
+    background-color: #ECF0F1;
+  }
+  
+  .page-login {
+    margin-top: 25px;
+  }
+  .show-message{
+    display: block;
+  }
+  .hide-message{
+    display: none;
+  }

@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Real time display</title>
+    <script src="libs/jquery.min.js"></script>
+    <link href="semantic-ui/semantic.min.2.7.8.css" rel="stylesheet" />
+    <script src="semantic-ui/semantic.min.2.7.8.js"></script>
+
+    <script src="vue/vue.min.js"></script>
+    <script src="vue/vue-router.min.js"></script>
+
+    <link href="rtd.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+
+</head>
+
+<body>
+    <!-- sidebar -->
+    <div class="ui sidebar inverted vertical menu sidebar-menu" id="sidebar">
+        <div class="item">
+            <div class="header"> Báo cáo</div>
+            <div class="menu">
+                <a href="home.html" class="item">
+                    <div>
+                        <i class="icon tachometer alternate"></i>
+                        Thông tin sản xuất
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="item">
+            <div class="header">
+                Quản trị hệ thống
+            </div>
+            <div class="menu">
+                <a class="item">
+                    <div><i class="cogs icon"></i>Cài đặt</div>
+                </a>
+                <a href="users.html" class="item">
+                    <div><i class="users icon"></i>Danh sách người dùng</div>
+                </a>
+            </div>
+        </div>
+        <div class="item">
+            <div class="header">Chức năng chính</div>
+            <div class="menu">
+                <a href="rtd.html" class="item active">
+                    <div>
+                        <i class="address card icon"></i>
+                        Thông tin sản xuất (RTD)
+                    </div>
+                </a>
+
+                <a href="rth.html" class="item">
+                    <div>
+                        <i class="calendar outline icon"></i>
+                        Sản xuất theo giờ(RTH)
+                    </div>
+                </a>
+
+                <a href="rtq.html" class="item">
+                    <div>
+                        <i class="calendar outline icon"></i>
+                        Số lượng sản phẩm(RTQ)
+                    </div>
+                </a>
+            </div>
+        </div>
+
+
+    </div>
+    <nav class="ui top fixed inverted menu">
+        <div class="left menu">
+            <a href="#" class="sidebar-menu-toggler item" data-target="#sidebar">
+                <i class="sidebar icon"></i>
+            </a>
+            <a href="#" class="header item">
+                IOT SYSTEM
+            </a>
+        </div>
+
+        <div class="right menu">
+            <a href="#" class="item">
+                <i class="bell icon"></i>
+            </a>
+            <div class="ui dropdown item">
+                <i class="user cirlce icon"></i>
+                <div class="menu">
+                    <a href="#" class="item">
+                        <i class="info circle icon"></i> Thông tin người dùng
+                    </a>
+                    <a href="#" class="item">
+                        <i class="wrench icon"></i>
+                        Cài đặt
+                    </a>
+                    <a href="login.html" class="item">
+                        <i class="sign out alternate icon"></i>
+                        Đăng xuất
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- top nav -->
+
+
+    <div class="pusher" id="data_rtd">
+        <div class="main-content">
+            <div class="ui grid stackable padded">
+                <div class="column">
+                    <table class="ui celled striped table selectable">
+                        <thead>
+                            <tr>
+                                <th colspan="13">
+                                    Danh sách thông tin người lao động làm việc tại dây truyền(REAL TIME DISPLAY)
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>STT</th>
+                                <th>VỊ TRÍ</th>
+                                <th>Mã NV</th>
+                                <th>Tên NV</th>
+                                <th>Mã SP</th>
+                                <th>Mã TP</th>
+                                <th>Thực hiện</th>
+                                <th>TG bắt đầu</th>
+                                <th>TG kết thúc</th>
+                                <th>Size</th>
+                                <th>Màu sắc</th>
+                                <th>Số lượng</th>
+                                <th>tỷ lê</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+
+                            <tr v-for="(row, rindex) in ResultItems" @click="fn_rowItemClick($event, row, rindex)">
+
+                                <td>{{rindex + 1}}</td>
+                                <td>{{row.place_code }}</td>
+                                <td>{{row.operator_code }}</td>
+                                <td>{{row.operator_name }}</td>
+                                <td>{{row.product_code }}</td>
+                                <td>{{row.item_code }}</td>
+                                <td>
+                                    <div class="ui icon"><i v-if="row.state  ==1" class="icon checkmark"></i> </div>
+                                </td>
+                                <td>{{row.start_time }}</td>
+                                <td>{{row.end_time }}</td>
+                                <td>{{row.size }}</td>
+                                <td>{{row.color }}</td>
+                                <td>{{row.total_qty }}</td>
+                                <td>{{row.pass_rate}}</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="rtd.js"></script>
+    <script src="/js/script.js"></script>
+</body>
+
+</html>

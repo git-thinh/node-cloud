@@ -1,0 +1,64 @@
+﻿<html><head>
+    <title>Đăng nhập chương trình</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- for ios 7 style, multi-resolution icon of 152x152 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
+    <link rel="apple-touch-icon" href="assets/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Admin Portal">
+    <!-- for Chrome on Android, multi-resolution icon of 196x196 -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="shortcut icon" sizes="196x196" href="assets/images/logo.png">
+
+    <script src="libs/jquery.min.js"></script>
+    
+    <link href="semantic-ui/semantic.min.2.7.8.css" rel="stylesheet" />
+    <script src="semantic-ui/semantic.min.2.7.8.js"></script>
+
+    <link href="w2ui/w2ui.min.css?_is_admin=true" rel="stylesheet" />
+    <script src="w2ui/w2ui.min.js?_is_admin=true"></script>
+
+    <script src="vue/vue.min.js"></script>
+    <script src="vue/vue-router.min.js"></script>
+    <link href="login.css" rel="stylesheet"/>
+    </head>
+
+<body>
+    <div class="page-login">
+        <div class="ui centered grid container">
+          <div class="nine wide column">
+            <div class="ui icon warning message"  >
+                <i class="lock icon"></i>
+                <div class="content">
+                  <div class="header">
+                    Lối đăng nhập!
+                  </div>
+                  <p>Xin vui lòng kiểm tra lại tên đăng nhập hoặc mật khẩu!</p>
+                </div>
+              </div>
+            <div class="ui fluid card">
+              <div class="content">
+              <form class="ui form" method="POST">
+                <div class="field">
+                  <label>Tên đăng nhập</label>
+                  <input type="text" name="user" placeholder="Tên đăng nhập">
+                </div>
+                <div class="field">
+                  <label>Mật khẩu </label>
+                  <input type="password" name="pass" placeholder="Mât khẩu">
+                </div>
+                <button class="ui primary labeled icon button" type="button">
+                  <i class="unlock alternate icon"></i>
+                  Đăng nhập
+                </button>
+              </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+</body></html>

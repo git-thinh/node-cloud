@@ -1,0 +1,243 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Real time display</title>
+    
+    <!-- <script src="libs/jquery.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="libs/jquery-simple-tree-table.js"></script>
+
+
+    <link href="semantic-ui/semantic.min.2.7.8.css" rel="stylesheet" />
+    <script src="semantic-ui/semantic.min.2.7.8.js"></script>
+
+    <script src="vue/vue.min.js"></script>
+    <script src="vue/vue-router.min.js"></script>
+
+    <link href="rth.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+
+</head>
+
+<body>
+ <!-- sidebar -->
+ <div class="ui sidebar inverted vertical menu sidebar-menu" id="sidebar">
+    <div class="item">
+        <div class="header"> Báo cáo</div>
+        <div class="menu">
+            <a href="home.html" class="item">
+                <div>
+                    <i class="icon tachometer alternate"></i>
+                    Thông tin sản xuất
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="item">
+        <div class="header">
+            Quản trị hệ thống
+        </div>
+        <div class="menu">
+            <a class="item">
+                <div><i class="cogs icon"></i>Cài đặt</div>
+            </a>
+            <a href="users.html" class="item">
+                <div><i class="users icon"></i>Danh sách người dùng</div>
+            </a>
+        </div>
+    </div>
+    <div class="item">
+        <div class="header">Chức năng chính</div>
+        <div class="menu">
+            <a href="rtd.html" class="item ">
+                <div>
+                    <i class="address card icon"></i>
+                    Thông tin sản xuất (RTD)
+                </div>
+            </a>
+
+            <a href="rth.html" class="item active">
+                <div>
+                    <i class="calendar outline icon"></i>
+                    Sản xuất theo giờ(RTH)
+                </div>
+            </a>
+
+            <a href="rtq.html" class="item ">
+                <div>
+                    <i class="calendar outline icon"></i>
+                    Số lượng sản phẩm(RTQ)
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+</div>
+<nav class="ui top fixed inverted menu">
+    <div class="left menu">
+        <a href="#" class="sidebar-menu-toggler item" data-target="#sidebar">
+            <i class="sidebar icon"></i>
+        </a>
+        <a href="#" class="header item">
+            IOT SYSTEM
+        </a>
+    </div>
+
+    <div class="right menu">
+        <a href="#" class="item">
+            <i class="bell icon"></i>
+        </a>
+        <div class="ui dropdown item">
+            <i class="user cirlce icon"></i>
+            <div class="menu">
+                <a href="#" class="item">
+                    <i class="info circle icon"></i> Thông tin người dùng
+                </a>
+                <a href="#" class="item">
+                    <i class="wrench icon"></i>
+                    Cài đặt
+                </a>
+                <a href="login.html" class="item">
+                    <i class="sign out alternate icon"></i>
+                    Đăng xuất
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- top nav -->
+
+
+    <div class="pusher" id="data_rtd">
+        <div class="main-content">
+            <!--<h2 class="ui dividing header">Content<a class="anchor" id="content"></a></h2>-->
+            <div class="ui grid stackable padded">
+                <div class="four wide computer eight wide tablet sixteen wide mobile column">
+                    <div class="ui fluid card">
+                        <div class="content">
+                            <div class="header">Selection</div>
+                        </div>
+                        <div class="content">
+                            <form class="ui form">
+
+
+                                <div class="fields">
+                                    <div class="eight wide field">
+                                        <span style="padding-top:10px">Display Date</span>
+                                    </div>
+                                    <div class="eight wide field">
+                                        <div class="ui calendar" id="example1">
+                                            <div class="ui input left icon">
+                                                <i class="calendar icon"></i>
+                                                <input type="text" placeholder="Date/Time">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="field">
+                                    <div class="fields">
+                                        <div class="eight wide field">
+                                            <div class="ui toggle checkbox">
+                                                <input type="checkbox" name="gift" tabindex="0">
+                                                <label>By Style</label>
+                                            </div>
+                                        </div>
+                                        <div class="eight wide field">
+                                            <select class="ui fluid dropdown">
+                                                <option value="">State</option>
+                                                <option value="AL">Alabama</option>
+                                                <option value="AK">Alaska</option>
+                                                
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="twelve wide computer eight wide tablet sixteen wide mobile column">
+                    <div class="ui fluid card">
+                        <div class="content">
+                            <div class="header">Format Options</div>
+                        </div>
+                        <div class="content">
+                            <form class="ui form">
+                                <div class="inline fields">
+
+                                    <div class="eight wide field" style="padding:9px;">
+                                        <div class="ui toggle checkbox">
+                                            <input type="checkbox" name="gift" tabindex="0">
+                                            <label>Leave 0 quantities in white</label>
+                                        </div>
+                                    </div>
+                                    <div class="six wide field">
+                                        <div class="inline fields"><a class="ui yellow label"></a><span>Show yellow all quantities between</span></div>
+
+                                    </div>
+                                    <div class="ui disabled two wide field ">
+                                        <input type="text" v-model="between_val" name="between_val" >
+                                    </div>
+                                </div>
+                                <div class="inline fields" style="padding-left:9px;">
+
+                                    <div class="six wide field" >
+                                        <div class="inline fields"><a class="ui red label"></a><span>Show in red all quantities less than or equal</span></div>
+                                    </div>
+                                    <div class="two wide field ">
+                                        <input type="text" v-model="min_val" name="min_val" @change="fn_change_color_show()" @keypress="isNumber($event)" >
+                                    </div>    
+                                    <div class="six wide field " >
+                                        <div class="inline fields"><a class="ui green label"></a><span>Show in green all quantities greater than or equal</span></div>
+
+                                    </div>
+                                    <div class="two wide field ">
+                                        <input type="text" v-model="max_val" name="max_val" @change="fn_change_color_show()" @keypress="isNumber($event)" >
+                                    </div>
+
+                                </div>
+
+                            </form>
+                        </div>
+                      
+                    </div>
+                </div>
+               
+            </div>
+                <div class="ui grid stackable padded">
+                     <div class="column" id="template-html">
+                       
+                    </div>
+                    
+                    <!-- <div class="column" v-html="temp_table">
+                       
+                    </div> -->
+                    <!-- <div class="column">
+                        <table class="ui celled striped table selectable simple-tree-table" id="basic"><thead><tr><th colspan="26">REAL TIME HOURLY</th></tr><tr><th>Employee</th><th>VỊ TRÍ</th><th>1 AM</th><th>2 AM</th><th>3 AM</th><th>4 AM</th><th>5 AM</th><th>6 AM</th><th>7 AM</th><th>8 AM</th><th>9 AM</th><th>10 AM</th><th>11 AM</th><th>12 AM</th><th>1 PM</th><th>2 PM</th><th>3 PM</th><th>4 PM</th><th>5 PM</th><th>6 PM</th><th>7 PM</th><th>8 PM</th><th>9 PM</th><th>10 PM</th><th>11 PM</th><th>Total</th></tr></thead><tbody>  <tr data-node-id="1">     <td colspan="24"><a href="#">line 01 </a></td>  </tr>  <tr data-node-id="CN.L01.001" data-node-pid="1">     <td colspan="24"><a href="#">Trần Thanh Tùng </a></td>  </tr>  <tr data-node-id="CN.L01.002" data-node-pid="1">     <td colspan="24"><a href="#">Trần Thúy Hằng </a></td>  </tr>  <tr data-node-id="CN.L01.003" data-node-pid="1">     <td colspan="24"><a href="#">Hoàng Văn Tứ </a></td>  </tr>  <tr data-node-id="2">     <td colspan="24"><a href="#">line 02 </a></td>  </tr>  <tr data-node-id="CN.L02.001" data-node-pid="2">     <td colspan="24"><a href="#">Trần Minh Thúy </a></td>  </tr>  <tr data-node-id="CN.L02.002" data-node-pid="2">     <td colspan="24"><a href="#">Nguyễn Thanh Tâm </a></td>  </tr>  <tr data-node-id="CN.L02.003" data-node-pid="2">     <td colspan="24"><a href="#">Lưu Trần An </a></td>  </tr></tbody></table>
+                    </div> -->
+                </div>
+
+            </div>
+    </div>
+    
+    <script src="rth.js"></script>
+    <script src="/js/script.js"></script>
+    <script>
+        // $('#basic').simpleTreeTable({
+        //   expander: $('#expander'),
+        //   collapser: $('#collapser'),
+        //   store: 'session',
+        //   storeKey: 'simple-tree-table-basic'
+        // });
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+﻿[
+  {
+    "place_code": "1",
+    "qty":891,
+    "color": "red",
+    "percent": 20
+  },
+  {
+    "place_code": "1",
+    "qty":891,
+    "color": "#fbbd08",
+    "percent": 30
+  },
+  {
+    "place_code": "2",
+    "qty":891,
+    "color": "red",
+    "percent": 80
+  },
+  {
+    "place_code": "2",
+    "qty":891,
+    "color": "green",
+    "percent": 10
+  },
+  {
+    "place_code": "2",
+    "qty":891,
+    "color": "red",
+    "percent": 50
+  },
+  {
+    "place_code": "2",
+    "qty":891,
+    "color": "#fbbd08",
+    "percent": 100
+  },
+  {
+    "place_code": "2",
+    "qty":891,
+    "color": "#fbbd08",
+    "percent": 50
+  },
+  {
+    "place_code": "2",
+    "qty":891,
+    "color": "#fbbd08",
+    "percent": 50
+  }
+]

@@ -1,0 +1,606 @@
+﻿<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="utf-8" />
+    <title>home page</title>
+
+    <script src="libs/jquery.min.3.3.1.js"></script>
+
+    <link href="semantic-ui/semantic.min.2.7.8.css" rel="stylesheet" />
+    <script src="semantic-ui/semantic.min.2.7.8.js"></script>
+
+    <script src="vue/vue.min.js"></script>
+    <script src="vue/vue-router.min.js"></script>
+
+    <link href="home.css" rel="stylesheet" />
+</head>
+
+<body class="background-black">
+    <div class="ui grid " id="databinding">
+
+        <div class="four wide column ">
+
+            <div class="content content-detail">
+                <div class="ui centered grid grid-content">
+                    <div class="row">
+                        <div class="six wide computer column">
+                            <div class="ui small image simpleimage itemcolor1">
+                                <i class=" chart bar outline icon simpleicon "></i>
+                            </div>
+                        </div>
+                        <div class="ten wide computer column">
+                            <span class="line-name color-white">{{line_name}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="eight wide column ">
+
+            <div class="content content-detail">
+                <div class="ui centered grid grid-content">
+                    <div class="row">
+                        <div class="six wide computer column">
+                            <span class="customer-name color-white">KHÁCH HÀNG</span>
+                        </div>
+                        <div class="ten wide computer column">
+                            <span class="customer-name color-yellow">{{customer_name}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="six wide computer column">
+                            <span class="customer-name color-white">MÃ HÀNG</span>
+                        </div>
+                        <div class="ten wide computer column">
+                            <span class="customer-name color-yellow">{{style_code}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="four wide column ">
+
+            <div class="content content-detail">
+                <div class="ui centered grid grid-content">
+                    <div class="row">
+                        <div class="six wide computer column">
+                            <span class="customer-name color-white">NGÀY</span>
+                        </div>
+                        <div class="ten wide computer column">
+                            <span class="customer-name color-red">{{current_date}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="six wide computer column">
+                            <span class="customer-name color-white">GIỜ</span>
+                        </div>
+                        <div class="ten wide computer column">
+                            <span class="customer-name color-red">{{current_time}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="eight wide column ">
+
+            <div class="content content-detail">
+                <div class="ui centered grid grid-content">
+                    <div class="row">
+                        <div class="six wide computer column">
+                            <span class="customer-name color-white">LAO ĐỘNG(OPERATORS)</span>
+                        </div>
+                        <div class="ten wide computer column">
+                            <span class="customer-name color-yellow">{{operators}}</span>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+        </div>
+        <div class="eight wide column ">
+
+            <div class="content content-detail">
+                <div class="ui centered grid grid-content">
+                    <div class="row">
+                        <div class="six wide computer column">
+                            <span class="customer-name color-white">ĐƠN GIÁ(PRICE VNĐ)</span>
+                        </div>
+                        <div class="ten wide computer column">
+                            <span class="customer-name color-yellow">{{item_price}}</span>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+
+        </div>
+
+        <div class="sixteen wide column ui stacked segment">
+            <div id="example_wrapper" class="dataTables_wrapper dt-semanticUI no-footer">
+                <div class="ui stackable grid ">
+                    <table class=" ui fixed single line celled table " >
+                        <thead>
+                            <tr>
+                                <th class="text-center"></th>
+                                <th colspan="2" class="text-center ">
+                                    <h4  class="ui">
+                                        <div class="content label-name">
+                                            SỐ LƯỢNG TỔNG
+                                            <div>TOTAL QUANTY</div>
+                                        </div>
+                                    </h4>
+                                </th>
+                                
+                                <th colspan="2" class="text-center ">
+                                    <h4 class="ui">
+                                        <div class="content label-name">
+                                            SỐ LƯỢNG NGÀY
+                                            <div>DAY QUANTY</div>
+                                        </div>
+                                    </h4>
+                                </th>
+                                
+                                <th colspan="2" class="text-center ">
+                                    <h4 class="ui">
+                                        <div class="content label-name">
+                                            SẢN PHẨM ĐẠT
+                                            <div>PASS OUTPUT</div>
+                                        </div>
+                                    </h4>
+                                </th>
+                                <th colspan="2" class="text-center ">
+                                    <h4 class="ui ">
+                                        <div class="content label-name">
+                                            NHỊP ĐỘ SẢN XUẤT
+                                            <div>TAKT TIME</div>
+                                        </div>
+                                    </h4>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="">
+                          
+                            <tr>
+                                <td class="text-center">
+                                    <h4 class="ui">
+                                        <div class="content label-name">
+                                            KẾ HOẠCH
+                                            <div>ORDER QUANTY</div>
+                                        </div>
+                                    </h4>
+                                </td>
+                                <td colspan="2" class="text-center number-size color-blue">
+                                    {{order_total_qty}}
+                                </td>
+                                <td colspan="2" class="text-center number-size color-blue">
+                                    {{order_day_qty}}
+                                </td>
+            
+                                <td colspan="2" class="text-center number-size color-blue">
+                                    {{pass_output}}
+                                </td>
+                                <td colspan="2" class="text-center number-size color-blue">
+                                    {{takt_time}}
+                                </td>
+            
+            
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <h4 class="ui">
+                                        <div class="content label-name">
+                                            THỰC HIỆN
+                                            <div>ACTUAL QUANTY</div>
+                                        </div>
+                                    </h4>
+                                </td>
+                                <td colspan="2" class="text-center number-size color-green">
+                                    {{actual_total_qty}}
+                                </td>
+                                <td colspan="2" class="text-center number-size color-green">
+                                    {{actual_day_qty}}
+                                </td>
+            
+                                <td colspan="2" class="text-center number-size ">
+                                    <h4 class="ui">
+                                        <div class="content label-name">
+                                            TỶ LỆ SP ĐẠT
+                                            <div>PASS RATE(%)</div>
+                                        </div>
+                                    </h4>
+                                </td>
+                                <td colspan="2" class="text-center number-size">
+                                    <h4 class="ui">
+                                        <div class="content label-name">
+                                            SL/NGƯỜI/NGÀY
+                                            <div>QTY/PERSON/DAY</div>
+                                        </div>
+                                    </h4>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <h4 class="ui">
+                                        <div class="content label-name">
+                                            CÒN LẠI
+                                            <div>BALANCE</div>
+                                        </div>
+                                    </h4>
+                                </td>
+                                <td colspan="2" class="text-center number-size color-orange">{{balance_total}}</td>
+                                <td colspan="2" class="text-center number-size color-orange">{{balance_day}}</td>
+            
+                                <td colspan="2" class="text-center number-size color-orange">
+                                    {{pass_rate}}% 
+                                </td>
+                                <td colspan="2" class="text-center number-size color-orange">
+                                    {{qty_person_day}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="text-center">
+                                    <h4 class="ui">
+                                        <div class="content label-name">
+                                            THỜI GIAN
+                                            <div>TIME</div>
+                                        </div>
+                                    </h4>
+                                </td>
+                                <td class="text-center time-size">
+                                    9:30
+                                </td>
+                                <td class="text-center time-size">
+                                    11:30
+                                </td>
+                                <td class="text-center time-size">
+                                    15:00
+                                </td>
+                                <td class="text-center time-size">
+                                    17:00
+                                </td>
+                                <td colspan="3" class="text-center">
+                                    <h4 class="ui">
+                                        <div class="content label-name">
+                                            THU NHẬP NGƯỜI/NGÀY
+                                            <div>SALARY/PERSON/DAY(VNĐ)</div>
+                                        </div>
+                                    </h4>
+                                </td>
+            
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="text-center">
+                                    <h4 class="ui">
+                                        <div class="content label-name">
+                                            KẾ HOẠCH
+                                            <div>TAGET</div>
+                                        </div>
+                                    </h4>
+                                </td>
+                                <td class="text-center number-size color-blue">
+                                    {{taget_qty_time1}}
+                                </td>
+                                <td class="text-center number-size color-blue">
+                                    {{taget_qty_time2}}
+                                </td>
+                                <td class="text-center number-size color-blue">
+                                    {{taget_qty_time3}}
+                                </td>
+                                <td class="text-cente number-size color-blue">
+                                    {{taget_qty_time4}}
+                                </td>
+                                <td colspan="3" rowspan="2" class="text-center number-size color-red">
+                                    {{salary_person_day}}
+                                </td>
+            
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="text-center">
+                                    <h4 class="ui">
+                                        <div class="content label-name">
+                                           THỰC HIỆN
+                                            <div>ACTUAL</div>
+                                        </div>
+                                    </h4>
+                                </td>
+                                <td class="text-center number-size color-orange">
+                                    {{actual_qty_time1}}
+                                </td>
+                                <td class="text-center number-size color-orange">
+                                    {{actual_qty_time2}}
+                                </td>
+                                <td class="text-center number-size color-orange">
+                                    {{actual_qty_time3}}
+                                </td>
+                                <td class="text-center number-size color-orange">
+                                    {{actual_qty_time4}}
+                                </td>
+                               
+                            </tr>
+            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <!-- <div class="ui form width100" id="databinding" style="height:100%" >
+        <table class="ui fixed single line celled table" style="height:100%">
+            <thead>
+                <tr>
+                    <th class="text-center">LINE</th>
+                    <th class="text-center">
+                        <h4 class="ui">
+                            <div class="content">
+                                NGÀY
+                                <div>DATE</div>
+                            </div>
+                        </h4>
+                    </th>
+                    <th class="text-center">{{current_date}}</th>
+                    <th class="text-center">
+                        <h4 class="ui">
+                            <div class="content">
+                                GIỜ
+                                <div>TIME</div>
+                            </div>
+                        </h4>
+                    </th>
+                    <th  class="text-center">{{current_time}}</th>
+                    <th class="text-center">
+                        <h4 class="ui">
+                            <div class="content">
+                                L.ĐỘNG
+                                <div>OPERATORS</div>
+                            </div>
+                        </h4>
+                    </th>
+                    <th class="text-center">{{operators}}</th>
+                    <th class="text-center">
+                        <h4 class="ui">
+                            <div class="content">
+                                Đ.GIÁ
+                                <div>PRICE</div>
+                            </div>
+                        </h4>
+                    </th>
+                    <th class="text-center">{{item_price}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="2" class="text-center">{{line_name}}</td>
+                    <td class="text-center">
+                        <h4 class="ui">
+                            <div class="content">
+                                KHÁCH HÀNG
+                                <div>CUSTOMER</div>
+                            </div>
+                        </h4>
+                    </td>
+                    <td colspan="2" class="text-center">{{customer_name}}</td>
+                    <td class="text-center">
+                        <h4 class="ui">
+                            <div class="content">
+                                MÃ HÀNG
+                                <div>STYLE</div>
+                            </div>
+                        </h4>
+                    </td>
+                    <td colspan="4" class="text-center">{{style_code}}</td>
+                </tr>
+                <tr>
+
+                    <td colspan="2" class="text-center">
+                        <h4 class="ui">
+                            <div class="content ">
+                                SỐ LƯỢNG TỔNG
+                                <div>TOTAL QUANTY</div>
+                            </div>
+                        </h4>
+                    </td>
+                    <td colspan="2" class="text-center">
+                        <h4 class="ui">
+                            <div class="content ">
+                                SỐ LƯỢNG NGÀY
+                                <div>DAY QUANTY</div>
+                            </div>
+                        </h4>
+                    </td>
+                    <td colspan="2" class="text-center">
+                        <h4 class="ui">
+                            <div class="content ">
+                                SẢN PHẨM ĐẠT
+                                <div>PASS OUTPUT</div>
+                            </div>
+                        </h4>
+                    </td>
+                    <td colspan="2" class="text-center">
+                        <h4 class="ui">
+                            <div class="content ">
+                                NHỊP ĐỘ SẢN XUẤT
+                                <div>TAKT TIME</div>
+                            </div>
+                        </h4>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-center">
+                        <h4 class="ui">
+                            <div class="content ">
+                                KẾ HOẠCH
+                                <div>ORDER QUANTY</div>
+                            </div>
+                        </h4>
+                    </td>
+                    <td colspan="2" class="text-center">
+                        {{order_total_qty}}
+                    </td>
+                    <td colspan="2" class="text-center">
+                        {{order_day_qty}}
+                    </td>
+
+                    <td colspan="2" class="text-center">
+                        {{pass_output}}
+                    </td>
+                    <td colspan="2" class="text-center">
+                        {{takt_time}}
+                    </td>
+
+
+                </tr>
+                <tr>
+                    <td class="text-center">
+                        <h4 class="ui">
+                            <div class="content ">
+                                THỰC HIỆN
+                                <div>ACTUAL QUANTY</div>
+                            </div>
+                        </h4>
+                    </td>
+                    <td colspan="2" class="text-center">
+                        {{actual_total_qty}}
+                    </td>
+                    <td colspan="2" class="text-center">
+                        {{actual_day_qty}}
+                    </td>
+
+                    <td colspan="2" class="text-center">
+                        <h4 class="ui">
+                            <div class="content ">
+                                TỶ LỆ SP ĐẠT
+                                <div>PASS RATE(%)</div>
+                            </div>
+                        </h4>
+                    </td>
+                    <td colspan="2" class="text-center">
+                        <h4 class="ui">
+                            <div class="content ">
+                                SL/NGƯỜI/NGÀY
+                                <div>QTY/PERSON/DAY</div>
+                            </div>
+                        </h4>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-center">
+                        <h4 class="ui">
+                            <div class="content ">
+                                CÒN LẠI
+                                <div>BALANCE</div>
+                            </div>
+                        </h4>
+                    </td>
+                    <td colspan="2" class="text-center">{{balance_total}}</td>
+                    <td colspan="2" class="text-center">{{balance_day}}</td>
+
+                    <td colspan="2" class="text-center">
+                        {{pass_rate}}
+                    </td>
+                    <td colspan="2" class="text-center">
+                        {{qty_person_day}}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-center">
+                        <h4 class="ui">
+                            <div class="content ">
+                                THỜI GIAN
+                                <div>TIME</div>
+                            </div>
+                        </h4>
+                    </td>
+                    <td class="text-center">
+                        9:30
+                    </td>
+                    <td class="text-center">
+                        11:30
+                    </td>
+                    <td class="text-center">
+                        15:00
+                    </td>
+                    <td class="text-center">
+                        17:00
+                    </td>
+                    <td colspan="3" class="text-center">
+                        <h4 class="ui">
+                            <div class="content ">
+                                THU NHẬP NGƯỜI/NGÀY
+                                <div>SALARY/PERSON/DAY(VNĐ)</div>
+                            </div>
+                        </h4>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-center">
+                        <h4 class="ui">
+                            <div class="content ">
+                                KẾ HOẠCH
+                                <div>TAGET</div>
+                            </div>
+                        </h4>
+                    </td>
+                    <td class="text-center">
+                        {{taget_qty_time1}}
+                    </td>
+                    <td class="text-center">
+                        {{taget_qty_time2}}
+                    </td>
+                    <td class="text-center">
+                        {{taget_qty_time3}}
+                    </td>
+                    <td class="text-center">
+                        {{taget_qty_time4}}
+                    </td>
+                    <td colspan="3" rowspan="2" class="text-center">
+                        {{salary_person_day}}
+                    </td>
+
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-center">
+                        <h4 class="ui">
+                            <div class="content ">
+                               THỰC HIỆN
+                                <div>ACTUAL</div>
+                            </div>
+                        </h4>
+                    </td>
+                    <td class="text-center">
+                        {{actual_qty_time1}}
+                    </td>
+                    <td class="text-center">
+                        {{actual_qty_time2}}
+                    </td>
+                    <td class="text-center">
+                        {{actual_qty_time3}}
+                    </td>
+                    <td class="text-center">
+                        {{actual_qty_time4}}
+                    </td>
+                   
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div> -->
+    <script src="home.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+﻿[
+  {
+    "id": "1",
+    "user_name":"sinhns",
+    "full_name":"Nguyễn Hữu Sinh",
+    "password": "red",
+    "state": 0
+  },
+  {
+    "id": "2",
+    "user_name":"hainm",
+    "full_name":"Nguyễn Minh Hải",
+    "password": "red",
+    "state": 0
+  },
+  {
+    "id": "3",
+    "user_name":"thinhnt",
+    "full_name":"Nguyễn Văn Thịnh",
+    "password": "red",
+    "state": 1
+  },
+  {
+    "id": "4",
+    "user_name":"khoatd",
+    "full_name":"Trần Đăng Khoa",
+    "password": "red",
+    "state": 1
+  }
+]

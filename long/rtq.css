@@ -1,0 +1,19 @@
+.display-red {
+    background-color: red;
+  }
+  .display-green {
+    background-color: green;
+  }
+  .display-yellow {
+    background-color: yellow;
+  }
+  div.row-percent-value{
+	  margin-bottom:0px !important;
+  }
+  div.field{
+	  margin-bottom:0px !important;
+  }
+  div.fields{
+	  margin-bottom:5px !important;
+  }
+  
