@@ -1,0 +1,25 @@
+﻿body {
+    padding: 0 0 0 117px;
+    margin: 0;
+    background-color: #f5f5f5;
+    font-family: Arial;
+    font-size: 1rem;
+}
+
+.page--logo-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.page--logo-top {
+    position: absolute;
+    top: 0;
+    left: 100px;
+}
+
+.vc-upload {
+    max-width: 250px;
+    height: 83px;
+    background-color: #fff;
+}

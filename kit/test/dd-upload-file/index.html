@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Ui-Kit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="/vue.min.js"></script>
+    <script src="/lodash.min.js"></script>
+    <script src="app.js"></script>
+    <link href="/logo-service.css" rel="stylesheet" />
+</head>
+<body style="padding:30px !important;">
+    <h1>Test drop-drap for uploading files</h1>
+    <hr />
+
+    <div kit-name="upload" vp-ref="__KIT_UPLOAD" vp-max-size="1M"></div>
+    <hr />
+
+    <div kit-name="upload" vp-ref="__KIT_UPLOAD" vp-max-size="10M"></div>
+    <hr />
+
+    <div kit-name="upload" vp-ref="__KIT_UPLOAD" vp-max-size="10M"></div>
+    <hr />
+
+    <script type="text/javascript">
+        __vue_init_inline(function () {
+            __vue_toast('App Vue installed sucessfully', 'success');
+            __vue_call('__KIT_UPLOAD', '_submitRegisterEvent', _test_callback);
+            //__vue_call('__KIT_UPLOAD', '_setThumbnail', 'https://landkit.goodthemes.co/assets/img/illustrations/illustration-2.png');
+        });
+
+        function _test_callback(vu_) {
+            console.log('_test_callback: file_data = ', vu_.file_data);
+            //setTimeout(function (sf) {
+            //    sf._setResultCallback(true);
+            //    sf._setThumbnail('https://landkit.goodthemes.co/assets/img/illustrations/illustration-2.png')
+            //}, 2000, vu_);
+        }
+
+    </script>
+</body>
+</html>

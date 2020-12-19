@@ -48,8 +48,20 @@
     "login": false,
     "browser": true
   },
+  "lpa_ls.lo": {
+    "dir": "lpa_ls",
+    "login": false
+  },
+  "lpa_backend.lo": {
+    "dir": "lpa_backend",
+    "login": false
+  },
   "site-1.lo": {
     "dir": "site-1",
+    "login": false
+  },
+  "site-2.lo": {
+    "dir": "site-2",
     "login": false
   },
   "long.lo": {

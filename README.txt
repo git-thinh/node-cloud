@@ -10,7 +10,7 @@
 127.0.0.1        site-1.lo
 127.0.0.1        site-2.lo
 
-
+npm i uglify-js -g
 npm i lodash mime-types express 
 
 lsb_release -d

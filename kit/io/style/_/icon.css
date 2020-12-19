@@ -1,0 +1,22 @@
+﻿
+.vc-icon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.vc-icon.--active {
+    opacity: 0.5;
+}
+
+    .vc-icon.--btn {
+        width: 20px;
+        height: 20px;
+        border: 1px solid #ccc;
+        padding: 6px;
+    }
+
+    .vc-icon:hover {
+        border-color: orangered;
+        color: orangered;
+    }

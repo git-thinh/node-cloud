@@ -1,0 +1,33 @@
+﻿
+.vc-loading--modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: #000;
+    opacity: 0.3;
+    z-index: 99998;
+}
+
+.vc-loading {
+    background-color: #f9b6c9;
+    position: fixed;
+    width: 100%;
+    height: 5px;
+    top: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+}
+
+    .vc-loading .--bar {
+        background-color: #D31048;
+        width: 69px;
+        height: 5px;
+        margin: 0;
+        padding: 0;
+    }

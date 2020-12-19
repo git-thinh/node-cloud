@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="/io.js?theme=lpa_ls"></script>
+    <link href="/io.css?theme=lpa_ls" rel="stylesheet" />
+    <style>
+        textarea {
+            width: 96%;
+            overflow: hidden;
+            border: none;
+            background-color: transparent;
+            resize: none;
+        }
+
+        h3 {
+            padding-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <img src="top.JPG" class="page--logo-top" />
+    <h1>Test lpa_ls: Logo Service</h1>
+    <h3>loading</h3>
+    <textarea>
+        __vue_loading(true,true)
+    </textarea>
+    <button onclick="__vue_loading(true)">loading</button>
+    <button onclick="__vue_loading(true,true)">loading + lock screen</button>
+    <h3>toast</h3>
+    <textarea>
+        __vue_toast('messgae ...', '...')
+    </textarea>
+    <button onclick="__vue_toast(new Date().toString(), 'success')">success</button>
+    <button onclick="__vue_toast(new Date().toString(), 'info')">info</button>
+    <button onclick="__vue_toast(new Date().toString(), 'warning')">warning</button>
+    <button onclick="__vue_toast(new Date().toString(), 'danger')">danger</button>
+    <!--<h3>upload</h3>
+    <textarea>
+    <div kit-name="upload" vp-ref="__KIT_UPLOAD" vp-max-size="1M"></div>
+    </textarea>
+    <div kit-name="upload" vp-ref="__KIT_UPLOAD" vp-max-size="1M"></div>-->
+
+    <h3>table</h3>
+    <textarea>
+    </textarea>
+    <div style="width:90%;">
+        <div kit-name="table" vp-ref="__KIT_TABLE"></div>
+    </div>
+
+    <h3>icon</h3>
+    <ul>
+        <li kit-name="icon" vp-type="remove"></li>
+        <li kit-name="icon" vp-type="remove" vp-class="--btn"></li>
+        <li kit-name="icon" vp-type="edit"></li>
+        <li kit-name="icon" vp-type="edit" vp-class="--btn"></li>
+        <li kit-name="icon" vp-type="add"></li>
+        <li kit-name="icon" vp-type="add" vp-class="--btn"></li>
+        <li kit-name="icon" vp-type="toggle"></li>
+        <li kit-name="icon" vp-type="toggle" vp-active="true"></li>
+    </ul>
+
+    <script type="text/javascript">
+        __vue_init_inline(function () {
+            __vue_toast('App Vue installed sucessfully', 'success');
+            //__vue_call('__KIT_UPLOAD', '_submitRegisterEvent', _test_callback);
+            //__vue_call('__KIT_UPLOAD', '_setThumbnail', 'https://landkit.goodthemes.co/assets/img/illustrations/illustration-2.png');
+        });
+
+        function _test_callback(vu_) {
+            console.log('_test_callback: file_data = ', vu_.file_data);
+            //setTimeout(function (sf) {
+            //    sf._setResultCallback(true);
+            //    sf._setThumbnail('https://landkit.goodthemes.co/assets/img/illustrations/illustration-2.png')
+            //}, 2000, vu_);
+        }
+
+    </script>
+
+</body>
+</html>

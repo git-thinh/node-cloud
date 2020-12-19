@@ -14,20 +14,120 @@ const _ = require('lodash');
 const mime = require('mime-types');
 const express = require('express');
 const { release } = require('process');
+const UGLIFY_JS = require("uglify-js");
+//const URL = require('url');
+//const QUERY_STRING = require('querystring');
 
 let app = express();
 let http = app.listen(SITE.port);
 
 app.use('/publish', express.static(path.join(__dirname, DIR_PUBLISH)));
 
+function __vue_com_render_js(theme_code, is_minify) {
+    let vg = '', vjs = '', temp = '', s = '', config = '';
+
+    vg += fs.readFileSync('./kit/io/lodash.min.js');
+    vg += fs.readFileSync('./kit/io/vue.min.js');
+
+    vjs += fs.readFileSync('./kit/io/_init.js');
+    vjs += fs.readFileSync('./kit/io/mixin.js');
+    vjs += fs.readFileSync('./kit/io/global.js');
+
+    if (fs.existsSync('./kit/io/config/' + theme_code + '.js'))
+        config = '\r\n\r\n/* [ CONFIG ] */\r\n var __vue_vc_config = function(){ \r\n ' + fs.readFileSync('./kit/io/config/' + theme_code + '.js').toString('utf8').trim() + ' \r\n } \r\n';
+    else
+        config = '\r\n\r\n/* [ CONFIG ] */\r\n var __vue_vc_config = function(){ \r\n  \r\n } \r\n';
+
+    temp = '';
+    a = fs.readdirSync('./kit/io/com/base');
+    a.forEach(function (file) { temp += __vue_com_render_js_item(theme_code, is_minify, 'base', file); });
+    a = fs.readdirSync('./kit/io/com/kit');
+    a.forEach(function (file) { temp += __vue_com_render_js_item(theme_code, is_minify, 'kit', file); });
+    a = fs.readdirSync('./kit/io/com/widget');
+    a.forEach(function (file) { temp += __vue_com_render_js_item(theme_code, is_minify, 'widget', file); });
+
+    s = vg + vjs + config + temp;
+    return s;
+}
+
+function __vue_com_render_js_item(theme_code, is_minify, type, file_name) {
+    let name = file_name.substr(0, file_name.length - 3),
+        file = '',
+        f_data = '',
+        s = '',
+        temp = '',
+        f_render = '',
+        render = '',
+        data = '';
+
+    file = './kit/io/com/' + type + '/' + file_name;
+    f_data = './kit/io/data/' + file_name;
+
+    if (fs.existsSync(file) && fs.existsSync(f_data)) {
+        f_render = './kit/io/render/' + theme_code + '/' + file_name;
+        if (fs.existsSync(f_render)) render = fs.readFileSync(f_render).toString('utf8').trim();
+        else {
+            f_render = './kit/io/render/_/' + file_name;
+            if (fs.existsSync(f_render)) render = fs.readFileSync(f_render).toString('utf8').trim();
+        }
+        if (render.length == 0) render = 'return createElement("div",{ class: "vc-com vc-' + name + ' vc-error vc-message" },["The component ' + name + ' does not find a function for rendering virtual DOM"]);';
+
+        temp = fs.readFileSync(file).toString('utf8').trim().substr(1).trim();
+        if (temp.length == 0) temp = '}';
+
+        data = fs.readFileSync(f_data).toString('utf8');
+        s += '\r\n\r\n/* [ ' + name + ' ] */ \r\n' +
+            '___VC_DATA_FN["' + name + '"] = function(self){\r\n' + data + '\r\n};\r\n\r\n' +
+            'Vue.component("ui-' + name + '", {\r\n' +
+            '\t mixins: [__VC_MIXIN],\r\n' +
+
+            '\t data: function () { \r\n\t\t\t ___VC_DATA_FN["' + name + '"](this); ' +
+            '\r\n\t\t\t var data = this._initData(___VC_DATA["' + name + '"]); ' +
+            '\r\n\t\t\t ___VC_DATA["' + name + '"] = data; ' +
+            '\r\n\t\t\t return ___VC_DATA["' + name + '"]; ' +
+            '\r\n\t },\r\n' +
+
+            '\t render: function (createElement) { \r\n\t\t ' + render + '\r\n\t }';
+        if (temp[0] == '}') s += '\r\n})\r\n'; else s += ',\r\n\t' + temp + ')\r\n';
+    }
+    return s;
+}
+
+function __vue_com_render_css(theme_code, is_minify) {
+    let s = '';
+    a = fs.readdirSync('./kit/io/style/_');
+    a.forEach(function (file) { s += fs.readFileSync('./kit/io/style/_/' + file).toString('utf8').trim() + '\r\n\r\n'; });
+
+    s += '\r\n/* ====================== */';
+    s += '\r\n/* [ ' + theme_code + ' ] */\r\n\r\n';
+    a = fs.readdirSync('./kit/io/style/' + theme_code);
+    a.forEach(function (file) { s += fs.readFileSync('./kit/io/style/' + theme_code + '/' + file).toString('utf8').trim() + '\r\n\r\n'; });
+
+    return s;
+}
+
 app.get("/*", (req, res) => {
-    const domain = req.host;
-    let site, root, file = req.url.split('?')[0], ref,
+    const domain = req.hostname;
+    let site, root, file = req.url.split('?')[0],
+        ref, theme_code = '', temp = '',
         pathFile, isDynamic = false,
         extension = path.extname(file),
         fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+    //console.log(domain);    
 
     switch (file) {
+        case '/io.js':
+            theme_code = req.query.theme;
+            temp = __vue_com_render_js(theme_code, false);
+            res.set('Content-Type', 'text/javascript');
+            res.end(temp);
+            return;
+        case '/io.css':
+            theme_code = req.query.theme;
+            temp = __vue_com_render_css(theme_code, false);
+            res.set('Content-Type', 'text/css');
+            res.end(temp);
+            return;
         case '/clear-cache':
             URL_CACHE_TEXT = Object.create({});
 

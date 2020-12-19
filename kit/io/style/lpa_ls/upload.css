@@ -1,0 +1,28 @@
+﻿.lpa_ls.vc-upload {
+    width: 250px;
+    height: 100px;
+}
+
+    .lpa_ls.vc-upload .--progress {
+        padding: 44px 0 0 0 !important;
+        position: absolute;
+        height: 41px !important;
+        z-index: 1;
+    }
+
+    .lpa_ls.vc-upload .--title {
+        width: 90% !important;
+        max-width: 100% !important;
+        left: 4% !important;
+        height: 19px !important;
+    }
+
+    .lpa_ls.vc-upload .--progress-bar {
+        height: 6px !important;
+        padding: 0 !important;
+    }
+
+    .lpa_ls.vc-upload img {
+        border-radius: 0 !important;
+        background: none !important;
+    }

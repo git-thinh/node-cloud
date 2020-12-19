@@ -45,7 +45,8 @@ function _getUrl(url) {
 }
 
 var _HTML = {};
-var GROUP_BASE = ['search', 'check', 'radio', 'range', 'progress', 'dropdown'];
+var GROUP_BASE = ['icon'];
+//var GROUP_BASE = ['search', 'check', 'radio', 'range', 'progress', 'dropdown'];
 //var GROUP_BASE = ['input', 'hide', 'color', 'text', 'tab'];//, 'avatar'
 //var GROUP_BASE = ['dropdown', 'input', 'check', 'radio', 'range', 'hide', 'color', 'progress', 'text', 'tab', 'search'];//, 'avatar'
 function _init() {
@@ -266,3 +267,4 @@ var V_MIXIN = {
         }
     }
 };
+
