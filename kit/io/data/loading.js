@@ -1,7 +1,8 @@
 
 ___VC_DATA.loading = {
-    timer_disable: false,
     visible: false,
+    img_loading: -1,
+    timer_disable: false,    
     lock_screen: false,
     text: '',
     speed: 1,
@@ -12,3 +13,5 @@ ___VC_DATA.loading = {
     width: 0,
     height: 0
 };
+
+if (self.vpImgLoading != null) ___VC_DATA.loading.img_loading = self.vpImgLoading;

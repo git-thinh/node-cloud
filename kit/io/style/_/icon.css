@@ -3,20 +3,66 @@
     width: 24px;
     height: 24px;
     cursor: pointer;
+    display: inline-block;
 }
 
-.vc-icon.--active {
-    opacity: 0.5;
-}
+    .vc-icon:hover {
+        border-color: orangered;
+        color: orangered;
+    }
 
-    .vc-icon.--btn {
+    .vc-icon .--text {
+        display: none;
+        cursor: pointer;
+    }
+
+    .vc-icon.__active {
+    }
+
+    .vc-icon .--img-loading {
+        display: none;
+    }
+
+    .vc-icon.__updating.__img_loading .--img-loading {
+        display: block;
+    }
+
+    .vc-icon.__updating.__img_loading .--icon {
+        display: none;
+    }
+
+    .vc-icon.__btn {
         width: 20px;
         height: 20px;
         border: 1px solid #ccc;
         padding: 6px;
     }
 
-    .vc-icon:hover {
-        border-color: orangered;
-        color: orangered;
+    .vc-icon.__text {
+        width: auto;
+        padding: 5px 6px 2px;
+    }
+
+        .vc-icon.__text.__btn {
+        }
+
+        .vc-icon.__text .--icon {
+            float: left;
+            width: 18px;
+            margin-right: 4px;
+        }
+
+        .vc-icon.__text .--text {
+            display: inline-block;
+            float: left;
+        }
+
+    .vc-icon.ui-icon--check.__active {
+        width: 14px;
+        padding-top: 8px;
+    }
+
+    .vc-icon .--text,
+    .vc-icon .--icon {
+        cursor: pointer;
     }

@@ -1,7 +1,13 @@
 ﻿{
     mounted: function () {
         var self = this;
+
+
         setTimeout(function (sf) {
+            if (sf.img_loading == null || sf.img_loading == -1) { } else {
+                sf._classAdd(self.$el, '--img-gif');
+            }
+
             if (sf.text && sf.text.length == 0) sf._classAdd(sf.$el, '--no-text');
 
             var m = document.getElementById(sf.kit_id + '--modal');
@@ -14,7 +20,7 @@
             //m.style.display = sf.lock_screen ? 'block' : 'none';
 
             var r = sf.$el.getBoundingClientRect(),
-                b = document.getElementById(sf.kit_id + '--bar'),
+                b = document.getElementById(sf.kit_id + '--indicator'),
                 bar_width = 0;
             if (b) bar_width = b.getBoundingClientRect().width;
             //console.log(r.width, bar_width);
@@ -51,7 +57,7 @@
 
             var m = document.getElementById(this.kit_id + '--modal');
             if (m) m.style.display = visible && lock_screen ? 'block' : 'none';
-            
+
             this.$el.style.opacity = visible ? 1 : 0;
         },
         _lock_screen: function (visible) {

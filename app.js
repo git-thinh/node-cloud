@@ -32,6 +32,7 @@ function __vue_com_render_js(theme_code, is_minify) {
     vjs += fs.readFileSync('./kit/io/_init.js');
     vjs += fs.readFileSync('./kit/io/mixin.js');
     vjs += fs.readFileSync('./kit/io/global.js');
+    vjs += fs.readFileSync('./kit/io/config.js');
 
     if (fs.existsSync('./kit/io/config/' + theme_code + '.js'))
         config = '\r\n\r\n/* [ CONFIG ] */\r\n var __vue_vc_config = function(){ \r\n ' + fs.readFileSync('./kit/io/config/' + theme_code + '.js').toString('utf8').trim() + ' \r\n } \r\n';
@@ -113,7 +114,8 @@ app.get("/*", (req, res) => {
         pathFile, isDynamic = false,
         extension = path.extname(file),
         fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-    //console.log(domain);    
+
+    //console.log(req.originalUrl);
 
     switch (file) {
         case '/io.js':
@@ -172,11 +174,15 @@ app.get("/*", (req, res) => {
             URL_STORE_DIR[fullUrl] = site.dir;
             break;
         default:
-            ref = req.headers.referer;
-            const dir = URL_STORE_DIR[ref];
-            if (file.indexOf('/' + dir) == -1 && ref && ref.length > 0 && URL_STORE_DIR.hasOwnProperty(ref))
-                pathFile = './' + dir + file;
-            else pathFile = '.' + file;
+            if (req.originalUrl.startsWith('/_static/')) {
+                pathFile = '.' + file;
+            } else {
+                ref = req.headers.referer;
+                const dir = URL_STORE_DIR[ref];
+                if (file.indexOf('/' + dir) == -1 && ref && ref.length > 0 && URL_STORE_DIR.hasOwnProperty(ref))
+                    pathFile = './' + dir + file;
+                else pathFile = '.' + file;
+            }
             break;
     }
 

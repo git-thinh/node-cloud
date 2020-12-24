@@ -24,6 +24,10 @@ Vue.directive('set-data', {
 __VC_MIXIN = {
     props: __VC_PROPS,
     created: function () { this._init(); },
+    mounted: function () {
+        var self = this;
+        if (self.vpMounted) self.vpMounted(self);
+    },
     methods: {
         _init: function () {
             var _self = this;
@@ -72,19 +76,47 @@ __VC_MIXIN = {
                 return _self._classReg(c).test(elem.className);
         },
         _classAdd: function (elem, c) {
-            var _self = this;
-            if ('classList' in document.documentElement) {
-                if (elem.classList && elem.classList.add) elem.classList.add(c);
-                else elem.className += ' ' + c;
-            } else if (!_self._classHas(elem, c))
-                elem.className = elem.className + ' ' + c;
+            if (elem
+                && typeof elem.hasAttribute == 'function') {
+                //console.log('_classAdd: ', c, elem);
+                if (elem.hasAttribute('class')) {
+                    var v = elem.getAttribute('class');
+                    if (v == null) v = '';
+                    v = v.trim();
+                    if (v.length == 0) elem.setAttribute('class', c);
+                    else {
+                        v = v.split(c).join(' ').trim() + ' ' + c;
+                        elem.setAttribute('class', v);
+                    }
+                } else elem.setAttribute('class', c);
+            }
         },
         _classRemove: function (elem, c) {
-            var _self = this;
-            if ('classList' in document.documentElement)
-                elem.classList.remove(c);
-            else
-                elem.className = elem.className.replace(_self._classReg(c), ' ');
+            c = c || '';
+            c = c.trim();
+            //console.log('_classRemove: ', c, elem);
+            if (c.length > 0
+                && elem && typeof elem.hasAttribute == 'function') {
+                if (elem.hasAttribute('class')) {
+                    var v = elem.getAttribute('class'), s = '';
+                    v = v.trim();
+                    if (v.length > 0) {
+                        if (v.startsWith(c + ' ')) {
+                            s = v.substr(c.length).trim();
+                            //console.log('_classRemove: 1 = ', c, v, s);
+                            elem.setAttribute('class', s);
+                        } else if (v.endsWith(' ' + c)) {
+                            s = v.substr(0, v.length - c.length).trim();
+                            //console.log('_classRemove: 2 = ', c, v, s);
+                            elem.setAttribute('class', s);
+                        } else {
+                            s = v.split(' ' + c + ' ').join(' ').trim();
+                            //console.log('_classRemove: 3 = ', c, v, s);
+                            elem.setAttribute('class', s);
+                        }
+                    }
+                }
+            }
         },
         _toast: __vue_toast,
         _initData: function (df) {
@@ -99,12 +131,33 @@ __VC_MIXIN = {
             });
             return v;
         },
-        _createElement: function (createElement, tag_name, setting, arr_elems) {
+        _createElement: function (createElement, tag_name, setting, arr_elems, para) {
+            var self = this;
+            self.para_ = para;
+            //console.log(self.kit_id, para);
             tag_name = tag_name || 'div';
             setting = setting || {};
             arr_elems = arr_elems || [];
             var cf = {};
-            Object.keys(setting).forEach(function (key) { cf[key] = setting[key]; });
+            Object.keys(setting).forEach(function (key) {
+                if (key == 'on') {
+                    //console.log(key, para);
+                    var _on = setting[key];
+                    if (_on != null) {
+                        cf[key] = {};
+                        Object.keys(_on).forEach(function (event_name) {
+                            if (typeof _on[event_name] == 'function') {
+                                //console.log(self.para_);
+                                cf[key][event_name] = function (ev_) {
+                                    ev_._vue = self;
+                                    _on[event_name](ev_);
+                                };
+                            }
+                        });
+                    }
+                } else cf[key] = setting[key];
+            });
+            //console.log(cf);
             var el = createElement(tag_name, cf, arr_elems);
             return el;
         },
@@ -117,6 +170,8 @@ __VC_MIXIN = {
             var fn = window[self.kit_id + '--submit'];
             if (typeof fn == 'function') fn(self);
         },
+        _rollbackAction: function () { },
+        _toggleActiveClick: function () { }
     }
 };
 

@@ -24,10 +24,37 @@
     opacity: 0;
 }
 
-    .vc-loading .--bar {
+    .vc-loading .--indicator {
         background-color: #D31048;
         width: 69px;
         height: 5px;
         margin: 0;
         padding: 0;
     }
+
+    .vc-loading .--text {
+        float: left;
+        padding: 9px 9px 0 12px;
+    }
+
+    .vc-loading.--img-gif {
+        background: white;
+        width: 105px;
+        height: 38px;
+        left: 45%;
+        top: 45%;
+        padding: 3px 9px 0 0;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+    }
+
+        .vc-loading.--img-gif .--indicator {
+            float: right;
+            width: 32px;
+            height: 32px;
+        }
+
+            .vc-loading.--img-gif .--indicator img {
+                width: auto;
+                height: 32px;
+            }

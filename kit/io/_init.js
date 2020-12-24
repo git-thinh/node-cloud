@@ -1,7 +1,11 @@
-﻿var __V_THEME = 'logo-service', __V_DO_ACTION = 'v-do-action',
-    __VC_PROPS = ['vpRef', 'vpData', 'vpTheme', 'vpType', 'vpMaxSize', 'vpClass', 'vpActive'],
+﻿var __V_THEME = 'logo-service', __V_DO_ACTION = 'v-do-action', __SVG = {},
+    __VC_PROPS = ['vpRef', 'vpData', 'vpTheme', 'vpType', 'vpClass', 'vpMax',
+        'vpMaxSize', 'vpActive', 'vpIcon', 'vpText', 'vpIndex', 'vpItems', 'vpValue', 'vpImgLoading',
+        'vpClick', 'vpMounted'],
     __APP, __APP_ID, __APP_INLINE = [], __VC_MIXIN = {}, __VA_MIXIN = {}, ___VC_DATA = {}, ___VC_DATA_FN = {},
-    __V_DEF_DATA = { setting_: { class: '', attrs: {}, style: {}, props: {}, on: {}, nativeOn: {}, directives: [] } };
+    __V_DEF_DATA = {
+        para_: null, setting_: { class: '', attrs: {}, style: {}, props: {}, on: {}, nativeOn: {}, directives: [] }
+    };
 
 if (window.NodeList && !NodeList.prototype.forEach) NodeList.prototype.forEach = Array.prototype.forEach;
 if (window.Node && !Node.prototype.getAttributeNames) {

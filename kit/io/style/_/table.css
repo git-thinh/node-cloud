@@ -1,0 +1,61 @@
+﻿
+.vc-table {
+    background-color: white;
+    display: inline-block;
+    padding: 0;
+    width: 100%;
+}
+
+
+    .vc-table table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .vc-table td, .vc-table th {
+        padding: 1rem 0.25rem;
+        vertical-align: middle;
+        border-top: 1px solid #f4f5f8;
+        font-size: 12px;
+        font-weight: 300;
+        font-family: Arial;
+        color: #575962;
+    }
+
+    .vc-table th {
+        border-top: 0;
+        border-bottom: 1px solid #d51145;
+        vertical-align: bottom;
+        background-color: #fff;
+        text-align: left;
+    }
+
+    .vc-table tr:hover {
+        background-color: #ffffe0 !important;
+    }
+
+    .vc-table tr:nth-child(odd) {
+        background-color: #f5f5f5;
+    }
+
+    .vc-table tr:nth-child(even) {
+        background-color: white;
+    }
+
+    .vc-table td.ui-icon ,
+    .vc-table th.ui-icon {
+        width: 32px;
+    }
+
+    .vc-table td.ui-icon {
+        text-align: center;
+    }
+
+    .vc-table th.ui-icon {
+        text-align: center;
+        vertical-align: bottom;
+        padding: 0;
+    }
+
+    .vc-table th.vc-icon {
+    }

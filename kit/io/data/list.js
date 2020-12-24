@@ -1,139 +1,17 @@
 ﻿
-___VC_DATA.table = {
-    visible: false,
-    img_loading: 1,
-    cols: [
-        {
-            order: 0,
-            name: 'id',
-            kit_th: {
-                code: 'SELECT_ALL___1',
-                name: 'ui-icon',
-                props: {
-                    'vp-icon': 'check-all',
-                    'vp-click': self._checkAll_Click
-                }
-            },
-            kit_td: {
-                name: 'ui-icon',
-                props: {
-                    'vp-icon': 'check',
-                    'vp-img-loading': 2,
-                    'vp-click': self._checkItem_Click
-                }
-            },
-            visible: true,
-            style: {},
-            title: ""
-        },
-        {
-            order: 10,
-            name: 'id',
-            visible: true,
-            style: {},
-            title: "Id"
-        },
-        {
-            order: 11,
-            name: 'name',
-            visible: true,
-            style: {},
-            title: "Name"
-        },
-        {
-            order: 13,
-            name: 'position',
-            visible: true,
-            style: {},
-            title: "Position"
-        },
-        {
-            order: 14,
-            name: 'salary',
-            visible: true,
-            style: {},
-            title: "Salary"
-        },
-        {
-            order: 15,
-            name: 'start_date',
-            visible: true,
-            style: {},
-            title: "Start date"
-        },
-        {
-            order: 12,
-            name: 'office',
-            visible: true,
-            style: {},
-            title: "Office",
-            index: 5
-        },
-        {
-            order: 17,
-            name: 'extn',
-            visible: true,
-            style: {},
-            title: "Ext",
-            index: 9
-        },
-        {
-            order: 101,
-            name: 'id',
-            kit_th: {
-                code: 'SELECT_ALL___2',
-                name: 'ui-icon',
-                props: {
-                    'vp-icon': 'check-all',
-                    'vp-click': self._checkAll_Click
-                }
-            },
-            kit_td: {
-                name: 'ui-icon',
-                props: {
-                    'vp-icon': 'check',
-                    'vp-click': self._checkItem_Click,
-                    //'vp-mounted': self._checkItem_Mounted
-                }
-            },
-            visible: true,
-            style: {},
-            title: ""
-        },
-        {
-            order: 102,
-            name: 'id',
-            kit_td: {
-                name: 'ui-icon',
-                class: '__btn',
-                props: {
-                    'vp-icon': 'edit',
-                    'vp-click': self._edit_Click,
-                    //'vp-mounted': self._edit_Mounted,
-                }
-            },
-            visible: true,
-            style: {},
-            title: ""
-        },
-        {
-            order: 102,
-            name: 'id',
-            kit_td: {
-                name: 'ui-icon',
-                class: '__btn',
-                props: {
-                    'vp-icon': 'remove',
-                    'vp-img-loading': 2,
-                    'vp-click': self._remove_Click,
-                    //'vp-mounted': self._edit_Mounted,
-                }
-            },
-            visible: true,
-            style: {},
-            title: ""
-        }
-    ],
+___VC_DATA.list = {
+    active: false,
+    img_loading: -1,
+    max_size: 0,
+    index: -1,
+    value: null,
+    col: {
+        value: 'id',
+        text: 'name',
+        kit_left: null,
+        kit_body: null,
+        kit_right: null
+    },
     items: [
         {
             "id": "1",
@@ -650,3 +528,14 @@ ___VC_DATA.table = {
         }
     ]
 };
+
+if (self.vpActive == true) ___VC_DATA.list.active = true;
+else if (self.vpActive == false) ___VC_DATA.list.active = false;
+
+if (self.vpText && self.vpText.length > 0) ___VC_DATA.list.text = self.vpText;
+if (self.vpIndex != null) ___VC_DATA.list.index = self.vpIndex;
+if (self.vpValue != null) ___VC_DATA.list.value = self.vpValue;
+if (self.vpImgLoading != null) ___VC_DATA.list.img_loading = self.vpImgLoading;
+
+if (self.vpItems != null) ___VC_DATA.list.items = self.vpItems;
+if (self.vpMax) ___VC_DATA.list.max_size = Number(self.vpMax);
