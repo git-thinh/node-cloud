@@ -4,12 +4,14 @@ ___VC_DATA.list = {
     img_loading: -1,
     max_size: 0,
     index: -1,
-    value: null,
+    value: { id: 1 },
     col: {
         value: 'id',
         text: 'name',
         kit_left: null,
-        kit_body: null,
+        kit_body: {
+            'vp-click': self._checkItem_Click
+        },
         kit_right: null
     },
     items: [

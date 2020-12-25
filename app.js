@@ -12,14 +12,18 @@ const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
 const mime = require('mime-types');
-const express = require('express');
 const { release } = require('process');
 const UGLIFY_JS = require("uglify-js");
 //const URL = require('url');
 //const QUERY_STRING = require('querystring');
 
-let app = express();
-let http = app.listen(SITE.port);
+//let app = express();
+//let http = app.listen(SITE.port);
+
+const express = require('express');
+const https = require('https');
+const http = require('http');
+const app = express();
 
 app.use('/publish', express.static(path.join(__dirname, DIR_PUBLISH)));
 
@@ -234,10 +238,8 @@ app.get("/*", (req, res) => {
 });
 
 
-
-
-
-
-
-
-
+http.createServer(app).listen(80);
+https.createServer({
+    key: fs.readFileSync('./_sys/co.ibds.key'),
+    cert: fs.readFileSync('./_sys/co.ibds.crt')
+}, app).listen(443);

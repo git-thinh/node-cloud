@@ -1,0 +1,27 @@
+﻿
+.vc-list {
+    display: inline-block;
+}
+
+    .vc-list ul {
+        padding: 0;
+        margin: 0;
+    }
+
+        .vc-list ul li {
+            list-style: none;
+            border-bottom: 1px solid #ccc;
+            font-size: 0.8rem;
+            padding: 9px 9px;
+            cursor: pointer;
+        }
+
+            .vc-list ul li:last-of-type {
+                border-bottom: none;
+            }
+
+            .vc-list ul li.--active,
+            .vc-list ul li:hover {
+                color: white;
+                background-color: orangered;
+            }

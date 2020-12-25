@@ -1,6 +1,7 @@
 ﻿var self = this,
     col = self.col,
     max_size = self.max_size,
+    value = self.value,
     col_id = col.value,
     col_text = col.text,
     items = self.items || [],
@@ -13,7 +14,12 @@ if (items.length > 0) {
     var limit = items.length;
     if (max_size > 0 && max_size < items.length) limit = max_size;
     for (var i = 0; i < limit; i++) {
-        var li = createElement('li', {}, [items[i][col_text]]);
+        var li, it = items[i];
+        if (col_active && it && it[col_active] == true)
+            li = createElement('li', { class: '--active' }, [it[col_text]]);
+        else
+            li = createElement('li', {}, [it[col_text]]);
+
         li_arr.push(li);
     }
 }

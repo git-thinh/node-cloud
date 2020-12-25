@@ -82,6 +82,94 @@
     background-color: #212529 !important;
 }
 
+/************************/
+
+.border-blue {
+    border: 1px solid #0d6efd !important;
+}
+
+.border-indigo {
+    border: 1px solid #6610f2 !important;
+}
+
+.border-purple {
+    border: 1px solid #6f42c1 !important;
+}
+
+.border-pink {
+    border: 1px solid #d63384 !important;
+}
+
+.border-red {
+    border: 1px solid #dc3545 !important;
+}
+
+.border-orange {
+    border: 1px solid #fd7e14 !important;
+}
+
+.border-yellow {
+    border: 1px solid #ffc107 !important;
+}
+
+.border-green {
+    border: 1px solid #198754 !important;
+}
+
+.border-teal {
+    border: 1px solid #20c997 !important;
+}
+
+.border-cyan {
+    border: 1px solid #0dcaf0 !important;
+}
+
+.border-white {
+    border: 1px solid #fff !important;
+}
+
+.border-gray {
+    border: 1px solid #6c757d !important;
+}
+
+.border-gray-dark {
+    border: 1px solid #343a40 !important;
+}
+
+.border-primary {
+    border: 1px solid #0d6efd !important;
+}
+
+.border-secondary {
+    border: 1px solid #6c757d !important;
+}
+
+.border-success {
+    border: 1px solid #198754 !important;
+}
+
+.border-info {
+    border: 1px solid #0dcaf0 !important;
+}
+
+.border-warning {
+    border: 1px solid #ffc107 !important;
+}
+
+.border-danger {
+    border: 1px solid #dc3545 !important;
+}
+
+.border-light {
+    border: 1px solid #f8f9fa !important;
+}
+
+.border-dark {
+    border: 1px solid #212529 !important;
+}
+
+/************************/
+
 .text-blue {
     color: #0d6efd !important;
 }
@@ -172,3 +260,4 @@
     position: absolute;
     z-index: 99999;
 }
+

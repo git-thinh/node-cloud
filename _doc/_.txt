@@ -1,0 +1,9 @@
+﻿lsb_release -d
+
+sudo lsof -i -P -n | grep LISTEN
+netstat -tanp
+lsof -i | grep ftp
+killall -i redis-ser
+kill PID
+
+service vsftpd status
