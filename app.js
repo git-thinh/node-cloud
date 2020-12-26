@@ -6,6 +6,7 @@ const DIR_PUBLISH = '_pub';
 const URL_STORE_DIR = {};
 let URL_CACHE_TEXT = {}
 let SITE = require('./_sys/domain.' + ENV + '.json');
+const ROOT_TEMPLATE = SITE.path.template;
 
 const fs = require('fs');
 const path = require('path');
@@ -106,16 +107,30 @@ function __vue_com_render_css(theme_code, is_minify) {
 }
 
 app.get("/*", (req, res) => {
-    const domain = req.hostname;
+    const domain = req.hostname, is_template = domain.endsWith('.ibds.co');
     let site, root, file = req.url.split('?')[0],
         ref, theme_code = '', temp = '',
         pathFile, isDynamic = false,
         extension = path.extname(file),
         fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 
-    //console.log(req.originalUrl);
+    //console.log(is_template, req.originalUrl);
 
     switch (file) {
+        case '/__cus.css':
+            pathFile = ROOT_TEMPLATE + '/custom' + file;
+            if (fs.existsSync(pathFile))
+                temp = fs.readFileSync(pathFile).toString('utf8').trim();
+            res.set('Content-Type', 'text/css');
+            res.end(temp);
+            return;
+        case '/__cus.js':
+            pathFile = ROOT_TEMPLATE + '/custom' + file;
+            if (fs.existsSync(pathFile))
+                temp = fs.readFileSync(pathFile).toString('utf8').trim();
+            res.set('Content-Type', 'text/javascript');
+            res.end(temp);
+            return;
         case '/io.js':
             theme_code = req.query.theme;
             temp = __vue_com_render_js(theme_code, false);
@@ -149,9 +164,9 @@ app.get("/*", (req, res) => {
         case '/clear-cache':
             URL_CACHE_TEXT = Object.create({});
 
-            const pathSite = './_sys/domain.' + ENV + '.json';
-            delete require.cache[require.resolve(pathSite)];
-            SITE = require(pathSite);
+            pathFile = './_sys/domain.' + ENV + '.json';
+            delete require.cache[require.resolve(pathFile)];
+            SITE = require(pathFile);
 
             res.end('CLEAR ALL CACHE ...');
             return;
@@ -185,8 +200,11 @@ app.get("/*", (req, res) => {
             if (SITE.hasOwnProperty(domain)) site = SITE[domain];
             else if (domain.indexOf('login.') == 0) site = SITE['login'];
             root = './' + site.dir;
+            if (is_template) root = ROOT_TEMPLATE + site.dir;
+            //console.log('[1] HTML = ', root, file);
             pathFile = root + file;
             if (!fs.existsSync(pathFile)) pathFile = './404/index.html';
+            //URL_STORE_DIR[fullUrl] = site.dir;
             URL_STORE_DIR[fullUrl] = site.dir;
             break;
         default:
@@ -203,7 +221,7 @@ app.get("/*", (req, res) => {
     }
 
     if (pathFile.indexOf('?')) pathFile = pathFile.split('?')[0];
-    //console.log('[3] ', domain, req.url, pathFile);
+    //console.log('[3] ', is_template, domain, req.url, pathFile);
 
     const mimeType = mime.lookup(pathFile);
     if (mimeType != false) res.setHeader('content-type', mimeType);
@@ -236,6 +254,12 @@ app.get("/*", (req, res) => {
                         }
                         s = text;
                     }
+
+                    if (s.indexOf('</body>') === -1 || s.indexOf('</html>') === -1)
+                        s += '<link href="/__cus.css" rel="stylesheet" type="text/css">' +
+                            (site != null ? '<script type="text/javascript"> var __SITE = ' + JSON.stringify(site) + '; </script>' : '') +
+                            '<script type="text/javascript" src="/__cus.js"></script>' +
+                            '</body></html>';
                 }
                 URL_CACHE_TEXT[fullUrl] = s;
                 res.end(s);

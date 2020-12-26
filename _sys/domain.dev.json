@@ -1,5 +1,8 @@
 {
   "port": 1233,
+  "path": {
+    "template": "D:\/templates\/"
+  },
   "url": {
     "login": "http://login.lo:1233",
     "api": "http://api.lo:1233",
@@ -69,6 +72,17 @@
     "login": false
   },
   "dev-golfviewdanang.ibds.co": {
+    "replaces": [
+      {
+        "type": "phone",
+        "valid": {
+          "tag": "a",
+          "attr": "href",
+          "value": "tel:0961057979"
+        },
+        "value": "094 800 3456"
+      }
+    ],
     "dir": "golfviewdanang.ibds.co",
     "login": false
   },
