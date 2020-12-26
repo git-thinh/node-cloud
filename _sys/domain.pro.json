@@ -52,5 +52,25 @@
   "www.baovethienphong.com": {
     "dir": "baovethienphong.com",
     "login": false
+  },
+  "golfviewdanang.ibds.co": {
+    "dir": "golfviewdanang.ibds.co",
+    "login": false
+  },
+  "golfview-chudautu.ibds.co": {
+    "dir": "golfviewdanang.ibds.co",
+    "login": false
+  },
+  "thegolfview.ibds.co": {
+    "dir": "thegolfview.info",
+    "login": false
+  },
+  "golfviewluxurydanang.ibds.co": {
+    "dir": "golfviewluxurydanang.com",
+    "login": false
+  },
+  "golfview-danang.ibds.co": {
+    "dir": "golfviewdanang.info.vn",
+    "login": false
   }
 }

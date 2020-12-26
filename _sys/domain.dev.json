@@ -67,5 +67,25 @@
   "long.lo": {
     "dir": "long",
     "login": false
+  },
+  "dev-golfviewdanang.ibds.co": {
+    "dir": "golfviewdanang.ibds.co",
+    "login": false
+  },
+  "dev-golfview-chudautu.ibds.co": {
+    "dir": "golfviewdanang.ibds.co",
+    "login": false
+  },
+  "dev-thegolfview.ibds.co": {
+    "dir": "thegolfview.info",
+    "login": false
+  },
+  "dev-golfviewluxurydanang.ibds.co": {
+    "dir": "golfviewluxurydanang.com",
+    "login": false
+  },
+  "dev-golfview-danang.ibds.co": {
+    "dir": "golfviewdanang.info.vn",
+    "login": false
   }
 }

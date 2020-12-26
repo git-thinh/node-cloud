@@ -1,0 +1,32 @@
+﻿vim /etc/systemd/system/www-nodejs.service
+
+----------------------------------------------
+
+[Unit]
+Description="WWW NodeJs Web Server Service"
+After=network-online.target
+
+[Service]
+Restart=on-failure
+WorkingDirectory=/home/ftpuser/www
+ExecStart=/usr/bin/node /home/ftpuser/www/app.js
+Restart=always
+RestartSec=10
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=www-nodejs
+Environment=NODE_ENV=production PORT=6789
+
+[Install]
+WantedBy=multi-user.target
+
+----------------------------------------------
+
+systemctl enable www-nodejs.service
+systemctl start www-nodejs.service
+
+systemctl stop www-nodejs.service
+systemctl restart www-nodejs.service
+
+systemctl disable www-nodejs.service
+systemctl status www-nodejs.service

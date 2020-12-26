@@ -1,9 +1,22 @@
 ﻿lsb_release -d
-
 sudo lsof -i -P -n | grep LISTEN
 netstat -tanp
+
 lsof -i | grep ftp
 killall -i redis-ser
 kill PID
 
+systemctl daemon-reload
+sudo lsof -i -P -n | grep LISTEN
+
+ls -dils ./*
+
+ls -dils ./1000*
+
+systemctl status redis-1000.service
+
+
+
+
 service vsftpd status
+systemctl status www-nodejs.service

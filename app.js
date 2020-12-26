@@ -6,7 +6,6 @@ const DIR_PUBLISH = '_pub';
 const URL_STORE_DIR = {};
 let URL_CACHE_TEXT = {}
 let SITE = require('./_sys/domain.' + ENV + '.json');
-//console.log(SITE);
 
 const fs = require('fs');
 const path = require('path');
@@ -14,11 +13,6 @@ const _ = require('lodash');
 const mime = require('mime-types');
 const { release } = require('process');
 const UGLIFY_JS = require("uglify-js");
-//const URL = require('url');
-//const QUERY_STRING = require('querystring');
-
-//let app = express();
-//let http = app.listen(SITE.port);
 
 const express = require('express');
 const https = require('https');
@@ -134,6 +128,24 @@ app.get("/*", (req, res) => {
             res.set('Content-Type', 'text/css');
             res.end(temp);
             return;
+        case '/test':
+            temp = '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
+            Object.keys(SITE).forEach(function (key_, index_) {
+                if (!key_.endsWith('ibds.co'))
+                    temp += '<h3><a href="http://' + key_ + '" target="_blank" style="text-decoration:none;">[' + (index_ + 1).toString() + '] ' + key_ + '</a></h3>';
+            });
+            res.set('Content-Type', 'text/html');
+            res.end(temp);
+            return;
+        case '/landing':
+            temp = '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
+            Object.keys(SITE).forEach(function (key_, index_) {
+                if (key_.endsWith('ibds.co'))
+                    temp += '<h3><a href="https://' + key_ + '" target="_blank" style="text-decoration:none;">[' + (index_ + 1).toString() + '] ' + key_ + '</a></h3>';
+            });
+            res.set('Content-Type', 'text/html');
+            res.end(temp);
+            return;
         case '/clear-cache':
             URL_CACHE_TEXT = Object.create({});
 
@@ -237,8 +249,8 @@ app.get("/*", (req, res) => {
     }
 });
 
-
-http.createServer(app).listen(80);
+if (ENV === 'pro') SITE.port = 80;
+http.createServer(app).listen(SITE.port);
 https.createServer({
     key: fs.readFileSync('./_sys/co.ibds.key'),
     cert: fs.readFileSync('./_sys/co.ibds.crt')
