@@ -131,6 +131,14 @@ app.get("/*", (req, res) => {
             res.set('Content-Type', 'text/javascript');
             res.end(temp);
             return;
+        case '/__cus_config.js':
+            pathFile = ROOT_TEMPLATE + '/custom' + file + 'on';
+            if (fs.existsSync(pathFile))
+                temp = 'var CONFIG__ =  ' + JSON.stringify(JSON.parse(fs.readFileSync(pathFile).toString('utf8').trim()));
+            else temp = 'var CONFIG__ = {} ';
+            res.set('Content-Type', 'text/javascript');
+            res.end(temp);
+            return;
         case '/io.js':
             theme_code = req.query.theme;
             temp = __vue_com_render_js(theme_code, false);
@@ -255,11 +263,12 @@ app.get("/*", (req, res) => {
                         s = text;
                     }
 
-                    if (s.indexOf('</body>') === -1 || s.indexOf('</html>') === -1)
+                    if (s.indexOf('</body>') === -1 || s.indexOf('</html>') === -1) {
                         s += '<link href="/__cus.css" rel="stylesheet" type="text/css">' +
-                            (site != null ? '<script type="text/javascript"> var __SITE = ' + JSON.stringify(site) + '; </script>' : '') +
+                            '<script type="text/javascript" src="/__cus_config.js"></script>' +
                             '<script type="text/javascript" src="/__cus.js"></script>' +
                             '</body></html>';
+                    }
                 }
                 URL_CACHE_TEXT[fullUrl] = s;
                 res.end(s);
