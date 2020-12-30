@@ -55,10 +55,10 @@ if (ok) {
 //console.log(name, active, self.img_loading, ok);
 
 if (ok) {
-    var label = createElement('label', { class: '--text' }, [text]);
+    var label = createElement('label', { class: '__ic_text' }, [text]);
 
     var svg = createElement('svg', {
-        class: '--icon',
+        class: '__ic_icon',
         attrs: {
             viewBox: '0 0 16 16',
             fill: 'currentColor',
@@ -75,9 +75,9 @@ if (ok) {
         //}
     }, [arrPath]);
 
-    var indicator = createElement('img', { class: '--img-loading' });
+    var indicator = createElement('img', { class: '__ic_loading' });
     if (self.img_loading > 0)
-        indicator = createElement('img', { class: '--img-loading', attrs: { src: '/_static/img-loading/' + self.img_loading + '.gif' } });
+        indicator = createElement('img', { class: '__ic_loading', attrs: { src: '/_static/img-loading/' + self.img_loading + '.gif' } });
 
     //if (self._toggleActiveClick) setting.on.click = self._toggleActiveClick;
     //delete setting.on.click;

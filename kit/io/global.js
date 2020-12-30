@@ -1,6 +1,6 @@
 ﻿
-function __vue_toast(text, option) { if (__KIT_TOAST) __KIT_TOAST._show(text, option); }
-function __vue_loading(visible, lock_screen) { if (__KIT_LOADING) __KIT_LOADING._show(visible, lock_screen); }
+function __vue_toast(text, option) { if (__VC_REF.__KIT_TOAST) __VC_REF.__KIT_TOAST._show(text, option); }
+function __vue_loading(visible, lock_screen) { if (__VC_REF.__KIT_LOADING) __VC_REF.__KIT_LOADING._show(visible, lock_screen); }
 
 function __vue_appInit(callback) {
     var el = document.getElementById(__APP_ID);

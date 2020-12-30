@@ -11,7 +11,7 @@
         color: orangered;
     }
 
-    .vc-icon .--text {
+    .vc-icon .__ic_text {
         display: none;
         cursor: pointer;
     }
@@ -19,15 +19,15 @@
     .vc-icon.__active {
     }
 
-    .vc-icon .--img-loading {
+    .vc-icon .__ic_loading {
         display: none;
     }
 
-    .vc-icon.__updating.__img_loading .--img-loading {
+    .vc-icon.__updating.__img_loading .__ic_loading {
         display: block;
     }
 
-    .vc-icon.__updating.__img_loading .--icon {
+    .vc-icon.__updating.__img_loading .__ic_icon {
         display: none;
     }
 
@@ -46,23 +46,65 @@
         .vc-icon.__text.__btn {
         }
 
-        .vc-icon.__text .--icon {
+        .vc-icon.__text .__ic_icon {
             float: left;
             width: 18px;
             margin-right: 4px;
         }
 
-        .vc-icon.__text .--text {
+        .vc-icon.__text .__ic_text {
             display: inline-block;
             float: left;
         }
 
     .vc-icon.ui-icon--check.__active {
         width: 14px;
-        padding-top: 8px;
+        padding: 4px 5px 0 5px;
+        height: 20px;
+        overflow: hidden;
     }
 
-    .vc-icon .--text,
-    .vc-icon .--icon {
+    .vc-icon.ui-icon--check.__text:not(.__active) {
+        background-color: gray;
+        padding: 1px 5px 0 0px;
+    }
+
+        .vc-icon.ui-icon--check.__text:not(.__active) .__ic_icon {
+            width: 24px;
+            margin-right: 0;
+        }
+
+        .vc-icon.ui-icon--check.__text:not(.__active) .__ic_text {
+            padding-top: 3px;
+        }
+
+    .vc-icon.ui-icon--check.__text.__active {
+        width: auto;
+        background-color: gray;
+        padding-bottom: 1px;
+    }
+
+        .vc-icon.ui-icon--check.__text.__active .__ic_icon {
+            width: 14px;
+            padding-top: 2px;
+            padding-left: 0;
+            padding-right: 1px;
+        }
+
+    .vc-icon .__ic_text,
+    .vc-icon .__ic_icon {
         cursor: pointer;
     }
+
+body.__ie11 .vc-icon.ui-icon--check.__text.__active .__ic_text {
+    padding-top: 2px;
+}
+
+body.__ie11 .vc-icon.ui-icon--check.__active {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+body.__ie11 .vc-icon.ui-icon--check.__text.__active {
+    padding-bottom: 3px;
+}

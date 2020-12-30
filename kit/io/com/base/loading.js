@@ -2,10 +2,9 @@
     mounted: function () {
         var self = this;
 
-
         setTimeout(function (sf) {
             if (sf.img_loading == null || sf.img_loading == -1) { } else {
-                sf._classAdd(self.$el, '--img-gif');
+                sf._classAdd(self.$el, '__img-gif');
             }
 
             if (sf.text && sf.text.length == 0) sf._classAdd(sf.$el, '--no-text');

@@ -46,10 +46,10 @@ __VC_MIXIN = {
             Vue.nextTick(function () {
                 var vp_ref = _self.vpRef;
                 if (vp_ref && vp_ref.length > 0) {
-                    //console.log(_self.kit_id, _self.vpRef);
-                    window[vp_ref] = _self;
+                    //console.log(vp_ref);
                     __APP_INLINE.push(vp_ref);
                     _self._classAdd(_self.$el, vp_ref);
+                    __VC_REF[vp_ref] = _self;
                 }
 
                 _self.$el.id = kit_id;
@@ -58,6 +58,9 @@ __VC_MIXIN = {
                 if (_self.vpTheme) _self._classAdd(_self.$el, _self.vpTheme);
                 if (_self.vpType) _self._classAdd(_self.$el, _self.vpType);
                 if (_self.vpClass) _self._classAdd(_self.$el, _self.vpClass);
+
+                var is11 = !!window.MSInputMethodContext && !!document.documentMode;
+                if (is11) _self._classAdd(document.body, '__ie11');
             });
         },
         _classToggle: function (elem, c) {
@@ -100,7 +103,8 @@ __VC_MIXIN = {
                 if (elem.hasAttribute('class')) {
                     var v = elem.getAttribute('class'), s = '';
                     v = v.trim();
-                    if (v.length > 0) {
+                    if (c == v) elem.setAttribute('class', '');
+                    else if (v.length > 0) {
                         if (v.startsWith(c + ' ')) {
                             s = v.substr(c.length).trim();
                             //console.log('_classRemove: 1 = ', c, v, s);

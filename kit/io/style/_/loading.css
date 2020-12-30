@@ -24,7 +24,7 @@
     opacity: 0;
 }
 
-    .vc-loading .--indicator {
+    .vc-loading .__loa_indicator {
         background-color: #D31048;
         width: 69px;
         height: 5px;
@@ -32,12 +32,12 @@
         padding: 0;
     }
 
-    .vc-loading .--text {
+    .vc-loading .__loa_text {
         float: left;
         padding: 9px 9px 0 12px;
     }
 
-    .vc-loading.--img-gif {
+    .vc-loading.__img-gif {
         background: white;
         width: 105px;
         height: 38px;
@@ -48,13 +48,13 @@
         border: 1px solid #ccc;
     }
 
-        .vc-loading.--img-gif .--indicator {
+        .vc-loading.__img-gif .__loa_indicator {
             float: right;
             width: 32px;
             height: 32px;
         }
 
-            .vc-loading.--img-gif .--indicator img {
+            .vc-loading.__img-gif .__loa_indicator img {
                 width: auto;
                 height: 32px;
             }

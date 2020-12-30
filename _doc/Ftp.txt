@@ -1,0 +1,3 @@
+﻿sudo chmod -R 757 /home/ftpuser
+
+sudo chown -R ftpuser:ftpuser /home/ftpuser

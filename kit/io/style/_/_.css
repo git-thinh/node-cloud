@@ -1,4 +1,11 @@
-﻿.bg-blue {
+﻿
+*:focus {
+    outline: 0;
+}
+
+/*****************/
+
+.bg-blue {
     background-color: #0d6efd !important;
 }
 
@@ -260,4 +267,3 @@
     position: absolute;
     z-index: 99999;
 }
-

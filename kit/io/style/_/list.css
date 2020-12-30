@@ -1,5 +1,4 @@
-﻿
-.vc-list {
+﻿.vc-list {
     display: inline-block;
 }
 
@@ -12,16 +11,64 @@
             list-style: none;
             border-bottom: 1px solid #ccc;
             font-size: 0.8rem;
-            padding: 9px 9px;
+            padding: 0;
             cursor: pointer;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            min-height: 32px;
+            float: left;
         }
 
             .vc-list ul li:last-of-type {
                 border-bottom: none;
             }
 
-            .vc-list ul li.--active,
-            .vc-list ul li:hover {
-                color: white;
-                background-color: orangered;
-            }
+
+.vc-list ul li.__li-active {
+    color: white;
+    background-color: orangered;
+}
+
+.vc-list ul li:hover {
+    color: #000;
+    background-color: yellow;
+}
+
+.vc-list ul li i.__li-icon {
+    padding: 0;
+    float: left;
+    display: block;
+    width: 37px;
+    height: 16px;
+}
+
+.vc-list ul li div.__li-icon.vc-icon {
+    height: 18px;
+    overflow: hidden;
+    float: left;
+    margin: 6px 4px 0 9px;
+}
+
+    .vc-list ul li div.__li-icon.vc-icon svg {
+        width: 18px;
+    }
+
+.vc-list ul li span.__li-text {
+    padding: 9px 0 0 0;
+    float: left;
+}
+
+.vc-list ul li .__li-check {
+    float: right;
+    margin: 4px 0 0 0;
+}
+
+.vc-list:not(.__li_icon) ul li span.__li-text {
+    padding-left: 9px;
+}
+
+.vc-list:not(.__li_icon) ul li .__li-icon,
+.vc-list:not(.__li_check) ul li .__li-check {
+    display: none;
+}

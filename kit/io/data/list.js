@@ -4,7 +4,11 @@ ___VC_DATA.list = {
     img_loading: -1,
     max_size: 0,
     index: -1,
-    value: { id: 1 },
+    value: { id: 2 },
+    icon_enable: false,
+    check_enable: false,
+    icon_render: null,
+    check_render: null,
     col: {
         value: 'id',
         text: 'name',
@@ -530,6 +534,30 @@ ___VC_DATA.list = {
         }
     ]
 };
+
+___VC_DATA.list.icon_render = function (item) {
+    var id = Number(item.id);
+    switch (id) {
+        case 2: return 'add';
+        case 3: return 'edit';
+        case 4: return 'remove';
+    }
+    return '';
+};
+
+___VC_DATA.list.check_render = function (item) {
+    var id = Number(item.id);
+    switch (id) {
+        case 1:
+        case 3:
+        case 5:
+            return true;
+    }
+    return false;
+};
+
+if (self.vpIcon != null) ___VC_DATA.list.icon_enable = self.vpIcon == 'true' || self.vpIcon == true ? true : false;
+if (self.vpCheck != null) ___VC_DATA.list.check_enable = self.vpCheck == 'true' || self.vpCheck == true ? true : false;
 
 if (self.vpActive == true) ___VC_DATA.list.active = true;
 else if (self.vpActive == false) ___VC_DATA.list.active = false;

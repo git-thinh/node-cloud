@@ -12,7 +12,7 @@
     display: inline-block;
 }
 
-    .vc-toast .--close {
+    .vc-toast .__toa_close {
         width: 1.5rem;
         position: absolute;
         cursor: pointer;
@@ -21,7 +21,7 @@
         display: inline-block;
     }
 
-    .vc-toast .--text {
+    .vc-toast .__toa_text {
         line-height: 1.26rem;
         text-align: center;
         font-size: 1rem;
