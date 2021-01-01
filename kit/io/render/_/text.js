@@ -3,6 +3,7 @@
 var root,
     data = self.$data,
     text = data.text,
+    value = data.value,
     icon_align = data.icon_align,
     icon_name = data.icon_name || '',
     readonly = data.readonly,
@@ -13,7 +14,8 @@ var root,
 input = createElement('input', {
     class: '__in-input',
     attrs: {
-        placeholder: placeholder
+        placeholder: placeholder,
+        value: text
     },
     //directives: [{ name: 'v-model', value: self.text }]
 });

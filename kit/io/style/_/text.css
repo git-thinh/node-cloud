@@ -4,7 +4,12 @@
     position: relative;
     border: 1px solid #ccc;
     border-radius: 5px;
+    overflow: hidden;
 }
+
+    .vc-text:not(.__readonly) {
+        padding: 0 7px;
+    }
 
     .vc-text .__in-label {
         display: none;
@@ -35,4 +40,43 @@
 
 
     .vc-text .__in-input {
+        border: none;
+        border-radius: 0;
+        font-size: 1rem;
+        width: 100%;
+        background-color: transparent;
+        padding: 0;
+        margin: 5px 0 4px 0;
     }
+
+    .vc-text.__txt_icon.__txt_input {
+        height: 27px;
+    }
+
+        .vc-text.__txt_icon.__txt_input .__in-icon,
+        .vc-text.__txt_icon.__txt_input .__in-input {
+            position: absolute;
+        }
+
+        .vc-text.__txt_icon.__txt_input .__in-icon {
+            top: 6px;
+            left: 0px;
+        }
+
+        .vc-text.__txt_icon.__txt_input .__in-input {
+            top: 0;
+            left: 27px;
+        }
+
+        .vc-text.__txt_icon.__txt_input.__icon_align_right .__in-icon {
+            top: 6px;
+            right: 0px;
+            left: auto;
+            z-index: 2;
+        }
+
+        .vc-text.__txt_icon.__txt_input.__icon_align_right .__in-input {
+            top: 0;
+            left: 27px;
+            z-index: 0;
+        }
