@@ -55,7 +55,7 @@ if (ok) {
 //console.log(name, active, self.img_loading, ok);
 
 if (ok) {
-    var label = createElement('label', { class: '__ic_text' }, [text]);
+    var label = createElement('label', { class: '__ic_text __no-select' }, [text]);
 
     var svg = createElement('svg', {
         class: '__ic_icon',
@@ -95,7 +95,7 @@ if (ok) {
         ev_.stopPropagation();
         ev_.preventDefault();
     };
-    root = self._createElement(createElement, 'div', setting, [svg, label, indicator]);
+    root = self._createElement(createElement, 'div', setting, [indicator, svg, label]);
     return root;
 } else {
     var s = 'Cannot find a setting for icon [' + name + ']';

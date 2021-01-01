@@ -1,5 +1,5 @@
 ﻿var __V_THEME = 'logo-service', __V_DO_ACTION = 'v-do-action', __SVG = {},
-    __VC_PROPS = ['vpRef', 'vpData', 'vpTheme', 'vpType', 'vpClass', 'vpMax',
+    __VC_PROPS = ['vpRef', 'vpData', 'vpTheme', 'vpHeader', 'vpFooter', 'vpType', 'vpClass', 'vpMax',
         'vpMaxSize', 'vpActive', 'vpIcon', 'vpText', 'vpCheck', 'vpIndex', 'vpItems', 'vpValue', 'vpImgLoading',
         'vpClick', 'vpMounted'],
     __APP, __APP_ID, __APP_INLINE = [], __VC_MIXIN = {}, __VA_MIXIN = {}, __VC_REF = {},

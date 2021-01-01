@@ -67,33 +67,72 @@
         <button onclick="__vue_toast(new Date().toString(), 'danger')">danger</button>
     </div>-->
 
-    <h3>check - radio</h3>
-    <div>
-        <div kit-name="icon" vp-icon="add" vp-class=""></div>
-        <div kit-name="icon" vp-icon="add" vp-class="__btn"></div>
-        <div kit-name="icon" vp-icon="add" vp-class="" vp-text="Add New"></div>
-        <div kit-name="icon" vp-icon="add" vp-class="__btn" vp-text="Add New"></div>
-        <div kit-name="icon" vp-icon="edit" vp-class=""></div>
-        <div kit-name="icon" vp-icon="remove" vp-class=""></div>
-        <div kit-name="icon" vp-icon="remove" vp-text="loading" vp-class="__btn" vp-img-loading="2"></div>
-        <div kit-name="icon" vp-icon="check" vp-class="bg-gray"></div>
-        <div kit-name="icon" vp-icon="check" vp-text="caption" vp-class=""></div>
-        <div kit-name="icon" vp-icon="check" vp-active="true" vp-class="bg-gray"></div>
+    <h3>check - radio - text</h3>
+    <div style="width:100%;">
+        <div style="float:left;width:100px; margin: 7px;">
+            <div kit-name="icon" vp-icon="add" vp-class=""></div>
+        </div>
+        <div style="float: left; width: 100px; margin: 7px;">
+            <div kit-name="icon" vp-icon="add" vp-class="__btn"></div>
+        </div>
+        <div style="float: left; width: 100px; margin: 7px;">
+            <div kit-name="icon" vp-icon="add" vp-class="" vp-text="Add New"></div>
+        </div>
+        <div style="float: left; width: 110px; margin: 7px;">
+            <div kit-name="icon" vp-icon="add" vp-class="__btn" vp-text="Add New"></div>
+        </div>
+        <div style="float: left; width: 100px; margin: 7px;">
+            <div kit-name="icon" vp-icon="edit" vp-class=""></div>
+        </div>
+        <div style="float: left; width: 100px; margin: 7px;">
+            <div kit-name="icon" vp-icon="remove" vp-class=""></div>
+        </div>
+        <div style="float: left; width: 100px; margin: 7px;">
+            <div kit-name="icon" vp-icon="remove" vp-text="loading" vp-class="__btn" vp-img-loading="2"></div>
+        </div>
     </div>
+    <div style="clear:both;width:100%;"></div>
+    <div style="width:100%;">
+        <div style="float: left; width: 100px; margin: 7px;">
+            <div kit-name="icon" vp-icon="check" vp-class="bg-gray"></div>
+        </div>
+        <div style="float: left; width: 100px; margin: 7px;">
+            <div kit-name="icon" vp-icon="check" vp-text="caption" vp-class="bg-gray"></div>
+        </div>
+        <div style="float: left; width:100px; margin: 7px;">
+            <div kit-name="icon" vp-icon="check" vp-active="true" vp-class="bg-gray"></div>
+        </div>
+        <div style="float: left; width: 100px; margin: 7px;">
+            <div kit-name="icon" vp-icon="radio" vp-class="bg-gray"></div>
+        </div>
+        <div style="float: left; width: 100px; margin: 7px;">
+            <div kit-name="icon" vp-icon="radio" vp-text="caption" vp-class="bg-gray"></div>
+        </div>
+        <div style="float: left; width:100px; margin: 7px;">
+            <div kit-name="icon" vp-icon="radio" vp-active="true" vp-class="bg-gray"></div>
+        </div>
+    </div>
+    <div style="clear:both;width:100%;"></div>
+    <div style="width:100%;">
+        <div style="float: left; width: 100px; margin: 7px;">
+            <div kit-name="text" vp-icon="search"></div>
+        </div>
+    </div>
+    <div style="clear:both;width:100%;"></div>
 
     <h3>list</h3>
     <textarea>
     <div kit-name="list" vp-ref="__KIT_LIST"></div>
     </textarea>
-    <div style="width:90%;">
-        <div style="float:left;width:250px;">
+    <div style="width:100%;">
+        <div style="float:left;width:250px; margin: 7px;">
             <div kit-name="list" vp-icon="false" vp-check="false" vp-ref="__KIT_LIST1" vp-max="5" vp-class="border-gray"></div>
         </div>
-        <div style="float: left; width: 250px; margin: 0 0 0 15px;">
-            <div kit-name="list" vp-icon="false" vp-check="true" vp-ref="__KIT_LIST2" vp-max="5" vp-class="border-gray"></div>
+        <div style="float: left; width: 250px; margin: 7px;">
+            <div kit-name="list" vp-icon="false" vp-check="true" vp-ref="__KIT_LIST2" vp-header="true" vp-max="5" vp-class="border-gray"></div>
         </div>
-        <div style="float: left; width: 250px; margin: 0 0 0 15px;">
-            <div kit-name="list" vp-icon="true" vp-check="true" vp-ref="__KIT_LIST3" vp-max="5" vp-class="border-gray"></div>
+        <div style="float: left; width: 250px; margin: 7px;">
+            <div kit-name="list" vp-icon="true" vp-check="true" vp-ref="__KIT_LIST3" vp-header="true" vp-max="5" vp-class="border-gray"></div>
         </div>
     </div>
     <div style="clear:both;width:100%;"></div>

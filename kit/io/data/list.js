@@ -4,11 +4,18 @@ ___VC_DATA.list = {
     img_loading: -1,
     max_size: 0,
     index: -1,
+    select_ids: [],
     value: { id: 2 },
     icon_enable: false,
     check_enable: false,
     icon_render: null,
     check_render: null,
+    header: {
+        visible: false,
+        search_show: true,
+        icon_close: 'close',
+        title: 'Choose items'
+    },
     col: {
         value: 'id',
         text: 'name',
@@ -569,3 +576,4 @@ if (self.vpImgLoading != null) ___VC_DATA.list.img_loading = self.vpImgLoading;
 
 if (self.vpItems != null) ___VC_DATA.list.items = self.vpItems;
 if (self.vpMax) ___VC_DATA.list.max_size = Number(self.vpMax);
+if (self.vpHeader != null) ___VC_DATA.list.header.visible = self.vpHeader == 'true' || self.vpHeader == true ? true : false;

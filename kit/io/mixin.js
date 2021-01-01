@@ -30,37 +30,41 @@ __VC_MIXIN = {
     },
     methods: {
         _init: function () {
-            var _self = this;
+            var self = this;
 
-            var kit_name = _self.$vnode.tag;
+            var kit_name = self.$vnode.tag;
             if (kit_name && kit_name.length > 17) {
                 kit_name = kit_name.substr(17);
                 var pos = kit_name.split('-')[0].length + 1;
                 kit_name = 'vc-' + kit_name.substr(pos);
             } else kit_name = '';
-            _self.kit_name = kit_name;
+            self.kit_name = kit_name;
 
-            var kit_id = kit_name + '--' + _self._uid;
-            _self.kit_id = kit_id;
+            var kit_id = kit_name + '--' + self._uid;
+            self.kit_id = kit_id;
 
             Vue.nextTick(function () {
-                var vp_ref = _self.vpRef;
+                var vp_ref = self.vpRef;
                 if (vp_ref && vp_ref.length > 0) {
                     //console.log(vp_ref);
                     __APP_INLINE.push(vp_ref);
-                    _self._classAdd(_self.$el, vp_ref);
-                    __VC_REF[vp_ref] = _self;
+                    self._classAdd(self.$el, vp_ref);
+                    __VC_REF[vp_ref] = self;
                 }
 
-                _self.$el.id = kit_id;
-                _self._classAdd(_self.$el, _self.kit_name);
-                _self._classAdd(_self.$el, 'vc-com');
-                if (_self.vpTheme) _self._classAdd(_self.$el, _self.vpTheme);
-                if (_self.vpType) _self._classAdd(_self.$el, _self.vpType);
-                if (_self.vpClass) _self._classAdd(_self.$el, _self.vpClass);
+                self.$el.id = kit_id;
+                self._classAdd(self.$el, self.kit_name);
+                self._classAdd(self.$el, 'vc-com');
+                if (self.vpTheme) self._classAdd(self.$el, self.vpTheme);
+                if (self.vpType) self._classAdd(self.$el, self.vpType);
+
+                if (self.img_loading != null && self.img_loading > 0) self._classAdd(self.$el, '__img_loading');
+                if (self.updating) self._classAdd(self.$el, '__updating');
+                if (self.text != null && self.text.length > 0) self._classAdd(self.$el, '__text');
+                if (self.vpClass != null && self.vpClass.length > 0) self._classAdd(self.$el, self.vpClass);
 
                 var is11 = !!window.MSInputMethodContext && !!document.documentMode;
-                if (is11) _self._classAdd(document.body, '__ie11');
+                if (is11) self._classAdd(document.body, '__ie11');
             });
         },
         _classToggle: function (elem, c) {
