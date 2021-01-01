@@ -44,27 +44,35 @@ __VC_MIXIN = {
             self.kit_id = kit_id;
 
             Vue.nextTick(function () {
+                var is11 = !!window.MSInputMethodContext && !!document.documentMode;
+                if (is11) self._classAdd(document.body, '__ie11');
+
+                var self_el = self.$el;
+
                 var vp_ref = self.vpRef;
                 if (vp_ref && vp_ref.length > 0) {
                     //console.log(vp_ref);
                     __APP_INLINE.push(vp_ref);
-                    self._classAdd(self.$el, vp_ref);
+                    self._classAdd(self_el, vp_ref);
                     __VC_REF[vp_ref] = self;
                 }
 
-                self.$el.id = kit_id;
-                self._classAdd(self.$el, self.kit_name);
-                self._classAdd(self.$el, 'vc-com');
-                if (self.vpTheme) self._classAdd(self.$el, self.vpTheme);
-                if (self.vpType) self._classAdd(self.$el, self.vpType);
+                self_el.id = kit_id;
+                self._classAdd(self_el, self.kit_name);
+                self._classAdd(self_el, 'vc-com');
+                if (self.vpTheme) self._classAdd(self_el, self.vpTheme);
+                if (self.vpType) self._classAdd(self_el, self.vpType);
 
-                if (self.img_loading != null && self.img_loading > 0) self._classAdd(self.$el, '__img_loading');
-                if (self.updating) self._classAdd(self.$el, '__updating');
-                if (self.text != null && self.text.length > 0) self._classAdd(self.$el, '__text');
-                if (self.vpClass != null && self.vpClass.length > 0) self._classAdd(self.$el, self.vpClass);
+                if (self.img_loading != null && self.img_loading > 0) self._classAdd(self_el, '__img_loading');
+                if (self.updating) self._classAdd(self_el, '__updating');
+                if (self.text != null && self.text.length > 0) self._classAdd(self_el, '__text');
+                if (self.vpClass != null && self.vpClass.length > 0) self._classAdd(self_el, self.vpClass);
+                if (self.readonly) self._classAdd(self_el, '__readonly');
+                if (self.vpDisable) self._classAdd(self_el, '__disable');
 
-                var is11 = !!window.MSInputMethodContext && !!document.documentMode;
-                if (is11) self._classAdd(document.body, '__ie11');
+                var icon_align = self.vpIconalign;
+                if (icon_align == 'left' || icon_align == 'right' || icon_align == 'top' || icon_align == 'bottom')
+                    self._classAdd(self_el, '__icon_align_' + self.vpIconalign);
             });
         },
         _classToggle: function (elem, c) {

@@ -6,9 +6,13 @@
     display: inline-block;
 }
 
-    .vc-icon:hover {
+    .vc-icon:hover:not(.__disable) {
         border-color: orangered;
         color: orangered;
+    }
+
+    .vc-icon.__disable {
+        opacity: 0.4;
     }
 
     .vc-icon.__text {
