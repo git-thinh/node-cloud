@@ -133,13 +133,34 @@
     <div style="clear:both;width:100%;"></div>
     <div style="width:100%;">
         <div style="float: left; width: 150px; margin: 7px;">
-            <div kit-name="text" vp-title="Search..." vp-value="123"></div>
+            <div kit-name="text" vp-title="Field 1" vp-value="123"></div>
         </div>
         <div style="float: left; width: 150px; margin: 7px;">
-            <div kit-name="text" vp-icon="search" vp-value="123"></div>
+            <div kit-name="text" vp-title="Field 1" vp-icon="search" vp-value="123"></div>
         </div>
         <div style="float: left; width: 150px; margin: 7px;">
-            <div kit-name="text" vp-icon="search" vp-iconalign="right" vp-value="123"></div>
+            <div kit-name="text" vp-title="Field 1" vp-icon="search" vp-iconalign="right" vp-value="123"></div>
+        </div>
+        <div style="float: left; width: 150px; margin: 7px;">
+            <div kit-name="text" vp-title="Field error" vp-error="This error 1" vp-icon="user" vp-iconalign="right" vp-value="123"></div>
+        </div>
+    </div>
+    <div style="clear:both;width:100%;"></div>
+    <div style="width:100%;">
+        <div style="float: left; width: 150px; margin: 7px;">
+            <div kit-name="text" vp-title="Field valid number" vp-icon="search" vp-iconalign="right" vp-value="" vp-valid="number"></div>
+        </div>
+        <div style="float: left; width: 150px; margin: 7px;">
+            <div kit-name="text" vp-title="Field valid number" vp-icon="search" vp-iconalign="right" vp-value="abc" vp-valid="number"></div>
+        </div>
+        <div style="float: left; width: 150px; margin: 7px;">
+            <div kit-name="text" vp-title="Field valid email" vp-icon="email" vp-iconalign="right" vp-value="" vp-valid="email"></div>
+        </div>
+        <div style="float: left; width: 150px; margin: 7px;">
+            <div kit-name="text" vp-title="Field valid phone" vp-icon="phone" vp-iconalign="right" vp-value="" vp-valid="phone"></div>
+        </div>
+        <div style="float: left; width: 150px; margin: 7px;">
+            <div kit-name="text" vp-title="Field valid by api" vp-icon="user" vp-iconalign="right" vp-value="" vp-valid="api_check_user"></div>
         </div>
     </div>
     <div style="clear:both;width:100%;"></div>
@@ -164,6 +185,10 @@
 
 
     <script type="text/javascript">
+        function valid_test() {
+
+        }
+
 
         __vue_init_inline(function () {
             __vue_toast('App Vue installed sucessfully', 'success');

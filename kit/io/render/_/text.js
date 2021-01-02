@@ -1,35 +1,45 @@
 ﻿var self = this;
 
-var root,
+var root, input,
     data = self.$data,
-    text = data.text,
     value = data.value,
+    text = data.text || '',
+    error = data.error || '',
+    title = data.title || '',
     icon_align = data.icon_align,
     icon_name = data.icon_name || '',
-    readonly = data.readonly,
+    readonly = data.readonly || false,
     placeholder = data.placeholder || '',
-    setting = data.setting_ || {},
-    input, els = [];
+    setting = data.setting_ || {};
 
-input = createElement('input', {
+if (readonly) input = createElement('span', { class: '__in-label __no-select' }, [text]);
+else input = createElement('input', {
     class: '__in-input',
     attrs: {
+        id: self.kit_id + '-input',
         placeholder: placeholder,
         value: text
     },
     //directives: [{ name: 'v-model', value: self.text }]
 });
-if (readonly) input = createElement('span', { class: '__in-label __no-select' }, [text]);
 
-var ico = createElement('i', { class: '__hide' });
+var ico;
 if (icon_name.length > 0) {
     var p_ico = { 'vp-icon': icon_name };
     if (readonly) p_ico['vp-disable'] = true;
     ico = createElement('ui-icon', { class: '__in-icon', props: p_ico });
 }
 
-if (icon_align == 'right') els = [input, ico];
-else els = [ico, input];
+var caption;
+if (title.length > 0) caption = createElement('p', { class: '__in-title' }, [title]);
 
-root = self._createElement(createElement, 'div', setting, els);
+var el_error;
+if (error.length > 0) el_error = createElement('p', { class: '__in-error' }, [error]);
+
+var el_input;
+if (icon_align == 'right') el_input = createElement('div', { class: '__in-field' }, [input, ico]);
+else el_input = createElement('div', { class: '__in-field' }, [ico, input]);
+
+root = self._createElement(createElement, 'div', setting, [caption, el_input, el_error]);
 return root;
+

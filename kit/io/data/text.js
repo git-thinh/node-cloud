@@ -7,6 +7,8 @@ ___VC_DATA.text = {
     placeholder: '',
     icon_name: '',
     icon_align: 'left',
+    error: '',
+    title:'',
     text: ''
 };
 
@@ -17,4 +19,6 @@ if (self.vpIconalign == 'left' || self.vpIconalign == 'right'
     ___VC_DATA.text.icon_align = self.vpIconalign;
 
 if (self.vpValue != null) ___VC_DATA.text.text = self.vpValue;
-if (self.vpIcon && self.vpIcon.length > 0) ___VC_DATA.text.icon_name = self.vpIcon;
+if (self.vpIcon != null && self.vpIcon.length > 0) ___VC_DATA.text.icon_name = self.vpIcon;
+if (self.vpTitle != null && self.vpTitle.length > 0) ___VC_DATA.text.title = self.vpTitle;
+if (self.vpError != null && self.vpError.length > 0) ___VC_DATA.text.error = self.vpError;

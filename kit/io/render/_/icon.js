@@ -4,7 +4,7 @@ var root,
     data = self.$data,
     name = data.name,
     name_active = name + '-active',
-    text = data.text,
+    text = data.text || '',
     active = data.active,
     setting = data.setting_ || {},
     arrPath = [], keys = [];
@@ -55,7 +55,9 @@ if (ok) {
 //console.log(name, active, self.img_loading, ok);
 
 if (ok) {
-    var label = createElement('label', { class: '__ic_text __no-select' }, [text]);
+    var label;
+    if (text.length > 0)
+        label = createElement('label', { class: '__ic_text __no-select' }, [text]);
 
     var svg = createElement('svg', {
         class: '__ic_icon',
@@ -75,7 +77,7 @@ if (ok) {
         //}
     }, [arrPath]);
 
-    var indicator = createElement('img', { class: '__ic_loading' });
+    var indicator;
     if (self.img_loading > 0)
         indicator = createElement('img', { class: '__ic_loading', attrs: { src: '/_static/img-loading/' + self.img_loading + '.gif' } });
 
