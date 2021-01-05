@@ -2,8 +2,7 @@
 
 var root, input,
     data = self.$data,
-    value = data.value,
-    text = data.text || '',
+    value = data.value || '',
     error = data.error || '',
     title = data.title || '',
     icon_align = data.icon_align,
@@ -12,15 +11,15 @@ var root, input,
     placeholder = data.placeholder || '',
     setting = data.setting_ || {};
 
-if (readonly) input = createElement('span', { class: '__in-label __no-select' }, [text]);
+if (readonly) input = createElement('span', { class: '__in-label __no-select' }, [value]);
 else input = createElement('input', {
     class: '__in-input',
     attrs: {
         id: self.kit_id + '-input',
         placeholder: placeholder,
-        value: text
+        value: value
     },
-    //directives: [{ name: 'v-model', value: self.text }]
+    //directives: [{ name: 'v-model', value: self.value }]
 });
 
 var ico;

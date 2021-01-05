@@ -4,12 +4,7 @@
         Vue.nextTick(function () {
             if (self.active) self._classAdd(self.$el, '__active');
             else self._classRemove(self.$el, '__active');
-            self._classAdd(self.$el, 'ui-icon-' + self.name);
-
-            //if (self.img_loading != null && self.img_loading > 0) self._classAdd(self.$el, '__img_loading');
-            //if (self.updating) self._classAdd(self.$el, '__updating');
-            //if (self.text != null && self.text.length > 0) self._classAdd(self.$el, '__text');
-            //if (self.vpClass != null && self.vpClass.length > 0) self._classAdd(self.$el, self.vpClass);
+            self._classAdd(self.$el, 'ui-icon-' + self.icon_name);
         });
     },
     methods: {

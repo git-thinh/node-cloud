@@ -5,7 +5,7 @@ ___VC_DATA.icon = {
     img_loading: -1,
     index: -1,
     value: null,
-    name: '',
+    icon_name: '',
     name_active: '',
     text: ''
 };

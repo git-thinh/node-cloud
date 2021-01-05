@@ -67,7 +67,7 @@
         <button onclick="__vue_toast(new Date().toString(), 'danger')">danger</button>
     </div>-->
 
-    <h3>check - radio - text</h3>
+    <h3>icon</h3>
     <div style="width:100%;">
         <div style="float:left;width:100px; margin: 7px;">
             <div kit-name="icon" vp-icon="add" vp-class=""></div>
@@ -92,6 +92,7 @@
         </div>
     </div>
     <div style="clear:both;width:100%;"></div>
+    <h3>check</h3>
     <div style="width:100%;">
         <div style="float: left; width: 100px; margin: 7px;">
             <div kit-name="icon" vp-icon="check" vp-class="bg-gray"></div>
@@ -102,6 +103,11 @@
         <div style="float: left; width:100px; margin: 7px;">
             <div kit-name="icon" vp-icon="check" vp-active="true" vp-class="bg-gray"></div>
         </div>
+    </div>
+
+    <div style="clear:both;width:100%;"></div>
+    <h3>radio</h3>
+    <div style="width:100%;">
         <div style="float: left; width: 100px; margin: 7px;">
             <div kit-name="icon" vp-icon="radio" vp-class="bg-gray"></div>
         </div>
@@ -112,10 +118,18 @@
             <div kit-name="icon" vp-icon="radio" vp-active="true" vp-class="bg-gray"></div>
         </div>
     </div>
+
     <div style="clear:both;width:100%;"></div>
+    <h3>text</h3>
     <div style="width:100%;">
         <div style="float: left; width: 150px; margin: 7px;">
+            <div kit-name="text" vp-readonly="true" vp-value=""></div>
+        </div>
+        <div style="float: left; width: 150px; margin: 7px;">
             <div kit-name="text" vp-readonly="true" vp-value="123"></div>
+        </div>
+        <div style="float: left; width: 150px; margin: 7px;">
+            <div kit-name="text" vp-icon="search" vp-readonly="true" vp-value=""></div>
         </div>
         <div style="float: left; width: 150px; margin: 7px;">
             <div kit-name="text" vp-icon="search" vp-readonly="true" vp-value="123"></div>
@@ -132,6 +146,9 @@
     </div>
     <div style="clear:both;width:100%;"></div>
     <div style="width:100%;">
+        <div style="float: left; width: 150px; margin: 7px;">
+            <div kit-name="text" vp-title="Field 1" vp-value=""></div>
+        </div>
         <div style="float: left; width: 150px; margin: 7px;">
             <div kit-name="text" vp-title="Field 1" vp-value="123"></div>
         </div>
@@ -166,11 +183,8 @@
     <div style="clear:both;width:100%;"></div>
 
     <h3>list</h3>
-    <textarea>
-    <div kit-name="list" vp-ref="__KIT_LIST"></div>
-    </textarea>
     <div style="width:100%;">
-        <div style="float:left;width:250px; margin: 7px;">
+        <!--<div style="float:left;width:250px; margin: 7px;">
             <div kit-name="list" vp-icon="false" vp-check="false" vp-ref="__KIT_LIST1" vp-max="5" vp-class="border-gray"></div>
         </div>
         <div style="float: left; width: 250px; margin: 7px;">
@@ -178,7 +192,7 @@
         </div>
         <div style="float: left; width: 250px; margin: 7px;">
             <div kit-name="list" vp-icon="true" vp-check="true" vp-ref="__KIT_LIST3" vp-header="true" vp-max="5" vp-class="border-gray"></div>
-        </div>
+        </div>-->
     </div>
     <div style="clear:both;width:100%;"></div>
 

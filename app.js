@@ -53,17 +53,14 @@ function __vue_com_render_js(theme_code, is_minify) {
 function __vue_com_render_js_item(theme_code, is_minify, type, file_name) {
     let name = file_name.substr(0, file_name.length - 3),
         file = '',
-        f_data = '',
         s = '',
         temp = '',
         f_render = '',
-        render = '',
-        data = '';
+        render = '';
 
     file = './kit/io/com/' + type + '/' + file_name;
-    f_data = './kit/io/data/' + file_name;
 
-    if (fs.existsSync(file) && fs.existsSync(f_data)) {
+    if (fs.existsSync(file)) {
         f_render = './kit/io/render/' + theme_code + '/' + file_name;
         if (fs.existsSync(f_render)) render = fs.readFileSync(f_render).toString('utf8').trim();
         else {
@@ -75,13 +72,11 @@ function __vue_com_render_js_item(theme_code, is_minify, type, file_name) {
         temp = fs.readFileSync(file).toString('utf8').trim().substr(1).trim();
         if (temp.length == 0) temp = '}';
 
-        data = fs.readFileSync(f_data).toString('utf8');
         s += '\r\n\r\n/* [ ' + name + ' ] */ \r\n' +
-            '___VC_DATA_FN["' + name + '"] = function(self){\r\n' + data + '\r\n};\r\n\r\n' +
             'Vue.component("ui-' + name + '", {\r\n' +
             '\t mixins: [__VC_MIXIN],\r\n' +
 
-            '\t data: function () { \r\n\t\t\t ___VC_DATA_FN["' + name + '"](this); ' +
+            '\t data: function () { \r\n\t\t\t __vc_data_init(this, "' + name + '"); ' +
             '\r\n\t\t\t var data = this._initData(___VC_DATA["' + name + '"]); ' +
             '\r\n\t\t\t ___VC_DATA["' + name + '"] = data; ' +
             '\r\n\t\t\t return ___VC_DATA["' + name + '"]; ' +

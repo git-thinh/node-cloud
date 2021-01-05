@@ -2,7 +2,7 @@
 
 var root,
     data = self.$data,
-    name = data.name,
+    name = data.icon_name,
     name_active = name + '-active',
     text = data.text || '',
     active = data.active,
