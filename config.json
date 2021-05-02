@@ -1,0 +1,35 @@
+{
+  "10.103.1.222": {
+    "port": 1233,
+    "path_www": "C:\/templates\/",
+    "environment": "dev",
+    "api_root_path": "iot"
+  },
+  "192.168.1.5": {
+    "port": 1233,
+    "path_www": "D:\/templates\/",
+    "environment": "dev",
+    "api_root_path": "iot"
+  },
+  "theme.lo": {
+    "landing": false,
+    "dir": "theme",
+    "login": false,
+    "browser": true
+  },
+  "site-1.lo": {
+    "landing": true,
+    "dir": "site-1",
+    "login": false
+  },
+  "site-2.lo": {
+    "landing": true,
+    "dir": "site-2",
+    "login": false
+  },
+  "lpa_backend.lo": {
+    "landing": false,
+    "dir": "lpa_backend",
+    "login": false
+  }
+}

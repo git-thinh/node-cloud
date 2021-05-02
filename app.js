@@ -1,285 +1,294 @@
-let ENV = 'pro';
-if (process.platform === "win32") ENV = 'dev';
+﻿let IP = '', PORT = 80, ENV = 'pro', CONFIG = {}, PATH_WWW = '', API_ROOT_PATH = 'api';
+let CACHE_TEXT = {};
+const isConfig = function (domain) { return CONFIG.hasOwnProperty(domain); };
 
-const DIR_PUBLISH = '_pub';
+//#region [ INIT ]
 
-const URL_STORE_DIR = {};
-let URL_CACHE_TEXT = {}
-let SITE = require('./_sys/domain.' + ENV + '.json');
-const ROOT_TEMPLATE = SITE.path.template;
+CONFIG = require('./config.json');
+const { networkInterfaces } = require('os');
+const nets = networkInterfaces();
+for (const name of Object.keys(nets)) {
+    for (const net of nets[name]) {
+        // skip over non-ipv4 and internal (i.e. 127.0.0.1) addresses
+        if (net.family === 'IPv4' && !net.internal) {
+            if (IP.length == 0) {
+                var pi = net.address;
+                if (isConfig(pi)) {
+                    //console.log('>>> OK: ' + pi);
+                    IP = pi;
+                    const cf = CONFIG[IP];
+                    PATH_WWW = cf.path_www || '';
+                    API_ROOT_PATH = cf.api_root_path || 'api';
+                    PORT = cf.port || 0;
+                    ENV = cf.environment || 'dev';
+                } else console.log(pi);
+            }
+        }
+    }
+}
 
-const fs = require('fs');
-const path = require('path');
-const _ = require('lodash');
-const mime = require('mime-types');
-const { release } = require('process');
-const UGLIFY_JS = require("uglify-js");
+//#endregion
+
+const fs = require("fs");
+const PATH = require('path');
 
 const express = require('express');
 const https = require('https');
 const http = require('http');
 const app = express();
 
-app.use('/publish', express.static(path.join(__dirname, DIR_PUBLISH)));
+//#region [ lodash ]
 
-function __vue_com_render_js(theme_code, is_minify) {
-    let vg = '', vjs = '', temp = '', s = '', config = '';
+const _ = require('lodash');
+_.templateSettings = {
+    evaluate: /\{\{(.+?)\}\}/g,
+    interpolate: /\{\{=(.+?)\}\}/g,
+    escape: /\{\{-(.+?)\}\}/g
+};
+/*
+ 
+    {{ _.each(items, function(item) { }}
+        <ul>
+            <li>Title: {{= item.title }}</li>
+            <li>Author: {{= item.author }}</li>
+        </ul>
+    {{ }); }}
 
-    vg += fs.readFileSync('./kit/io/lodash.min.js');
-    vg += fs.readFileSync('./kit/io/vue.min.js');
-
-    vjs += fs.readFileSync('./kit/io/_init.js');
-    vjs += fs.readFileSync('./kit/io/mixin.js');
-    vjs += fs.readFileSync('./kit/io/global.js');
-    vjs += fs.readFileSync('./kit/io/config.js');
-
-    if (fs.existsSync('./kit/io/config/' + theme_code + '.js'))
-        config = '\r\n\r\n/* [ CONFIG ] */\r\n var __vue_vc_config = function(){ \r\n ' + fs.readFileSync('./kit/io/config/' + theme_code + '.js').toString('utf8').trim() + ' \r\n } \r\n';
-    else
-        config = '\r\n\r\n/* [ CONFIG ] */\r\n var __vue_vc_config = function(){ \r\n  \r\n } \r\n';
-
-    temp = '';
-    a = fs.readdirSync('./kit/io/com/base');
-    a.forEach(function (file) { temp += __vue_com_render_js_item(theme_code, is_minify, 'base', file); });
-    a = fs.readdirSync('./kit/io/com/kit');
-    a.forEach(function (file) { temp += __vue_com_render_js_item(theme_code, is_minify, 'kit', file); });
-    a = fs.readdirSync('./kit/io/com/widget');
-    a.forEach(function (file) { temp += __vue_com_render_js_item(theme_code, is_minify, 'widget', file); });
-
-    s = vg + vjs + config + temp;
-    return s;
-}
-
-function __vue_com_render_js_item(theme_code, is_minify, type, file_name) {
-    let name = file_name.substr(0, file_name.length - 3),
-        file = '',
-        s = '',
-        temp = '',
-        f_render = '',
-        render = '';
-
-    file = './kit/io/com/' + type + '/' + file_name;
-
-    if (fs.existsSync(file)) {
-        f_render = './kit/io/render/' + theme_code + '/' + file_name;
-        if (fs.existsSync(f_render)) render = fs.readFileSync(f_render).toString('utf8').trim();
-        else {
-            f_render = './kit/io/render/_/' + file_name;
-            if (fs.existsSync(f_render)) render = fs.readFileSync(f_render).toString('utf8').trim();
-        }
-        if (render.length == 0) render = 'return createElement("div",{ class: "vc-com vc-' + name + ' vc-error vc-message" },["The component ' + name + ' does not find a function for rendering virtual DOM"]);';
-
-        temp = fs.readFileSync(file).toString('utf8').trim().substr(1).trim();
-        if (temp.length == 0) temp = '}';
-
-        s += '\r\n\r\n/* [ ' + name + ' ] */ \r\n' +
-            'Vue.component("ui-' + name + '", {\r\n' +
-            '\t mixins: [__VC_MIXIN],\r\n' +
-
-            '\t data: function () { \r\n\t\t\t __vc_data_init(this, "' + name + '"); ' +
-            '\r\n\t\t\t var data = this._initData(___VC_DATA["' + name + '"]); ' +
-            '\r\n\t\t\t ___VC_DATA["' + name + '"] = data; ' +
-            '\r\n\t\t\t return ___VC_DATA["' + name + '"]; ' +
-            '\r\n\t },\r\n' +
-
-            '\t render: function (createElement) { \r\n\t\t ' + render + '\r\n\t }';
-        if (temp[0] == '}') s += '\r\n})\r\n'; else s += ',\r\n\t' + temp + ')\r\n';
+ */
+const _lodashComplite = function (template, obj) {
+    obj = obj || {};
+    try {
+        const temp = _.template(template);
+        const text = temp(obj);
+        return text;
+    } catch (e) {
+        console.log('>>> ERROR = _lodashComplite: ', template, obj, e.message);
+        return '';
     }
-    return s;
-}
+};
 
-function __vue_com_render_css(theme_code, is_minify) {
-    let s = '';
-    a = fs.readdirSync('./kit/io/style/_');
-    a.forEach(function (file) { s += fs.readFileSync('./kit/io/style/_/' + file).toString('utf8').trim() + '\r\n\r\n'; });
+//#endregion
 
-    s += '\r\n/* ====================== */';
-    s += '\r\n/* [ ' + theme_code + ' ] */\r\n\r\n';
-    a = fs.readdirSync('./kit/io/style/' + theme_code);
-    a.forEach(function (file) { s += fs.readFileSync('./kit/io/style/' + theme_code + '/' + file).toString('utf8').trim() + '\r\n\r\n'; });
-
-    return s;
-}
-
-app.get("/*", (req, res) => {
-    const domain = req.hostname, is_template = domain.endsWith('.ibds.co');
-    let site, root, file = req.url.split('?')[0],
-        ref, theme_code = '', temp = '',
-        pathFile, isDynamic = false,
-        extension = path.extname(file),
-        fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-
-    //console.log(is_template, req.originalUrl);
-
-    switch (file) {
-        case '/__cus.css':
-            pathFile = ROOT_TEMPLATE + '/custom' + file;
-            if (fs.existsSync(pathFile))
-                temp = fs.readFileSync(pathFile).toString('utf8').trim();
-            res.set('Content-Type', 'text/css');
-            res.end(temp);
-            return;
-        case '/__cus.js':
-            pathFile = ROOT_TEMPLATE + '/custom' + file;
-            if (fs.existsSync(pathFile))
-                temp = fs.readFileSync(pathFile).toString('utf8').trim();
-            res.set('Content-Type', 'text/javascript');
-            res.end(temp);
-            return;
-        case '/__cus_config.js':
-            pathFile = ROOT_TEMPLATE + '/custom' + file + 'on';
-            if (fs.existsSync(pathFile))
-                temp = 'var CONFIG__ =  ' + JSON.stringify(JSON.parse(fs.readFileSync(pathFile).toString('utf8').trim()));
-            else temp = 'var CONFIG__ = {} ';
-            res.set('Content-Type', 'text/javascript');
-            res.end(temp);
-            return;
-        case '/io.js':
-            theme_code = req.query.theme;
-            temp = __vue_com_render_js(theme_code, false);
-            res.set('Content-Type', 'text/javascript');
-            res.end(temp);
-            return;
-        case '/io.css':
-            theme_code = req.query.theme;
-            temp = __vue_com_render_css(theme_code, false);
-            res.set('Content-Type', 'text/css');
-            res.end(temp);
-            return;
-        case '/test':
-            temp = '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
-            Object.keys(SITE).forEach(function (key_, index_) {
-                if (!key_.endsWith('ibds.co'))
-                    temp += '<h3><a href="http://' + key_ + '" target="_blank" style="text-decoration:none;">[' + (index_ + 1).toString() + '] ' + key_ + '</a></h3>';
-            });
-            res.set('Content-Type', 'text/html');
-            res.end(temp);
-            return;
-        case '/landing':
-            temp = '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
-            Object.keys(SITE).forEach(function (key_, index_) {
-                if (key_.endsWith('ibds.co'))
-                    temp += '<h3><a href="https://' + key_ + '" target="_blank" style="text-decoration:none;">[' + (index_ + 1).toString() + '] ' + key_ + '</a></h3>';
-            });
-            res.set('Content-Type', 'text/html');
-            res.end(temp);
-            return;
-        case '/clear-cache':
-            URL_CACHE_TEXT = Object.create({});
-
-            pathFile = './_sys/domain.' + ENV + '.json';
-            delete require.cache[require.resolve(pathFile)];
-            SITE = require(pathFile);
-
-            res.end('CLEAR ALL CACHE ...');
-            return;
-        case '/ui-kit.json':
-            const coms = [];
-            const groups = fs.readdirSync('./kit/ui');
-            groups.forEach(function (group) {
-                const kits = fs.readdirSync('./kit/ui/' + group);
-                kits.forEach(function (kit) {
-                    const files = fs.readdirSync('./kit/ui/' + group + '/' + kit);
-                    coms.push({ group: group, name: kit, files: files });
-                });
-            });
-            res.json({ ok: true, data: coms });
-            return;
-    }
-
-    if (extension.length == 0) {
-        if (file == '/') file = '/index.html';
-        else file += '.html';
-        isDynamic = true;
-        extension = '.html';
-    }
-
-    switch (extension) {
-        case '.ico'://favicon.ico
-            res.end();
-            return;
-        case '.html':
-            site = { dir: 'coming-soon', login: false };
-            if (SITE.hasOwnProperty(domain)) site = SITE[domain];
-            else if (domain.indexOf('login.') == 0) site = SITE['login'];
-            root = './' + site.dir;
-            if (is_template) root = ROOT_TEMPLATE + site.dir;
-            //console.log('[1] HTML = ', root, file);
-            pathFile = root + file;
-            if (!fs.existsSync(pathFile)) pathFile = './404/index.html';
-            //URL_STORE_DIR[fullUrl] = site.dir;
-            URL_STORE_DIR[fullUrl] = site.dir;
-            break;
-        default:
-            if (req.originalUrl.startsWith('/_static/')) {
-                pathFile = '.' + file;
-            } else {
-                ref = req.headers.referer;
-                const dir = URL_STORE_DIR[ref];
-                if (file.indexOf('/' + dir) == -1 && ref && ref.length > 0 && URL_STORE_DIR.hasOwnProperty(ref))
-                    pathFile = './' + dir + file;
-                else pathFile = '.' + file;
-            }
-            break;
-    }
-
-    if (pathFile.indexOf('?')) pathFile = pathFile.split('?')[0];
-    //console.log('[3] ', is_template, domain, req.url, pathFile);
-
-    const mimeType = mime.lookup(pathFile);
-    if (mimeType != false) res.setHeader('content-type', mimeType);
-    if (ENV == 'pro' && URL_CACHE_TEXT.hasOwnProperty(fullUrl)) {
-        res.end(URL_CACHE_TEXT[fullUrl]);
-    } else {
-        if (fs.existsSync(pathFile)) {
-            if (extension == '.html' || extension == '.js' || extension == '.css') {
-                let s = fs.readFileSync(pathFile);
-                if (extension == '.html') {
-                    if (s.indexOf('<_') > 0) {
-                        let text = s.toString('utf8');
-                        let a = text.split('<_');
-                        a = _.filter(a, function (o) { return o.indexOf('/>') > 0 });
-                        a = _.map(a, function (o) { return o.split('/>')[0]; });
-                        //console.log(a);
-                        if (a.length > 0) {
-                            for (let i = 0; i < a.length; i++) {
-                                let url_ = './' + site.dir + '/_' + a[i] + '.html';
-                                if (ENV == 'pro' && URL_CACHE_TEXT.hasOwnProperty(a[i])) {
-                                    text = text.replace('<_' + a[i] + '/>', URL_CACHE_TEXT[a[i]].toString('utf8').trim());
-                                } else {
-                                    if (fs.existsSync(url_)) {
-                                        const bt = fs.readFileSync(url_);
-                                        URL_CACHE_TEXT[a[i]] = bt;
-                                        text = text.replace('<_' + a[i] + '/>', bt.toString('utf8').trim());
-                                    }
-                                }
-                            }
-                        }
-                        s = text;
-                    }
-
-                    if (s.indexOf('</body>') === -1 || s.indexOf('</html>') === -1) {
-                        s += '<link href="/__cus.css" rel="stylesheet" type="text/css">' +
-                            '<script type="text/javascript" src="/__cus_config.js"></script>' +
-                            '<script type="text/javascript" src="/__cus.js"></script>' +
-                            '</body></html>';
-                    }
+function app_getImage(req, res, next) {
+    if (!isConfig(req.hostname)) res.end();
+    else {
+        if (req.method == 'GET'
+            && req.headers && req.headers.accept) {
+            const accept = req.headers.accept;
+            //console.log(accept, req.url);
+            if (accept.indexOf('image/') == 0
+                || accept.indexOf('text/css') == 0
+                || accept == '*/*') {
+                const file_name = req.url.split('?')[0];
+                const domain = req.hostname;
+                if (CONFIG.hasOwnProperty(domain)) {
+                    const cf = CONFIG[domain];
+                    const file = PATH_WWW + cf.dir + file_name;
+                    //console.log(domain, file);
+                    if (fs.existsSync(file)) res.sendFile(file);
+                    else res.status(404).send('Not found');
+                    return;
                 }
-                URL_CACHE_TEXT[fullUrl] = s;
-                res.end(s);
-            } else {
-                const src = fs.createReadStream(pathFile);
-                src.pipe(res);
             }
-        } else {
-            res.end();
         }
+        next();
     }
+}
+app.use(app_getImage);
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+const isCacheText = function (file) { return CACHE_TEXT.hasOwnProperty(file); };
+function readFileCache(file) {
+    let html = '';
+    if (fs.existsSync(file)) {
+        html = fs.readFileSync(file);
+        CACHE_TEXT[file] = html;
+    }
+    return html;
+}
+
+function app_getHtmlPage(req, res) {
+    const domain = req.hostname,
+        cf = CONFIG[domain],
+        url = req.url.split('?')[0],
+        is_browser = req.url.indexOf('[ALL]') != -1;
+    let path = url;
+    if (!url.endsWith('.html')) path += 'index.html';
+    let file = PATH_WWW + cf.dir + path;
+    //console.log(is_browser, path, file);
+
+    if (is_browser) {
+        const path_dir = PATH.dirname(path);
+        const full_path = PATH.dirname(file);
+        console.log('[2] = ', path_dir, full_path);
+        if (fs.existsSync(full_path)) {
+            let temp = '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
+            let dirs = fs.readdirSync(full_path);
+
+            let link, uri = req.protocol + '://' + domain + ':' + PORT + path_dir;
+            if (path_dir[path_dir.length - 1] != '/') uri += '/';
+
+            //console.log('5.2 = ', dirs);
+            dirs.forEach(function (name) { 
+                if (fs.lstatSync(full_path + '/' + name).isDirectory()) link = uri + name + '/?[ALL]';
+                else link = uri + name;
+                //console.log('5.3 = ', link);
+                temp += '<h3><a href="' + link + '" target="_blank" style="text-decoration:none;">' + name + '</a></h3>';
+            });
+            res.set('Content-Type', 'text/html');
+            res.end(temp);
+
+        } else res.end('Cannot found path [2]: ' + full_path);
+    } else {
+        //console.log('[1] = ', file);
+        let html = '';
+        if (isCacheText(file)) html = CACHE_TEXT[file];
+        else html = readFileCache(file);
+        res.set('Content-Type', 'text/html');
+        res.end(html);
+    }
+}
+
+app.get("/", app_getHtmlPage);
+
+//#region [ /landing /cache/clear ]
+
+
+app.get("/landing", (req, res) => {
+    let temp = '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
+    let keys = Object.keys(CONFIG);
+    keys.forEach(function (key, index) {
+        let cf = CONFIG[key];
+        if (cf.landing == true)
+            temp += '<h3><a href="http://' + key + ':' + PORT + '" target="_blank" style="text-decoration:none;">[' + (index + 1).toString() + '] ' + key + '</a></h3>';
+    });
+    res.set('Content-Type', 'text/html');
+    res.end(temp);
 });
 
-if (ENV === 'pro') SITE.port = 80;
-http.createServer(app).listen(SITE.port);
-https.createServer({
-    key: fs.readFileSync('./_sys/co.ibds.key'),
-    cert: fs.readFileSync('./_sys/co.ibds.crt')
-}, app).listen(443);
+app.get("/cache/clear", (req, res) => {
+    CACHE_TEXT = Object.create({});
+    delete require.cache[require.resolve('./config.json')];
+    CONFIG = require('./config.json');
+    res.json({ ok: true });
+    res.end();
+});
+
+//#endregion
+
+//#region [ html2pdf ]
+
+app.get('/' + API_ROOT_PATH + '/html2pdf', (req, res) => {
+    let arr = [], p = './html2pdf';
+    if (fs.existsSync(p)) arr = fs.readdirSync(p);
+    res.json(arr);
+    res.end();
+});
+
+app.get('/' + API_ROOT_PATH + '/html2pdf/:project_code', (req, res) => {
+    let arr = [], p = './html2pdf/' + req.params.project_code;
+    if (req.params && req.params.project_code && fs.existsSync(p)) arr = fs.readdirSync(p);
+    res.json(arr);
+    res.end();
+});
+
+app.get('/' + API_ROOT_PATH + '/html2pdf/:project_code/:template_code', (req, res) => {
+    let arr = [], p = './html2pdf/' + req.params.project_code + '/' + req.params.template_code;
+    if (req.params && req.params.project_code
+        && req.params.template_code && fs.existsSync(p)) arr = fs.readdirSync(p);
+    res.json(arr);
+    res.end();
+});
+
+app.get('/' + API_ROOT_PATH + '/html2pdf/:project_code/:template_code/:language_code', (req, res) => {
+    let html = '', p = './html2pdf/' + req.params.project_code + '/'
+        + req.params.template_code + '/'
+        + req.params.language_code;
+
+    if (req.params && req.params.project_code
+        && req.params.template_code
+        && req.params.language_code
+        && fs.existsSync(p)) html = fs.readFileSync(p).toString('utf8');
+
+    res.setHeader('Content-Type', 'text/plain');
+    res.end(html);
+});
+
+app.put('/' + API_ROOT_PATH + '/html2pdf/:project_code/:template_code/:language_code', (req, res) => {
+    let html = '',
+        p = './html2pdf/' + req.params.project_code + '/' + req.params.template_code,
+        file_name = req.params.language_code;
+
+    if (req.params && req.params.project_code
+        && req.params.template_code
+        && req.params.language_code
+        && fs.existsSync(p)) {
+        if (req.is('text/*')) {
+            req.text = '';
+            req.setEncoding('utf8');
+            req.on('data', function (chunk) {
+                req.text += chunk;
+            });
+            req.on('end', function () {
+                html = req.text;
+                let f = p + '/' + file_name;
+                //console.log(f, html);
+                fs.writeFileSync(f, html);
+                res.json({ ok: true, path: p, file: file_name });
+                res.end();
+            });
+            return;
+        }
+    }
+    res.json({ ok: false, path: p, file: file_name });
+    res.end();
+});
+
+app.post('/' + API_ROOT_PATH + '/html2pdf', (req, res) => {
+    let rs = req.body || {};
+    rs.file = '';
+    rs.ok = false;
+    rs.error = '';
+
+    if (req.body != null && req.body.data) {
+        let html = '',
+            file = './html2pdf/' + req.body.project_code + '/' + req.body.template_code + '/' + req.body.language_code;
+        if (fs.existsSync(file)) {
+            const s = fs.readFileSync(file).toString('utf8');
+
+            let data = req.body.data || {};
+            data._ = _;
+
+            html = _lodashComplite(s, data);
+            let file_name = (new Date()).getTime();
+            printPDF(file_name, html).then(function (pdf) {
+                //res.setHeader('Content-Length', pdf.length);
+                //res.setHeader('Content-Type', 'application/pdf');
+                //res.setHeader('Content-Disposition', 'attachment; filename=' + file_name + '.pdf');
+                //res.end(pdf);
+                rs.file = file_name;
+                rs.ok = true;
+                res.json(rs);
+                res.end();
+            });
+            return;
+        } else rs.error = 'Cannot found the file ' + file;
+    } else rs.error = 'The body of post request is NULL';
+
+    res.json(rs);
+    res.end();
+});
+
+//#endregion
+
+app.get("/*", app_getHtmlPage);
+
+if (IP.length == 0 || PATH_WWW.length == 0 || !fs.existsSync(PATH_WWW)) {
+    console.log('>>> ERROR = Please setting IP with path_www not found ' + PATH_WWW);
+} else {
+    console.log('>>> OK = ' + ENV + '://' + IP + ':' + PORT);
+    http.createServer(app).listen(PORT);
+    https.createServer({ key: fs.readFileSync('./ssl/co.ibds.key'), cert: fs.readFileSync('./ssl/co.ibds.crt') }, app).listen(443);
+}
